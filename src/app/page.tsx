@@ -15,7 +15,7 @@ export default function Home() {
         />
         <div className={styles.intro}>
           <h1>To get started, edit the page.tsx file.</h1>
-          <h2>This will be the header</h2>
+          <h2>NyGöys hemsida</h2>
           <p>
             Looking for a starting point or more instructions? Head over to{" "}
             <a
