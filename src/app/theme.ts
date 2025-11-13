@@ -8,7 +8,14 @@ const theme = (mode: 'light' | 'dark' = 'light') =>
             secondary: { main: '#7c4dff' },
         },
         typography: {
-            fontFamily: ['Inter', 'system-ui', 'Arial'].join(','),
+            h1: {
+                fontSize: 48,
+                fontFamily: "Anonymous Pro",
+                fontWeight: "bold",
+                fontStyle: "italic"
+            },
+            fontFamily: ['Inter', 'system-ui', 'Arial', 'Anonymous Pro'].join(','),
+
         },
         components: {
             MuiButton: { styleOverrides: { root: { textTransform: 'none', borderRadius: 10 } } },
