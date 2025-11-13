@@ -122,8 +122,7 @@ export default function Header() {
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'space-between',
-                            px: 4,
-                            pt: 4,
+                            p: 2,
                         }}
                     >
                         <Typography
@@ -162,6 +161,8 @@ export default function Header() {
                                     color: 'black',
                                     fontSize: '3.5rem',
                                     fontFamily: '"Anonymous Pro", monospace',
+                                    fontStyle: 'italic',
+                                    fontWeight: 'bold',
 
                                 }}
                             >
