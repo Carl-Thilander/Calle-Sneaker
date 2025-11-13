@@ -4,7 +4,7 @@ const theme = (mode: 'light' | 'dark' = 'light') =>
     createTheme({
         palette: {
             mode,
-            primary: { main: '#1e88e5' },
+            primary: { main: '#000000' },
             secondary: { main: '#7c4dff' },
         },
         typography: {
@@ -13,6 +13,11 @@ const theme = (mode: 'light' | 'dark' = 'light') =>
                 fontFamily: "Anonymous Pro",
                 fontWeight: "bold",
                 fontStyle: "italic"
+            },
+            h4: {
+                fontSize: 24,
+                fontFamily: "Inter",
+                fontWeight: "normal",
             },
             fontFamily: ['Inter', 'system-ui', 'Arial', 'Anonymous Pro'].join(','),
 

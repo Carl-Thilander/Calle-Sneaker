@@ -6,15 +6,15 @@ export default function Header() {
     return (
         <>
             <AppBar position="sticky" elevation={0} color="inherit">
-                <Toolbar sx={{ gap: 2 }}>
-                    <Typography variant="h1" sx={{ ml: 20, flexGrow: 0.3 }}>Sneaker</Typography>
-                    <Box sx={{ display: 'flex', gap: 2, flexGrow: 0.2, justifyContent: 'center' }}>
-                        <Typography variant="h4" component={Link} sx={{ color: "ActiveCaption" }} href="/inspired">Get Inspired</Typography>
-                        <Button component={Link} href="/designer">Customize</Button>
-                        <Button component={Link} href="/about">About</Button>
+                <Toolbar sx={{ gap: 5 }}>
+                    <Typography variant="h1" sx={{ ml: 20, flexGrow: 0.3 }}>Sneakers</Typography>
+                    <Box sx={{ display: 'flex', gap: 8, flexGrow: 0.2, justifyContent: 'center' }}>
+                        <Typography variant="h4" component={Link} sx={{ color: "ActiveCaption", textDecoration: "none" }} href="/inspired">Get Inspired</Typography>
+                        <Typography variant="h4" component={Link} sx={{ color: "ActiveCaption", textDecoration: "none" }} href="/designer">Customize</Typography>
+                        <Typography variant="h4" component={Link} sx={{ color: "ActiveCaption", textDecoration: "none" }} href="/about">About</Typography>
                     </Box>
-                    <Box sx={{ display: 'flex', gap: 1, flexGrow: 0.1, justifyContent: 'flex-end' }}>
-                        <Button variant="outlined" component={Link} href="/login">Log in</Button>
+                    <Box sx={{ display: 'flex', gap: 1, flexGrow: 0.3, justifyContent: 'flex-end', mr: 20 }}>
+                        <Button variant="contained" component={Link} href="/login">Log in</Button>
 
                     </Box>
                 </Toolbar>
