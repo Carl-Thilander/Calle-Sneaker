@@ -1,58 +1,176 @@
 'use client';
 
-
-import { AppBar, Toolbar, Typography, Button, Box, Container } from '@mui/material';
+import { useState } from 'react';
+import {
+    AppBar,
+    Toolbar,
+    Typography,
+    Button,
+    Box,
+    Container,
+    IconButton,
+    useMediaQuery
+} from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
+import CloseIcon from '@mui/icons-material/Close';
+import { useTheme } from '@mui/material/styles';
 import Link from 'next/link';
 
-export default function Header() {
-    return (
-        <AppBar
-            position="sticky"
-            elevation={0}
-            color="inherit"
-            sx={{
-                borderBottom: "2px solid black",
-                height: "10vh",
-                display: "flex",
-                justifyContent: "center"
-            }}
-        >
-            <Container maxWidth="xl">
-                <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
+const menuItems = [
+    { label: 'Get inspired', href: '/inspired' },
+    { label: 'Customize', href: '/designer' },
+    { label: 'About', href: '/about' },
+    { label: 'Log in', href: '/login' },
+];
 
-                    {/* LOGGA */}
-                    <Typography
-                        variant="h1"
-                        component={Link}
-                        href="/"
+export default function Header() {
+    const [mobileOpen, setMobileOpen] = useState(false);
+    const theme = useTheme();
+    const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+
+    const handleToggleMobile = () => setMobileOpen(prev => !prev);
+    const handleCloseMobile = () => setMobileOpen(false);
+
+    return (
+        <>
+            <AppBar
+                position="sticky"
+                elevation={0}
+                color="inherit"
+                sx={{
+                    borderBottom: '2px solid black',
+                    height: '10vh',
+                    display: 'flex',
+                    justifyContent: 'center',
+                }}
+            >
+                <Container maxWidth="lg">
+                    <Toolbar
                         sx={{
-                            textDecoration: "none",
-                            color: "black",
+                            display: 'flex',
+                            justifyContent: 'space-between',
+                            alignItems: 'center',
+                            minHeight: '10vh',
                         }}
                     >
-                        Sneakers
-                    </Typography>
+                        <Typography
+                            variant="h1"
+                            component={Link}
+                            href="/"
+                            sx={{
+                                textDecoration: 'none',
+                                color: 'black',
+                                fontSize: { xs: '3rem', sm: '3rem', md: '4rem' },
+                                fontWeight: 600,
+                            }}
+                        >
+                            Sneakers
+                        </Typography>
 
-                    {/* MENY */}
-                    <Box sx={{ display: "flex", gap: 6 }}>
-                        <Typography variant="h4" component={Link} href="/inspired" sx={{ textDecoration: "none", color: "ActiveCaption" }}>
-                            Get Inspired
+                        {!isMobile && (
+                            <>
+                                <Box sx={{ display: 'flex', gap: 6 }}>
+                                    {menuItems.slice(0, 3).map(item => (
+                                        <Typography
+                                            key={item.href}
+                                            variant="h4"
+                                            component={Link}
+                                            href={item.href}
+                                            sx={{
+                                                textDecoration: 'none',
+                                                color: 'ActiveCaption',
+                                                fontSize: { sm: '1rem', md: '1.5rem' },
+                                            }}
+                                        >
+                                            {item.label}
+                                        </Typography>
+                                    ))}
+                                </Box>
+
+                                <Button
+                                    variant="contained"
+                                    component={Link}
+                                    href="/login"
+                                >
+                                    Log in
+                                </Button>
+                            </>
+                        )}
+
+                        {isMobile && (
+                            <IconButton onClick={handleToggleMobile} edge="end">
+                                {mobileOpen ? <CloseIcon sx={{ fontSize: 50, color: "black" }} /> : <MenuIcon sx={{ fontSize: 50, color: "black" }} />}
+                            </IconButton>
+                        )}
+                    </Toolbar>
+                </Container>
+            </AppBar>
+
+            {isMobile && mobileOpen && (
+                <Box
+                    sx={{
+                        position: 'fixed',
+                        inset: 0,
+                        bgcolor: 'grey.300',
+                        zIndex: theme => theme.zIndex.drawer + 1,
+                        display: 'flex',
+                        flexDirection: 'column',
+                    }}
+                >
+                    <Box
+                        sx={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'space-between',
+                            px: 4,
+                            pt: 4,
+                        }}
+                    >
+                        <Typography
+                            variant="h1"
+                            component={Link}
+                            href="/"
+                            onClick={handleCloseMobile}
+                            style={{ textDecoration: 'none', color: 'black' }}
+                        >
+                            Sneakers
                         </Typography>
-                        <Typography variant="h4" component={Link} href="/designer" sx={{ textDecoration: "none", color: "ActiveCaption" }}>
-                            Customize
-                        </Typography>
-                        <Typography variant="h4" component={Link} href="/about" sx={{ textDecoration: "none", color: "ActiveCaption" }}>
-                            About
-                        </Typography>
+
+                        <IconButton onClick={handleCloseMobile} >
+                            <CloseIcon sx={{ fontSize: 50, color: "black" }} />
+                        </IconButton>
                     </Box>
 
-                    {/* LOGIN */}
-                    <Button variant="contained" component={Link} href="/login">
-                        Log in
-                    </Button>
+                    <Box
+                        sx={{
+                            flexGrow: 1,
+                            display: 'flex',
+                            flexDirection: 'column',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            gap: 4,
+                        }}
+                    >
+                        {menuItems.map(item => (
+                            <Typography
+                                key={item.href}
+                                component={Link}
+                                href={item.href}
+                                onClick={handleCloseMobile}
+                                sx={{
+                                    textDecoration: 'none',
+                                    color: 'black',
+                                    fontSize: '3.5rem',
+                                    fontFamily: '"Anonymous Pro", monospace',
 
-                </Toolbar>
-            </Container>
-        </AppBar>
+                                }}
+                            >
+                                {item.label}
+                            </Typography>
+                        ))}
+                    </Box>
+                </Box>
+            )}
+        </>
     );
 }
