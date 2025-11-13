@@ -7,11 +7,12 @@ export default function Header() {
         <>
             <AppBar position="sticky" elevation={0} color="inherit">
                 <Toolbar sx={{ gap: 2 }}>
-                    <Typography variant="h6" sx={{ flexGrow: 1 }}>CustomKicks</Typography>
+                    <Typography variant="h1" sx={{ flexGrow: 0.8 }}>Sneaker</Typography>
                     <Box sx={{ display: 'flex', gap: 1 }}>
-                        <Button component={Link} href="/">Hem</Button>
                         <Button component={Link} href="/inspired">Get Inspired</Button>
-                        <Button variant="contained" component={Link} href="/designer">Designa sko</Button>
+                        <Button component={Link} href="/designer">Customize</Button>
+                        <Button component={Link} href="/about">About</Button>
+                        <Button variant="outlined" component={Link} href="/login">Log in</Button>
                     </Box>
                 </Toolbar>
             </AppBar>

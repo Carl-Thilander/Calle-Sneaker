@@ -1,6 +1,6 @@
 "use client";
 
-import { AppBar, Toolbar, Button, Box } from "@mui/material";
+import { Toolbar, Button, Box } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import Link from "next/link";
 
