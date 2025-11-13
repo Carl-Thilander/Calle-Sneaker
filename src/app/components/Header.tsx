@@ -5,7 +5,7 @@ import Link from 'next/link';
 export default function Header() {
     return (
         <>
-            <AppBar position="sticky" elevation={0} color="inherit">
+            <AppBar position="sticky" elevation={0} sx={{ borderBottom: "2px solid black", height: "10vh", display: "flex", justifyContent: "center" }} color="inherit">
                 <Toolbar sx={{ gap: 5 }}>
                     <Typography variant="h1" sx={{ ml: 20, flexGrow: 0.3 }}>Sneakers</Typography>
                     <Box sx={{ display: 'flex', gap: 8, flexGrow: 0.2, justifyContent: 'center' }}>
