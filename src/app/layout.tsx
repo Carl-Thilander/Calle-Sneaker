@@ -1,22 +1,32 @@
-import type { Metadata } from 'next';
-import Providers from './providers';
-import Footer from './components/Footer';
-import Header from './components/Header';
-import { Box } from '@mui/material';
+import { Box } from "@mui/material";
+import type { Metadata } from "next";
+import Footer from "./components/Footer";
+import Header from "./components/Header";
+import Providers from "./providers";
 
+export const metadata: Metadata = {
+  title: "CustomKicks",
+  description: "Design your shoe",
+};
 
-export const metadata: Metadata = { title: 'CustomKicks', description: 'Design your shoe' };
-
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="sv">
       <body>
         <Providers>
-          <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
-
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              minHeight: "100vh",
+            }}
+          >
             <Header />
             <Box component="main" sx={{ flexGrow: 1 }}>
-
               {children}
             </Box>
 
