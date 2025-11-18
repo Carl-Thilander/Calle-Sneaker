@@ -71,7 +71,7 @@ export default function Header() {
             {!isMobile && (
               <>
                 <Box sx={{ display: "flex", gap: 6 }}>
-                  {menuItems.slice(0, 3).map((item) => (
+                  {menuItems.slice(0, 4).map((item) => (
                     <Typography
                       key={item.href}
                       variant="h4"
