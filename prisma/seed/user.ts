@@ -1,5 +1,5 @@
 import { Sneaker, User } from "@prisma/client";
-import { db } from "../db";
+import { db } from "../../src/lib/db";
 
 export async function seedDefaultUser() {
   const mockedUser: User[] = [

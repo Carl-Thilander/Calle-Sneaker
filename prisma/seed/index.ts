@@ -1,5 +1,5 @@
-import { db } from "../db";
-import { seedDefaultUser } from "./user";
+import { db } from "../../src/lib/db";
+import { seedDefaultUser } from "./mockedData";
 
 async function main() {
   await seedDefaultUser();
