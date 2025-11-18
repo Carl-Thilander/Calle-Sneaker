@@ -1,4 +1,3 @@
-import { Box } from "@mui/material";
 import type { Metadata } from "next";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
@@ -18,20 +17,18 @@ export default function RootLayout({
     <html lang="sv">
       <body>
         <Providers>
-          <Box
-            sx={{
+          <div
+            style={{
               display: "flex",
               flexDirection: "column",
               minHeight: "100vh",
             }}
           >
             <Header />
-            <Box component="main" sx={{ flexGrow: 1 }}>
-              {children}
-            </Box>
+            <main style={{ flexGrow: 1 }}>{children}</main>
 
             <Footer />
-          </Box>
+          </div>
         </Providers>
       </body>
     </html>
