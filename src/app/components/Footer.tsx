@@ -1,8 +1,11 @@
 "use client";
 
-import { Box, Button, Toolbar } from "@mui/material";
+import FacebookIcon from "@mui/icons-material/Facebook";
+import GitHubIcon from "@mui/icons-material/GitHub";
+import InstagramIcon from "@mui/icons-material/Instagram";
+import XIcon from "@mui/icons-material/X";
+import { Box, Toolbar } from "@mui/material";
 import Typography from "@mui/material/Typography";
-import Link from "next/link";
 
 export default function Footer() {
   return (
@@ -11,22 +14,63 @@ export default function Footer() {
         <Toolbar
           sx={{
             gap: 2,
-            backgroundColor: "#f5f5f5",
+            backgroundColor: "#251F1F",
+            height: "30vh",
           }}
         >
-          <Typography variant="h6" sx={{ flexGrow: 1 }}>
-            CustomKicks
-          </Typography>
-          <Box sx={{ display: "flex", gap: 1 }}>
-            <Button component={Link} href="/">
-              Hem
-            </Button>
-            <Button component={Link} href="/inspired">
-              Get Inspired
-            </Button>
-            <Button variant="contained" component={Link} href="/designer">
-              Designa sko
-            </Button>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              width: "100%",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
+            <Typography
+              variant="h3"
+              color="white"
+              sx={{ mb: 4, textAlign: "center" }}
+            >
+              Contact us
+            </Typography>
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                gap: 4,
+              }}
+            >
+              <GitHubIcon
+                sx={{
+                  color: "white",
+                  cursor: "pointer",
+                  fontSize: { xs: 35, md: 50 },
+                }}
+              />
+              <XIcon
+                sx={{
+                  color: "white",
+                  cursor: "pointer",
+                  fontSize: { xs: 35, md: 50 },
+                }}
+              />
+              <InstagramIcon
+                sx={{
+                  color: "white",
+                  cursor: "pointer",
+                  fontSize: { xs: 35, md: 50 },
+                }}
+              />
+              <FacebookIcon
+                sx={{
+                  color: "white",
+                  cursor: "pointer",
+                  fontSize: { xs: 35, md: 50 },
+                }}
+              />
+            </Box>
           </Box>
         </Toolbar>
       </Box>

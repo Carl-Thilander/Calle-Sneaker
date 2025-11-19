@@ -7,7 +7,7 @@ const theme = (mode: "light" | "dark" = "light") =>
       primary: { main: "#195330" },
       secondary: { main: "#ffffff" },
       background: {
-        paper: mode === "light" ? "#ffffff" : "#1e1e1e",
+        paper: mode === "light" ? "#ffffff" : "#251F1F",
       },
     },
     typography: {
@@ -20,6 +20,11 @@ const theme = (mode: "light" | "dark" = "light") =>
       h2: {
         fontSize: 64,
         fontFamily: "Roboto",
+        fontWeight: "normal",
+      },
+      h3: {
+        fontSize: 50,
+        fontFamily: "Inter",
         fontWeight: "normal",
       },
       h4: {

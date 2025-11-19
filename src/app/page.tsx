@@ -60,8 +60,8 @@ export default function HomePage() {
           <Box
             sx={{
               position: "relative",
-              width: { xs: 350, sm: 450, md: 560, lg: 680 },
-              height: { xs: 350, sm: 450, md: 560, lg: 680 },
+              width: { xs: 320, sm: 450, md: 560, lg: 680 },
+              height: { xs: 320, sm: 450, md: 560, lg: 680 },
             }}
           >
             <Image
@@ -91,8 +91,8 @@ export default function HomePage() {
           <Box
             sx={{
               position: "relative",
-              width: { xs: 350, sm: 450, md: 560, lg: 680 },
-              height: { xs: 350, sm: 450, md: 560, lg: 680 },
+              width: { xs: 320, sm: 450, md: 560, lg: 680 },
+              height: { xs: 320, sm: 450, md: 560, lg: 680 },
             }}
           >
             <Image
