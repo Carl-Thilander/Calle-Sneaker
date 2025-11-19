@@ -7,7 +7,7 @@ const theme = (mode: "light" | "dark" = "light") =>
       primary: { main: "#195330" },
       secondary: { main: "#ffffff" },
       background: {
-        paper: mode === "light" ? "#ffffff" : "#251F1F",
+        paper: mode === "light" ? "#ffffffff" : "#251F1F",
       },
     },
     typography: {

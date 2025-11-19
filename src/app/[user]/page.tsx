@@ -1,3 +1,7 @@
 export default async function UserPage() {
-  return <div>User Page</div>;
+  return (
+    <div>
+      <h3>Hello world</h3>
+    </div>
+  );
 }

@@ -60,7 +60,7 @@ export default function Header() {
               href="/"
               sx={{
                 textDecoration: "none",
-                color: "black",
+                color: "text.primary",
                 fontSize: { xs: "3rem", sm: "3rem", md: "4rem" },
                 fontWeight: 600,
               }}
@@ -79,7 +79,7 @@ export default function Header() {
                       href={item.href}
                       sx={{
                         textDecoration: "none",
-                        color: "ActiveCaption",
+                        color: "text.primary",
                         fontSize: { sm: "1rem", md: "1.5rem" },
                       }}
                     >
