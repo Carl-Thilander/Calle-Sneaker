@@ -4,10 +4,11 @@ const theme = (mode: "light" | "dark" = "light") =>
   createTheme({
     palette: {
       mode,
-      primary: { main: "#195330" },
-      secondary: { main: "#ffffff" },
+      primary: { main: "#38C774" },
+      secondary: { main: "#ffff" },
       background: {
-        paper: mode === "light" ? "#ffffffff" : "#251F1F",
+        default: mode === "light" ? "#ffff" : "#221b1bff",
+        paper: mode === "light" ? "#ffff" : "#251F1F",
       },
     },
     typography: {
@@ -43,6 +44,16 @@ const theme = (mode: "light" | "dark" = "light") =>
     components: {
       MuiButton: {
         styleOverrides: { root: { textTransform: "none", borderRadius: 10 } },
+      },
+      MuiCssBaseline: {
+        styleOverrides: (themeParam) => ({
+          body: {
+            backgroundColor: themeParam.palette.background.default,
+          },
+          main: {
+            backgroundColor: themeParam.palette.background.default,
+          },
+        }),
       },
     },
   });
