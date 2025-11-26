@@ -28,6 +28,10 @@ export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+  const isDark = theme.palette.mode === "dark";
+  const borderColor = isDark
+    ? theme.palette.common.white
+    : theme.palette.common.black;
 
   const handleToggleMobile = () => setMobileOpen((prev) => !prev);
   const handleCloseMobile = () => setMobileOpen(false);
@@ -39,7 +43,7 @@ export default function Header() {
         elevation={0}
         color="inherit"
         sx={{
-          borderBottom: "2px solid black",
+          borderBottom: `3px solid ${borderColor}`,
           height: "10vh",
           display: "flex",
           justifyContent: "center",
@@ -60,7 +64,7 @@ export default function Header() {
               href="/"
               sx={{
                 textDecoration: "none",
-                color: "black",
+                color: "text.primary",
                 fontSize: { xs: "3rem", sm: "3rem", md: "4rem" },
                 fontWeight: 600,
               }}
@@ -79,7 +83,7 @@ export default function Header() {
                       href={item.href}
                       sx={{
                         textDecoration: "none",
-                        color: "ActiveCaption",
+                        color: "text.primary",
                         fontSize: { sm: "1rem", md: "1.5rem" },
                       }}
                     >

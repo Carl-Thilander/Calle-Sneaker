@@ -3,8 +3,8 @@ import { Button, Typography } from "@mui/material";
 import Image from "next/image";
 import Container from "node_modules/@mui/material/Container/Container";
 import Box from "node_modules/@mui/material/esm/Box/Box";
-import sneakerGif from "../assets/sneaker-gif.gif";
-import sneakerLanding from "../assets/sneaker-landing.webp";
+import sneakerGif from "../assets/new-sneaker-gif.gif";
+import sneakerLanding from "../assets/onitsuka-landing.png";
 
 export default function HomePage() {
   return (
