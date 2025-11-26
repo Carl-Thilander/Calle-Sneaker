@@ -9,13 +9,13 @@ export const DESIGN_AREAS = [
     id: "logo",
     label: "Logo",
     mask: "/masks/swoosh.png",
-    shading: "/masks/swoosh_shading.png",
+    shading: "/masks/swoosh.png",
   },
   {
     id: "sole",
     label: "Sole",
     mask: "/masks/sole.png",
-    shading: "/masks/sole_shading.png",
+    shading: "/masks/sole.png",
   },
 ] as const;
 

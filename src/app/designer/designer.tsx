@@ -21,8 +21,8 @@ export default function Designer() {
 
   return (
     <Container maxWidth="lg" sx={{ py: 6 }}>
-      <Typography variant="h2" mb={4}>
-        Designa din sneaker
+      <Typography variant="h2" mb={4} width={400}>
+        Design your new sneaker
       </Typography>
 
       <Box
@@ -30,6 +30,7 @@ export default function Designer() {
           display: "flex",
           flexDirection: { xs: "column", md: "column" },
           gap: 4,
+          alignItems: "center",
         }}
       >
         <SneakerPreview config={config} />
@@ -50,6 +51,7 @@ export default function Designer() {
                 display: "flex",
                 justifyContent: "space-between",
                 alignItems: "center",
+                flexDirection: "row",
                 p: 2,
                 borderRadius: 2,
                 border: "1px solid",
