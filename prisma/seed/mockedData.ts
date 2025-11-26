@@ -19,6 +19,14 @@ export async function seedDefaultUser() {
       createdAt: new Date(),
       updatedAt: new Date(),
     },
+    {
+      id: "68adb2600c2c50f13d0a64e6",
+      email: "athirdmocked@email.se",
+      name: "Jognson Mocked",
+      password: "securerpassword",
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    },
   ];
 
   for (const userData of mockedUser) {
