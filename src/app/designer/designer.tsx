@@ -21,14 +21,14 @@ export default function Designer() {
 
   return (
     <Container maxWidth="lg" sx={{ py: 6 }}>
-      <Typography variant="h2" mb={4} width={400}>
+      <Typography variant="h2" mb={4} textAlign="left">
         Design your new sneaker
       </Typography>
 
       <Box
         sx={{
           display: "flex",
-          flexDirection: { xs: "column", md: "column" },
+          flexDirection: "column",
           gap: 4,
           alignItems: "center",
         }}
@@ -51,8 +51,8 @@ export default function Designer() {
                 display: "flex",
                 justifyContent: "space-between",
                 alignItems: "center",
-                flexDirection: "row",
                 p: 2,
+                gap: 2,
                 borderRadius: 2,
                 border: "1px solid",
                 borderColor: "divider",
