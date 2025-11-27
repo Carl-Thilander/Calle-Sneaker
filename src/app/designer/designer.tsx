@@ -1,81 +1,141 @@
+// src/app/designer/Designer.tsx
 "use client";
 
-import { Box, Container, TextField, Typography } from "@mui/material";
-import { useState } from "react";
-import { DESIGN_AREAS, SneakerConfig } from "./areas";
-import SneakerPreview from "./SneakerPreview";
+import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import { Box, Container, Divider, IconButton, Typography } from "@mui/material";
+import { useMemo, useState } from "react";
 
-const defaultConfig: SneakerConfig = {
-  base: "#ffffff",
-  logo: "#195330",
-  sole: "#000000",
+import SneakerPreview from "./SneakerPreview";
+import { DESIGN_AREAS, DesignAreaId, SneakerConfig } from "./areas";
+import { COLOR_PALETTE as COLOR_PALETTES } from "./colors";
+
+const AREAS: DesignAreaId[] = DESIGN_AREAS.map((a) => a.id);
+
+const DEFAULT_CONFIG: SneakerConfig = {
+  base: "#FFFFFF",
+  sole: "#FFFFFF",
+  logo: "#000000",
 };
 
 export default function Designer() {
-  const [config, setConfig] = useState<SneakerConfig>(defaultConfig);
-  const [name, setName] = useState("Min sneaker");
+  const [config, setConfig] = useState<SneakerConfig>(DEFAULT_CONFIG);
+  const [activeIndex, setActiveIndex] = useState(0);
 
-  const handleColorChange = (id: keyof SneakerConfig, color: string) => {
-    setConfig((prev) => ({ ...prev, [id]: color }));
+  const activeAreaId = AREAS[activeIndex];
+  const activeAreaMeta = useMemo(
+    () => DESIGN_AREAS.find((a) => a.id === activeAreaId)!,
+    [activeAreaId]
+  );
+  const colorsForArea = COLOR_PALETTES[activeAreaId];
+
+  const handleColorChange = (areaId: DesignAreaId, hex: string) => {
+    setConfig((prev) => ({ ...prev, [areaId]: hex }));
+  };
+
+  const goPrev = () => {
+    setActiveIndex((prev) => (prev - 1 + AREAS.length) % AREAS.length);
+  };
+
+  const goNext = () => {
+    setActiveIndex((prev) => (prev + 1) % AREAS.length);
   };
 
   return (
-    <Container maxWidth="lg" sx={{ py: 6 }}>
-      <Typography variant="h2" mb={4} textAlign="left">
-        Design your new sneaker
-      </Typography>
-
+    <Container maxWidth="lg" sx={{ py: { xs: 4, md: 6 } }}>
       <Box
         sx={{
-          display: "flex",
-          flexDirection: "column",
-          gap: 4,
+          display: "grid",
+          gridTemplateColumns: "1fr",
+          gap: { xs: 4, md: 6 },
           alignItems: "center",
         }}
       >
-        <SneakerPreview config={config} />
-        {/* Form */}
         <Box>
-          <TextField
-            fullWidth
-            label="Namn"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            sx={{ mb: 3 }}
-          />
+          <Typography variant="h3" mb={1}>
+            Design your new sneaker
+          </Typography>
+          <Typography variant="body1" color="text.secondary" mb={4}>
+            Choose between our base model and curated colorways to create
+            something unique.
+          </Typography>
 
-          {DESIGN_AREAS.map((area) => (
-            <Box
-              key={area.id}
-              sx={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                p: 2,
-                gap: 2,
-                borderRadius: 2,
-                border: "1px solid",
-                borderColor: "divider",
-                mb: 2,
-              }}
-            >
-              <Typography>{area.label}</Typography>
-              <input
-                type="color"
-                value={config[area.id]}
-                onChange={(e) => handleColorChange(area.id, e.target.value)}
-                style={{
-                  width: 40,
-                  height: 40,
-                  border: "none",
-                  background: "transparent",
-                }}
-              />
-            </Box>
-          ))}
+          <SneakerPreview config={config} />
         </Box>
 
-        {/* Preview */}
+        {/* Höger: kontrollpanel */}
+        <Box>
+          {/* Area selector */}
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: 2,
+              mb: 2,
+            }}
+          >
+            <IconButton onClick={goPrev}>
+              <ChevronLeftIcon />
+            </IconButton>
+
+            <Typography variant="subtitle1" fontWeight="medium">
+              {activeAreaMeta.label}
+            </Typography>
+
+            <IconButton onClick={goNext}>
+              <ChevronRightIcon />
+            </IconButton>
+          </Box>
+
+          <Typography
+            variant="caption"
+            color="text.secondary"
+            display="block"
+            textAlign="center"
+            mb={2}
+          >
+            Choose a color for the {activeAreaMeta.label.toLowerCase()}
+          </Typography>
+
+          <Divider sx={{ mb: 3 }} />
+
+          {/* Color options */}
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              flexWrap: "wrap",
+              gap: 2,
+            }}
+          >
+            {colorsForArea.map((color) => {
+              const isActive = config[activeAreaId] === color.hex;
+              return (
+                <Box
+                  key={color.hex}
+                  onClick={() => handleColorChange(activeAreaId, color.hex)}
+                  sx={{
+                    width: 32,
+                    height: 32,
+                    borderRadius: "50%",
+                    backgroundColor: color.hex,
+                    border: isActive
+                      ? "3px solid #111"
+                      : "2px solid rgba(0,0,0,0.12)",
+                    boxShadow: isActive ? "0 0 0 2px rgba(0,0,0,0.15)" : "none",
+                    cursor: "pointer",
+                    transition:
+                      "transform 0.15s ease, border 0.15s ease, box-shadow 0.15s ease",
+                    "&:hover": {
+                      transform: "scale(1.1)",
+                    },
+                  }}
+                />
+              );
+            })}
+          </Box>
+        </Box>
       </Box>
     </Container>
   );
