@@ -32,7 +32,7 @@ export default function SneakerPreview({ config }: Props) {
               maskRepeat: "no-repeat",
               maskSize: "contain",
               maskPosition: "center",
-              transition: "background-color 0.25s ease",
+              transition: "background-color 0.45s ease",
             }}
           />
 
