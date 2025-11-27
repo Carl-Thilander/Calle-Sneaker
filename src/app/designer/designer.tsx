@@ -15,7 +15,7 @@ const AREAS: DesignAreaId[] = DESIGN_AREAS.map((a) => a.id);
 const DEFAULT_CONFIG: SneakerConfig = {
   base: "#FFFFFF",
   sole: "#FFFFFF",
-  logo: "#000000",
+  logo: "#201f1fff",
 };
 
 export default function Designer() {
@@ -46,8 +46,8 @@ export default function Designer() {
       <Box
         sx={{
           display: "grid",
-          gridTemplateColumns: "1fr",
-          gap: { xs: 4, md: 6 },
+          gridTemplateColumns: { xs: "1fr", md: "1.2fr 0.8fr" },
+          gap: { xs: 4, md: 1 },
           alignItems: "center",
         }}
       >
@@ -63,9 +63,7 @@ export default function Designer() {
           <SneakerPreview config={config} />
         </Box>
 
-        {/* Höger: kontrollpanel */}
         <Box>
-          {/* Area selector */}
           <Box
             sx={{
               display: "flex",
@@ -100,7 +98,6 @@ export default function Designer() {
 
           <Divider sx={{ mb: 3 }} />
 
-          {/* Color options */}
           <Box
             sx={{
               display: "flex",

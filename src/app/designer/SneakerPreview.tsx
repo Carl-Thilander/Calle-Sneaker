@@ -1,4 +1,3 @@
-// src/app/designer/SneakerPreview.tsx
 "use client";
 
 import { Box } from "@mui/material";
