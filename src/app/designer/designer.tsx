@@ -16,6 +16,10 @@ const DEFAULT_CONFIG: SneakerConfig = {
   base: "#FFFFFF",
   sole: "#FFFFFF",
   logo: "#201f1fff",
+  front: "#FFFFFF",
+  front_toe: "#FFFFFF",
+  logobg: "#FFFFFF",
+  laces: "#FFFFFF",
 };
 
 export default function Designer() {
