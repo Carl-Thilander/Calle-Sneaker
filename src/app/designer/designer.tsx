@@ -119,7 +119,7 @@ export default function Designer() {
                   sx={{
                     width: 32,
                     height: 32,
-                    borderRadius: "50%",
+                    borderRadius: "25%",
                     backgroundColor: color.hex,
                     border: isActive
                       ? "3px solid #111"
