@@ -2,7 +2,7 @@ export const DESIGN_AREAS = [
   {
     id: "base",
     label: "Base",
-    mask: "/masks/base_mask.png",
+    mask: "/masks/entireSneaker.png",
     shading: "/masks/entireSneaker.png",
   },
   {
