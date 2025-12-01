@@ -3,7 +3,16 @@
 
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import { Box, Container, Divider, IconButton, Typography } from "@mui/material";
+import {
+  Box,
+  Container,
+  Divider,
+  IconButton,
+  Step,
+  StepButton,
+  Stepper,
+  Typography,
+} from "@mui/material";
 import { useMemo, useState } from "react";
 
 import SneakerPreview from "./SneakerPreview";
@@ -71,26 +80,47 @@ export default function Designer() {
         </Box>
 
         <Box>
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              gap: 2,
-              mb: 2,
-            }}
-          >
-            <IconButton onClick={goPrev}>
-              <ChevronLeftIcon />
-            </IconButton>
+          <Box sx={{ mb: 3 }}>
+            <Stepper
+              nonLinear
+              activeStep={activeIndex}
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "flex-start",
+                mt: 1,
+                gap: 1,
+              }}
+            >
+              {DESIGN_AREAS.map((area, index) => (
+                <Step key={area.id}>
+                  <StepButton onClick={() => setActiveIndex(index)}>
+                    {area.label}
+                  </StepButton>
+                </Step>
+              ))}
+            </Stepper>
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: 2,
+                mb: 1,
+              }}
+            >
+              <IconButton onClick={goPrev}>
+                <ChevronLeftIcon />
+              </IconButton>
 
-            <Typography variant="subtitle1" fontWeight="medium">
-              {activeAreaMeta.label}
-            </Typography>
+              <Typography variant="subtitle1" fontWeight="medium">
+                {activeAreaMeta.label}
+              </Typography>
 
-            <IconButton onClick={goNext}>
-              <ChevronRightIcon />
-            </IconButton>
+              <IconButton onClick={goNext}>
+                <ChevronRightIcon />
+              </IconButton>
+            </Box>
           </Box>
 
           <Typography
