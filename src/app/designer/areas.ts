@@ -41,6 +41,18 @@ export const DESIGN_AREAS = [
     mask: "/masks/laces.png",
     shading: "/masks/laces.png",
   },
+  {
+    id: "backpart",
+    label: "Back Part",
+    mask: "/masks/backPart.png",
+    shading: "/masks/backPart.png",
+  },
+  {
+    id: "laceBase",
+    label: "Lace Base",
+    mask: "/masks/laceBase.png",
+    shading: "/masks/laceBase.png",
+  }
 ] as const;
 
 export type DesignAreaId = (typeof DESIGN_AREAS)[number]["id"];
