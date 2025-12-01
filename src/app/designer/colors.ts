@@ -74,4 +74,12 @@ export const COLOR_PALETTE: Record<DesignAreaId, ColorOption[]> = {
     { name: "Forrest Green", hex: "#195330" },
     { name: "Bourdaux", hex: "#6e2731" },
   ],
+  heelPatch: [
+    { name: "White", hex: "#FFFFFF" },
+    { name: "Black", hex: "#312f2fff" },
+    { name: "Cream", hex: "#f5ede2" },
+    { name: "Navy", hex: "#1F2A44" },
+    { name: "Forrest Green", hex: "#195330" },
+    { name: "Bourdaux", hex: "#6e2731" },
+  ],
 } as const;

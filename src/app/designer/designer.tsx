@@ -22,6 +22,7 @@ const DEFAULT_CONFIG: SneakerConfig = {
   laces: "#FFFFFF",
   backpart: "#FFFFFF",
   laceBase: "#FFFFFF",
+  heelPatch: "#FFFFFF",
 };
 
 export default function Designer() {

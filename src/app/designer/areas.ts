@@ -52,6 +52,12 @@ export const DESIGN_AREAS = [
     label: "Lace Base",
     mask: "/masks/laceBase.png",
     shading: "/masks/laceBase.png",
+  },
+  {
+    id: "heelPatch",
+    label: "Heel Patch",
+    mask: "/masks/heelPatch.png",
+    shading: "/masks/heelPatch.png",
   }
 ] as const;
 
