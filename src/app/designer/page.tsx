@@ -1,3 +1,5 @@
-export default async function DesignerPage() {
-  return <div>Designer Page</div>;
+import Designer from "./designer";
+
+export default function DesignerPage() {
+  return <Designer />;
 }
