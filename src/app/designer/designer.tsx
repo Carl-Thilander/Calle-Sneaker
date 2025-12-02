@@ -80,7 +80,7 @@ export default function Designer() {
             something unique.
           </Typography>
 
-          <SneakerPreview config={config} />
+          <SneakerPreview config={config} activeAreaId={activeAreaId} />
         </Box>
 
         <Box>

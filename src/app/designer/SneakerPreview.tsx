@@ -1,13 +1,14 @@
 "use client";
 
 import { Box } from "@mui/material";
-import { DESIGN_AREAS, SneakerConfig } from "./areas";
+import { DESIGN_AREAS, DesignAreaId, SneakerConfig } from "./areas";
 
 type Props = {
   config: SneakerConfig;
+  activeAreaId: DesignAreaId;
 };
 
-export default function SneakerPreview({ config }: Props) {
+export default function SneakerPreview({ config, activeAreaId }: Props) {
   return (
     <Box
       sx={{
@@ -49,6 +50,23 @@ export default function SneakerPreview({ config }: Props) {
               pointerEvents: "none",
             }}
           />
+          {/* {area.id === activeAreaId && (
+            <Box
+              sx={{
+                position: "absolute",
+                inset: 0,
+                backgroundColor: "rgba(196, 25, 25, 1)",
+                maskImage: `url(${area.mask})`,
+                maskRepeat: "no-repeat",
+                maskSize: "contain",
+                maskPosition: "center",
+                mixBlendMode: "screen",
+                transition: "opacity 1s ease",
+                opacity: 0.8,
+                pointerEvents: "none",
+              }}
+            />
+          )} */}
         </Box>
       ))}
     </Box>
