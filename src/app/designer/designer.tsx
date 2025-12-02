@@ -1,9 +1,19 @@
-// src/app/designer/Designer.tsx
 "use client";
 
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import { Box, Container, Divider, IconButton, Typography } from "@mui/material";
+import {
+  Box,
+  Container,
+  Divider,
+  IconButton,
+  Step,
+  StepButton,
+  Stepper,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 import { useMemo, useState } from "react";
 
 import SneakerPreview from "./SneakerPreview";
@@ -20,14 +30,17 @@ const DEFAULT_CONFIG: SneakerConfig = {
   front_toe: "#FFFFFF",
   logobg: "#FFFFFF",
   laces: "#FFFFFF",
-  backpart: "#FFFFFF",
   laceBase: "#FFFFFF",
+  backpart: "#FFFFFF",
   heelPatch: "#FFFFFF",
 };
 
 export default function Designer() {
   const [config, setConfig] = useState<SneakerConfig>(DEFAULT_CONFIG);
   const [activeIndex, setActiveIndex] = useState(0);
+
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   const activeAreaId = AREAS[activeIndex];
   const activeAreaMeta = useMemo(
@@ -77,7 +90,7 @@ export default function Designer() {
               alignItems: "center",
               justifyContent: "center",
               gap: 2,
-              mb: 2,
+              mb: 1,
             }}
           >
             <IconButton onClick={goPrev}>
@@ -92,7 +105,6 @@ export default function Designer() {
               <ChevronRightIcon />
             </IconButton>
           </Box>
-
           <Typography
             variant="caption"
             color="text.secondary"
@@ -140,6 +152,71 @@ export default function Designer() {
             })}
           </Box>
         </Box>
+      </Box>
+      <Box sx={{ width: "100%" }}>
+        {!isMobile && (
+          <Stepper
+            nonLinear
+            activeStep={activeIndex}
+            alternativeLabel
+            sx={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "flex-start",
+              py: 4,
+              gap: 1,
+            }}
+          >
+            {DESIGN_AREAS.map((area, index) => (
+              <Step key={area.id}>
+                <StepButton onClick={() => setActiveIndex(index)}>
+                  {area.label}
+                </StepButton>
+              </Step>
+            ))}
+          </Stepper>
+        )}
+        {isMobile && (
+          <Box
+            sx={{
+              display: "flex",
+              overflowX: "auto",
+              gap: 1,
+              px: 1,
+              py: 6,
+              "::-webkit-scrollbar": { display: "none" },
+            }}
+          >
+            {DESIGN_AREAS.map((area, index) => {
+              const isActive = index === activeIndex;
+              return (
+                <Box
+                  key={area.id}
+                  onClick={() => setActiveIndex(index)}
+                  sx={{
+                    flexShrink: 0,
+                    px: 1.5,
+                    py: 0.75,
+                    borderRadius: 999,
+                    fontSize: 12,
+                    cursor: "pointer",
+                    border: "1px solid",
+                    borderColor: isActive ? "primary.main" : "divider",
+                    bgcolor: isActive ? "primary.main" : "background.paper",
+                    color: isActive ? "primary.contrastText" : "text.secondary",
+                    transition:
+                      "background-color 0.15s ease, border-color 0.15s ease, transform 0.15s ease",
+                    "&:active": {
+                      transform: "scale(0.8)",
+                    },
+                  }}
+                >
+                  {index + 1}. {area.label}
+                </Box>
+              );
+            })}
+          </Box>
+        )}
       </Box>
     </Container>
   );
