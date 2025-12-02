@@ -1,4 +1,3 @@
-// src/app/designer/Designer.tsx
 "use client";
 
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
@@ -29,8 +28,8 @@ const DEFAULT_CONFIG: SneakerConfig = {
   front_toe: "#FFFFFF",
   logobg: "#FFFFFF",
   laces: "#FFFFFF",
-  backpart: "#FFFFFF",
   laceBase: "#FFFFFF",
+  backpart: "#FFFFFF",
   heelPatch: "#FFFFFF",
 };
 
@@ -80,49 +79,27 @@ export default function Designer() {
         </Box>
 
         <Box>
-          <Box sx={{ mb: 3 }}>
-            <Stepper
-              nonLinear
-              activeStep={activeIndex}
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "flex-start",
-                mt: 1,
-                gap: 1,
-              }}
-            >
-              {DESIGN_AREAS.map((area, index) => (
-                <Step key={area.id}>
-                  <StepButton onClick={() => setActiveIndex(index)}>
-                    {area.label}
-                  </StepButton>
-                </Step>
-              ))}
-            </Stepper>
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                gap: 2,
-                mb: 1,
-              }}
-            >
-              <IconButton onClick={goPrev}>
-                <ChevronLeftIcon />
-              </IconButton>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: 2,
+              mb: 1,
+            }}
+          >
+            <IconButton onClick={goPrev}>
+              <ChevronLeftIcon />
+            </IconButton>
 
-              <Typography variant="subtitle1" fontWeight="medium">
-                {activeAreaMeta.label}
-              </Typography>
+            <Typography variant="subtitle1" fontWeight="medium">
+              {activeAreaMeta.label}
+            </Typography>
 
-              <IconButton onClick={goNext}>
-                <ChevronRightIcon />
-              </IconButton>
-            </Box>
+            <IconButton onClick={goNext}>
+              <ChevronRightIcon />
+            </IconButton>
           </Box>
-
           <Typography
             variant="caption"
             color="text.secondary"
@@ -170,6 +147,28 @@ export default function Designer() {
             })}
           </Box>
         </Box>
+      </Box>
+      <Box sx={{ width: "100%" }}>
+        <Stepper
+          nonLinear
+          activeStep={activeIndex}
+          alternativeLabel
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "flex-start",
+            mt: 1,
+            gap: 1,
+          }}
+        >
+          {DESIGN_AREAS.map((area, index) => (
+            <Step key={area.id}>
+              <StepButton onClick={() => setActiveIndex(index)}>
+                {area.label}
+              </StepButton>
+            </Step>
+          ))}
+        </Stepper>
       </Box>
     </Container>
   );

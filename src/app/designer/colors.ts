@@ -58,7 +58,7 @@ export const COLOR_PALETTE: Record<DesignAreaId, ColorOption[]> = {
     { name: "Red", hex: "#D40000" },
     { name: "Green", hex: "#195330" },
   ],
-  backpart: [
+  laceBase: [
     { name: "White", hex: "#FFFFFF" },
     { name: "Black", hex: "#312f2fff" },
     { name: "Cream", hex: "#f5ede2" },
@@ -66,7 +66,7 @@ export const COLOR_PALETTE: Record<DesignAreaId, ColorOption[]> = {
     { name: "Forrest Green", hex: "#195330" },
     { name: "Bourdaux", hex: "#6e2731" },
   ],
-  laceBase: [
+  backpart: [
     { name: "White", hex: "#FFFFFF" },
     { name: "Black", hex: "#312f2fff" },
     { name: "Cream", hex: "#f5ede2" },
