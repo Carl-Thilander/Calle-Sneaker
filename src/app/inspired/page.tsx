@@ -15,13 +15,6 @@ type PexelsPhoto = {
   photographer_url: string;
   src: {
     original: string;
-    large2x: string;
-    large: string;
-    medium: string;
-    small: string;
-    portrait: string;
-    landscape: string;
-    tiny: string;
   };
 };
 
@@ -95,8 +88,7 @@ export default async function GetInspiredPage() {
           }}
         >
           {photos.map((photo) => {
-            const imageSrc =
-              photo.src.large2x || photo.src.large || photo.src.original;
+            const imageSrc = photo.src.original;
 
             return (
               <Box
