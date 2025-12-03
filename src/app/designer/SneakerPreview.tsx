@@ -1,7 +1,27 @@
 "use client";
 
 import { Box } from "@mui/material";
+import { keyframes } from "@mui/system";
+import { useEffect, useState } from "react";
 import { DESIGN_AREAS, DesignAreaId, SneakerConfig } from "./areas";
+
+const glowPulse = keyframes`
+  0% {
+    opacity: 0;
+    transform: scale(1.0);
+    filter: blur(20px);
+  }
+  40% {
+    opacity: 0.8;
+    transform: scale(1.0);
+    filter: blur(6px);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.0);
+    filter: blur(18px);
+  }
+`;
 
 type Props = {
   config: SneakerConfig;
@@ -9,6 +29,14 @@ type Props = {
 };
 
 export default function SneakerPreview({ config, activeAreaId }: Props) {
+  const [highlightedAreaId, setHighlightedAreaId] = useState(activeAreaId);
+  const [glowKey, setGlowKey] = useState(0);
+
+  useEffect(() => {
+    setHighlightedAreaId(activeAreaId);
+    setGlowKey((prev) => prev + 1);
+  }, [activeAreaId]);
+
   return (
     <Box
       sx={{
@@ -50,23 +78,29 @@ export default function SneakerPreview({ config, activeAreaId }: Props) {
               pointerEvents: "none",
             }}
           />
-          {/* {area.id === activeAreaId && (
+          {area.id === highlightedAreaId && (
             <Box
+              key={`${area.id}-${glowKey}`}
               sx={{
                 position: "absolute",
                 inset: 0,
-                backgroundColor: "rgba(196, 25, 25, 1)",
+                backgroundColor: config[area.id],
+                WebkitMaskImage: `url(${area.mask})`,
+                WebkitMaskRepeat: "no-repeat",
+                WebkitMaskSize: "contain",
+                WebkitMaskPosition: "center",
                 maskImage: `url(${area.mask})`,
                 maskRepeat: "no-repeat",
                 maskSize: "contain",
                 maskPosition: "center",
                 mixBlendMode: "screen",
-                transition: "opacity 1s ease",
-                opacity: 0.8,
+                filter: "blur(14px)",
+                opacity: 0,
                 pointerEvents: "none",
+                animation: `${glowPulse} 900ms ease-out`,
               }}
             />
-          )} */}
+          )}
         </Box>
       ))}
     </Box>
