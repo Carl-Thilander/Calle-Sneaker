@@ -1,13 +1,42 @@
 "use client";
 
 import { Box } from "@mui/material";
-import { DESIGN_AREAS, SneakerConfig } from "./areas";
+import { keyframes } from "@mui/system";
+import { useEffect, useState } from "react";
+import { DESIGN_AREAS, DesignAreaId, SneakerConfig } from "./areas";
+
+const glowPulse = keyframes`
+  0% {
+    opacity: 0;
+    transform: scale(1.0);
+    filter: blur(20px);
+  }
+  40% {
+    opacity: 0.8;
+    transform: scale(1.0);
+    filter: blur(6px);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.0);
+    filter: blur(18px);
+  }
+`;
 
 type Props = {
   config: SneakerConfig;
+  activeAreaId: DesignAreaId;
 };
 
-export default function SneakerPreview({ config }: Props) {
+export default function SneakerPreview({ config, activeAreaId }: Props) {
+  const [highlightedAreaId, setHighlightedAreaId] = useState(activeAreaId);
+  const [glowKey, setGlowKey] = useState(0);
+
+  useEffect(() => {
+    setHighlightedAreaId(activeAreaId);
+    setGlowKey((prev) => prev + 1);
+  }, [activeAreaId]);
+
   return (
     <Box
       sx={{
@@ -49,6 +78,29 @@ export default function SneakerPreview({ config }: Props) {
               pointerEvents: "none",
             }}
           />
+          {area.id === highlightedAreaId && (
+            <Box
+              key={`${area.id}-${glowKey}`}
+              sx={{
+                position: "absolute",
+                inset: 0,
+                backgroundColor: config[area.id],
+                WebkitMaskImage: `url(${area.mask})`,
+                WebkitMaskRepeat: "no-repeat",
+                WebkitMaskSize: "contain",
+                WebkitMaskPosition: "center",
+                maskImage: `url(${area.mask})`,
+                maskRepeat: "no-repeat",
+                maskSize: "contain",
+                maskPosition: "center",
+                mixBlendMode: "screen",
+                filter: "blur(14px)",
+                opacity: 0,
+                pointerEvents: "none",
+                animation: `${glowPulse} 900ms ease-out`,
+              }}
+            />
+          )}
         </Box>
       ))}
     </Box>
