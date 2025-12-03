@@ -25,7 +25,7 @@ const AREAS: DesignAreaId[] = DESIGN_AREAS.map((a) => a.id);
 const DEFAULT_CONFIG: SneakerConfig = {
   base: "#FFFFFF",
   sole: "#FFFFFF",
-  logo: "#201f1fff",
+  logo: "#38C774",
   front: "#FFFFFF",
   front_toe: "#FFFFFF",
   logobg: "#FFFFFF",
