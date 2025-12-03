@@ -94,7 +94,7 @@ export default function Designer() {
             }}
           >
             <IconButton onClick={goPrev}>
-              <ChevronLeftIcon />
+              <ChevronLeftIcon aria-label="Previous" />
             </IconButton>
 
             <Typography variant="subtitle1" fontWeight="medium">
@@ -102,7 +102,7 @@ export default function Designer() {
             </Typography>
 
             <IconButton onClick={goNext}>
-              <ChevronRightIcon />
+              <ChevronRightIcon aria-label="Next" />
             </IconButton>
           </Box>
           <Typography
