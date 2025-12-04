@@ -20,7 +20,6 @@ const menuItems = [
   { label: "Get inspired", href: "/inspired" },
   { label: "Customize", href: "/designer" },
   { label: "About", href: "/about" },
-  { label: "Log in", href: "/login" },
   { label: "Your profile", href: "/profile" },
 ];
 
