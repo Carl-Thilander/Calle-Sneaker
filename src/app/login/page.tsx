@@ -23,16 +23,22 @@ export default async function LoginPage() {
           width: "100%",
           position: "relative",
           height: "60vh",
+          gap: 4,
         }}
       >
         <Box
           sx={{
-            width: "50%",
+            width: "40%",
             display: "flex",
             flexDirection: "column",
             justifyContent: "flex-start",
             alignItems: "center",
             px: 4,
+            backgroundColor: "background.paper",
+            borderRadius: 2,
+            boxShadow: 3,
+            gap: 2,
+            pt: 4,
           }}
         >
           <Typography
@@ -43,11 +49,14 @@ export default async function LoginPage() {
           >
             Welcome back!
           </Typography>
+          <Typography variant="h4" color="paper.background" gutterBottom>
+            Sign in to your account below
+          </Typography>
         </Box>
         <Box
           sx={{
             position: "relative",
-            width: "50%",
+            width: "40%",
             height: "auto",
             boxSizing: "content-box",
           }}
