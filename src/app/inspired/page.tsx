@@ -19,15 +19,15 @@ type PexelsPhoto = {
 };
 
 async function fetchSneakerPhotos(): Promise<PexelsPhoto[]> {
+  // Fetch sneaker photos from Pexels API
   const apiKey = process.env.PEXELS_API_KEY;
   if (!apiKey) {
     console.warn("Missing PEXELS_API_KEY – inspiration gallery will be empty.");
     return [];
   }
-
   try {
     const response = await fetch(
-      "https://api.pexels.com/v1/search?query=sneaker%20design&per_page=70&orientation=portrait%2Clandscape",
+      "https://api.pexels.com/v1/search?query=sneaker%20design&per_page=30&orientation=portrait%2Clandscape",
       {
         headers: { Authorization: apiKey },
         next: { revalidate: 60 * 60 },
@@ -38,7 +38,7 @@ async function fetchSneakerPhotos(): Promise<PexelsPhoto[]> {
       console.error("Failed to fetch Pexels photos", await response.text());
       return [];
     }
-
+    // Collect and return photos
     const data = (await response.json()) as { photos?: PexelsPhoto[] };
     return data.photos ?? [];
   } catch (error) {
@@ -48,6 +48,7 @@ async function fetchSneakerPhotos(): Promise<PexelsPhoto[]> {
 }
 
 export default async function GetInspiredPage() {
+  // Fetch sneaker photos for masonry gallery
   const photos = await fetchSneakerPhotos();
 
   return (
@@ -62,7 +63,7 @@ export default async function GetInspiredPage() {
         </Typography>
         <Chip label="Powered by Pexels" color="default" variant="outlined" />
       </Box>
-
+      {/* Display gallery or fallback message */}
       {photos.length === 0 ? (
         <Box
           sx={{
@@ -74,7 +75,7 @@ export default async function GetInspiredPage() {
           }}
         >
           <Typography variant="h6" gutterBottom>
-            Couldn't load inspiration right now.
+            Couldn't load inspiration photos right now.
           </Typography>
           <Typography color="text.secondary">
             Most likely a reason on our end. Please try again later.
