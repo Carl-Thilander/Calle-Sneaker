@@ -103,7 +103,7 @@ export default function Header() {
                 {mobileOpen ? (
                   <CloseIcon sx={{ fontSize: 50, color: "black" }} />
                 ) : (
-                  <MenuIcon sx={{ fontSize: 50, color: "black" }} />
+                  <MenuIcon sx={{ fontSize: 50, color: "primary" }} />
                 )}
               </IconButton>
             )}
