@@ -30,7 +30,7 @@ async function fetchSneakerPhotos(): Promise<PexelsPhoto[]> {
       "https://api.pexels.com/v1/search?query=sneaker%20design&per_page=30&orientation=portrait%2Clandscape",
       {
         headers: { Authorization: apiKey },
-        next: { revalidate: 60 * 60 },
+        next: { revalidate: 60 * 15 },
       }
     );
 
