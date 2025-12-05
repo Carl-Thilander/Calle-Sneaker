@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { getServerSession } from "next-auth";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Providers from "./providers";
@@ -8,11 +9,12 @@ export const metadata: Metadata = {
   description: "Design your shoe",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const session = await getServerSession();
   return (
     <html lang="sv">
       <body>
