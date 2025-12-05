@@ -17,6 +17,7 @@ export default function AuthCard({ title, subtitle, children }: Props) {
         alignItems: "center",
         justifyContent: "center",
         px: 2,
+        gap: 2,
       }}
     >
       <Card
