@@ -20,7 +20,8 @@
     "@mui/icons-material": "^7.3.5",
     "@mui/material": "^7.3.5",
     "@mui/material-nextjs": "^7.3.5",
-    "@prisma/client": "^7.0.1",
+    "@prisma/client": "^6.19.0",
+    "@prisma/extension-accelerate": "^3.0.1",
     "dotenv": "^17.2.3",
     "mongodb": "^7.0.0",
     "next": "16.0.1",
@@ -34,7 +35,7 @@
     "babel-plugin-react-compiler": "1.0.0",
     "eslint": "^9",
     "eslint-config-next": "16.0.1",
-    "prisma": "^7.0.1",
+    "prisma": "^6.19.0",
     "tsx": "^4.20.6",
     "typescript": "^5"
   }

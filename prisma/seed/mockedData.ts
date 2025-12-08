@@ -43,20 +43,18 @@ export async function seedDefaultSneakers() {
     {
       id: "68adb2f90c2c50f13d0a64e5",
       name: "Air Max 90",
-      price: 120,
       description: "Classic Nike Air Max 90 sneakers",
       createdAt: new Date(),
       updatedAt: new Date(),
-      imageUrl: "https://example.com/airmax90.jpg",
+      config: null,
     },
     {
       id: "68adb30b0c2c50f13d0a64e6",
       name: "Adidas Ultraboost",
-      price: 180,
       description: "Comfortable Adidas Ultraboost running shoes",
       createdAt: new Date(),
       updatedAt: new Date(),
-      imageUrl: "https://example.com/ultraboost.jpg",
+      config: null,
     },
   ];
   for (const sneakerData of mockedSneakers) {
