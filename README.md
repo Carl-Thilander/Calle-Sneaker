@@ -38,3 +38,15 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 Link to pictures:
 
 https://clipart-library.com/clip-art/transparent-nike-12.htm
+
+## Tech-stack
+
+# Database
+
+Mongodb combined with prisma ORM
+
+## Notes
+
+To achieve a nice experience for the user, I set a fixed max-wdith for all my pages using mui's "lg" attribute. With this implementation, all the pages will appear symmetrical and the overall routing is seamless.
+
+I am using the webkit-settings for handling the sneaker-preview. At first i noticed that my images turned into plain silhouettes which was not the goal. I lacked the texture and depths in the images. To fix that, I used the backgroundImage attribute with a similiar image and set the opacity to 1. So in terms of Z-index placement, my webkit-image (silhoutette) is located at 1 and my shading mask is located at 2. With this layering of images the piece as a whole looks great.
