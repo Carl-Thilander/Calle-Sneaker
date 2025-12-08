@@ -1,7 +1,30 @@
-import { Box, Button, Container, Link, TextField } from "@mui/material";
+"use client";
+import { registerUser } from "@/app/auth/register/actions";
+import { Box, Button, Container, TextField, Typography } from "@mui/material";
+import { signIn } from "next-auth/react";
+import React, { useState } from "react";
 import AuthCard from "./AuthCard";
 
 export default function RegisterForm() {
+  const [message, setMessage] = useState<string | null>(null);
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+
+    const formData = new FormData(e.currentTarget);
+    const result = await registerUser(formData);
+
+    if ("error" in result) {
+      setMessage(result.error);
+      return;
+    }
+    await signIn("credentials", {
+      email: result.email,
+      password: result.password,
+      redirect: true,
+      callbackUrl: "/profile",
+    });
+  }
   return (
     <Container
       maxWidth="lg"
@@ -12,14 +35,21 @@ export default function RegisterForm() {
       <AuthCard title="Create your account below" subtitle="">
         <Box
           component="form"
+          onSubmit={handleSubmit}
           sx={{ display: "flex", flexDirection: "column", gap: 2, mt: 2 }}
         >
-          <TextField label="Name" type="text" fullWidth required />
-          <TextField label="Email" type="email" fullWidth required />
-          <TextField label="Password" type="password" fullWidth required />
+          <TextField label="Name" type="text" name="name" fullWidth required />
           <TextField
-            label="Re-enter your password"
+            label="Email"
+            type="email"
+            name="email"
+            fullWidth
+            required
+          />
+          <TextField
+            label="Password"
             type="password"
+            name="password"
             fullWidth
             required
           />
@@ -34,11 +64,7 @@ export default function RegisterForm() {
             Create Acount
           </Button>
 
-          <Box textAlign="center" mt={2}>
-            <Link href="/auth/register" style={{ textDecoration: "none" }}>
-              Dont't have an account yet? Create one here!
-            </Link>
-          </Box>
+          {message && <Typography color="primary">{message}</Typography>}
         </Box>
       </AuthCard>
     </Container>
