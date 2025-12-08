@@ -1,34 +1,71 @@
 import { PrismaClient } from "@prisma/client";
+import bcrypt from "bcryptjs";
 
 const prisma = new PrismaClient();
 
 async function main() {
-  await prisma.user.upsert({
-    where: { email: "mockeduser@example.com" },
-    update: {},
-    create: {
+  const mockedUsers = [
+    {
       email: "mockeduser@example.com",
       name: "Mocked User",
       password: "password123",
     },
-  });
+    {
+      email: "anothermocked@email.se",
+      name: "Another Mocked",
+      password: "securepassword",
+    },
+    {
+      email: "athirdmocked@email.se",
+      name: "Johnson Mocked",
+      password: "securerpassword",
+    },
+  ];
 
-  await prisma.sneaker.upsert({
-    where: { name: "Air Max 90" },
-    update: {},
-    create: {
+  for (const user of mockedUsers) {
+    const hashedPassword = await bcrypt.hash(user.password, 10);
+
+    await prisma.user.upsert({
+      where: { email: user.email },
+      update: {
+        name: user.name,
+        password: hashedPassword,
+      },
+      create: {
+        email: user.email,
+        name: user.name,
+        password: hashedPassword,
+      },
+    });
+  }
+
+  const mockedSneakers = [
+    {
       name: "Air Max 90",
-      description: "Classic sneaker",
+      description: "Classic Nike Air Max 90 sneakers",
       config: {},
     },
-  });
+    {
+      name: "Adidas Ultraboost",
+      description: "Comfortable Adidas Ultraboost running shoes",
+      config: {},
+    },
+  ];
+
+  for (const sneaker of mockedSneakers) {
+    await prisma.sneaker.upsert({
+      where: { name: sneaker.name },
+      update: {},
+      create: sneaker,
+    });
+  }
 }
 
 main()
   .then(() => {
     console.log("🌱 Seed completed successfully");
   })
-  .catch((e) => {
+  .catch(async (e) => {
     console.error("❌ Seed error:", e);
     process.exit(1);
   })

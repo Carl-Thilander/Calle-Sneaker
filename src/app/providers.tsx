@@ -1,6 +1,7 @@
 "use client";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
+import { SessionProvider } from "next-auth/react";
 import {
   createContext,
   ReactNode,
@@ -61,13 +62,15 @@ export default function Providers({ children }: { children: ReactNode }) {
   const muitheme = useMemo(() => theme(mode), [mode]);
 
   return (
-    <AppRouterCacheProvider options={{ key: "mui" }}>
-      <ColorModeContext.Provider value={{ mode, toggleColorMode }}>
-        <ThemeProvider theme={muitheme}>
-          <CssBaseline />
-          {children}
-        </ThemeProvider>
-      </ColorModeContext.Provider>
-    </AppRouterCacheProvider>
+    <SessionProvider>
+      <AppRouterCacheProvider options={{ key: "mui" }}>
+        <ColorModeContext.Provider value={{ mode, toggleColorMode }}>
+          <ThemeProvider theme={muitheme}>
+            <CssBaseline />
+            {children}
+          </ThemeProvider>
+        </ColorModeContext.Provider>
+      </AppRouterCacheProvider>
+    </SessionProvider>
   );
 }

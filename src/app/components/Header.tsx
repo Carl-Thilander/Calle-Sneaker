@@ -91,7 +91,11 @@ export default function Header() {
                   ))}
                 </Box>
 
-                <Button variant="contained" component={Link} href="/auth/login">
+                <Button
+                  variant="contained"
+                  component={Link}
+                  href="/auth/signin"
+                >
                   Log in
                 </Button>
               </>

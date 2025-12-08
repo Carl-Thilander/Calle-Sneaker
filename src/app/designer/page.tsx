@@ -1,5 +1,5 @@
 import Designer from "./designer";
 
-export default function DesignerPage() {
+export default async function DesignerPage() {
   return <Designer />;
 }
