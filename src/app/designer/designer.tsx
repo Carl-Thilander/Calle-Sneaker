@@ -22,21 +22,33 @@ import { COLOR_PALETTE as COLOR_PALETTES } from "./colors";
 
 const AREAS: DesignAreaId[] = DESIGN_AREAS.map((a) => a.id);
 
-const DEFAULT_CONFIG: SneakerConfig = {
-  base: "#FFFFFF",
-  sole: "#FFFFFF",
-  logo: "#38C774",
-  front: "#FFFFFF",
-  front_toe: "#FFFFFF",
-  logobg: "#FFFFFF",
-  laces: "#FFFFFF",
-  laceBase: "#FFFFFF",
-  backpart: "#FFFFFF",
-  heelPatch: "#FFFFFF",
+type DesignerProps = {
+  initialDesignId?: string;
+  initialName?: string;
+  initialConfig?: SneakerConfig;
 };
 
-export default function Designer() {
-  const [config, setConfig] = useState<SneakerConfig>(DEFAULT_CONFIG);
+export default function Designer(props: DesignerProps) {
+  const [name, setName] = useState(props.initialName ?? "My new design");
+  const [config, setConfig] = useState<SneakerConfig>(
+    props.initialConfig ?? {
+      base: "#FFFFFF",
+      sole: "#FFFFFF",
+      logo: "#38C774",
+      front: "#FFFFFF",
+      front_toe: "#FFFFFF",
+      logobg: "#FFFFFF",
+      laces: "#FFFFFF",
+      laceBase: "#FFFFFF",
+      backpart: "#FFFFFF",
+      heelPatch: "#FFFFFF",
+    }
+  );
+
+  const [designId, setDesignId] = useState<string | undefined>(
+    props.initialDesignId
+  );
+
   const [activeIndex, setActiveIndex] = useState(0);
 
   const theme = useTheme();
