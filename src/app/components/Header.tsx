@@ -15,18 +15,22 @@ import {
 import { useTheme } from "@mui/material/styles";
 import Link from "next/link";
 import { useState } from "react";
-import {useSession} from "next-auth/react"
+import { useSession } from "next-auth/react";
 import LogoutButton from "./logOutButton";
 
 const menuItems = [
   { label: "Get inspired", href: "/inspired" },
   { label: "Customize", href: "/designer" },
   { label: "About", href: "/about" },
-  { label: "Your profile", href: "/profile" },
+  { label: "Your profile", href: "/profile", protected: true },
 ];
 
 export default function Header() {
-  const { data: session} = useSession();
+  const { data: session } = useSession();
+  const visibleLinks = menuItems.filter((item) => {
+    if (item.protected && !session) return false;
+    return true;
+  });
   const [mobileOpen, setMobileOpen] = useState(false);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
@@ -77,7 +81,7 @@ export default function Header() {
             {!isMobile && (
               <>
                 <Box sx={{ display: "flex", gap: 6 }}>
-                  {menuItems.slice(0, 4).map((item) => (
+                  {visibleLinks.slice(0, 4).map((item) => (
                     <Typography
                       key={item.href}
                       variant="h4"
@@ -94,16 +98,17 @@ export default function Header() {
                   ))}
                 </Box>
 
-
-                  {session ? (
-                    <LogoutButton/>
-                  ) : (
-
-                <Button variant="contained" component={Link} href="/auth/login">
-                  Log in
-                </Button>
-                  )
-                  }
+                {session ? (
+                  <LogoutButton />
+                ) : (
+                  <Button
+                    variant="contained"
+                    component={Link}
+                    href="/auth/login"
+                  >
+                    Log in
+                  </Button>
+                )}
               </>
             )}
 

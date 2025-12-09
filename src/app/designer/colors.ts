@@ -33,6 +33,7 @@ export const COLOR_PALETTE: Record<DesignAreaId, ColorOption[]> = {
     { name: "Navy", hex: "#1F2A44" },
     { name: "Forrest Green", hex: "#195330" },
     { name: "Bourdaux", hex: "#6e2731" },
+    {name: "yellow", hex: "#d8e619ff"}
   ],
   front_toe: [
     { name: "White", hex: "#FFFFFF" },
