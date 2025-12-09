@@ -19,6 +19,7 @@ import { useMemo, useState } from "react";
 import SneakerPreview from "./SneakerPreview";
 import { DESIGN_AREAS, DesignAreaId, SneakerConfig } from "./areas";
 import { COLOR_PALETTE as COLOR_PALETTES } from "./colors";
+import { createDesign, updateDesign } from "../profile/designs/actions";
 
 const AREAS: DesignAreaId[] = DESIGN_AREAS.map((a) => a.id);
 
@@ -48,6 +49,18 @@ export default function Designer(props: DesignerProps) {
   const [designId, setDesignId] = useState<string | undefined>(
     props.initialDesignId
   );
+
+  async function handleSave() {
+    if (designId) {
+      // const res = await updateDesign({ id: designId, name, config});
+      //For editing later
+    } else {
+      const res = await createDesign({ name, config });
+      if (res.success) {
+        setDesignId(res.design.id);
+      }
+    }
+  }
 
   const [activeIndex, setActiveIndex] = useState(0);
 
