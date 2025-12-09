@@ -15,6 +15,8 @@ import {
 import { useTheme } from "@mui/material/styles";
 import Link from "next/link";
 import { useState } from "react";
+import {useSession} from "next-auth/react"
+import LogoutButton from "./logOutButton";
 
 const menuItems = [
   { label: "Get inspired", href: "/inspired" },
@@ -24,6 +26,7 @@ const menuItems = [
 ];
 
 export default function Header() {
+  const { data: session} = useSession();
   const [mobileOpen, setMobileOpen] = useState(false);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
@@ -91,9 +94,16 @@ export default function Header() {
                   ))}
                 </Box>
 
+
+                  {session ? (
+                    <LogoutButton/>
+                  ) : (
+
                 <Button variant="contained" component={Link} href="/auth/login">
                   Log in
                 </Button>
+                  )
+                  }
               </>
             )}
 
