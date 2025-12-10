@@ -1,9 +1,9 @@
-"use client";
+"use server";
 
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { db } from "@/lib/db";
-import { getServerSession } from "next-auth";
 import { Prisma } from "@prisma/client";
+import { getServerSession } from "next-auth";
 
 export type SneakerConfig = {
   base: string;

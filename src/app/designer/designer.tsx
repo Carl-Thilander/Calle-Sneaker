@@ -4,18 +4,21 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import {
   Box,
+  Button,
   Container,
   Divider,
   IconButton,
   Step,
   StepButton,
   Stepper,
+  TextField,
   Typography,
   useMediaQuery,
   useTheme,
 } from "@mui/material";
 import { useMemo, useState } from "react";
 
+import { createDesign, updateDesign } from "../profile/designs/actions";
 import SneakerPreview from "./SneakerPreview";
 import { DESIGN_AREAS, DesignAreaId, SneakerConfig } from "./areas";
 import { COLOR_PALETTE as COLOR_PALETTES } from "./colors";
@@ -48,6 +51,20 @@ export default function Designer(props: DesignerProps) {
   const [designId, setDesignId] = useState<string | undefined>(
     props.initialDesignId
   );
+
+  async function handleSave() {
+    if (designId) {
+      const res = await updateDesign({ id: designId, name, config });
+      if (res.success) {
+        setDesignId(res.design.id);
+      }
+    } else {
+      const res = await createDesign({ name, config });
+      if (res.success) {
+        setDesignId(res.design.id);
+      }
+    }
+  }
 
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -91,11 +108,22 @@ export default function Designer(props: DesignerProps) {
             Choose between our base model and curated colorways to create
             something unique.
           </Typography>
+          <TextField
+            label="Name of design"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            sx={{
+              mb: 4,
+            }}
+          />
 
           <SneakerPreview config={config} activeAreaId={activeAreaId} />
         </Box>
 
         <Box>
+          <Button variant="contained" onClick={handleSave}>
+            {designId ? "Update design" : "Save design"}
+          </Button>
           <Box
             sx={{
               display: "flex",
