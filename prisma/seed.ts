@@ -42,13 +42,17 @@ async function main() {
   const mockedSneakers = [
     {
       name: "Air Max 90",
-      description: "Classic Nike Air Max 90 sneakers",
       config: {},
+      id: "",
+      createdAt: "",
+      updatedAt: "",
     },
     {
       name: "Adidas Ultraboost",
-      description: "Comfortable Adidas Ultraboost running shoes",
       config: {},
+      id: "",
+      createdAt: "",
+      updatedAt: "",
     },
   ];
 
