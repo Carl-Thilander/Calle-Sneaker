@@ -3,6 +3,7 @@ import { db } from "@/lib/db";
 import { Container, Typography } from "@mui/material";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
+import ProfileDesignList from "./profileDesignList";
 
 export default async function UserPage() {
   const session = await getServerSession(authOptions);
@@ -27,7 +28,7 @@ export default async function UserPage() {
       <Typography variant="h5">
         Your saved designs will be displayed here
       </Typography>
-      {/* Design component will go in here */}
+      <ProfileDesignList initialDesigns={designs} />
     </Container>
   );
 }
