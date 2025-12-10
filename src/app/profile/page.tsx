@@ -26,7 +26,7 @@ export default async function UserPage() {
         Hello {session.user?.name ?? session.user?.email}
       </Typography>
       <Typography variant="h5">
-        Your saved designs will be displayed here
+        Your saved designs will be displayed here later on
       </Typography>
       <ProfileDesignList initialDesigns={designs} />
     </Container>
