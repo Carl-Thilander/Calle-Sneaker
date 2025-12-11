@@ -26,9 +26,18 @@ const glowPulse = keyframes`
 type Props = {
   config: SneakerConfig;
   activeAreaId: DesignAreaId;
+  size?: "small" | "large";
 };
 
-export default function SneakerPreview({ config, activeAreaId }: Props) {
+export default function SneakerPreview({
+  config,
+  activeAreaId,
+  size = "large",
+}: Props) {
+  const dimensions =
+    size === "small"
+      ? { width: 120, height: 120 }
+      : { width: { xs: 260, md: 560 }, height: { xs: 260, md: 560 } };
   const [highlightedAreaId, setHighlightedAreaId] = useState(activeAreaId);
   const [glowKey, setGlowKey] = useState(0);
 
@@ -41,9 +50,8 @@ export default function SneakerPreview({ config, activeAreaId }: Props) {
     <Box
       sx={{
         position: "relative",
-        width: { xs: 260, md: 560 },
-        height: { xs: 260, md: 560 },
-        mx: "auto",
+        ...dimensions,
+        margin: size === "large" ? "0 auto" : 0,
       }}
     >
       {DESIGN_AREAS.map((area) => (

@@ -2,12 +2,14 @@
 
 import { Box, Button, Link, Stack, Typography } from "@mui/material";
 import { useState } from "react";
-import { deleteDesign } from "./designs/actions";
+import SneakerPreview from "../designer/SneakerPreview";
+import { deleteDesign, SneakerConfig } from "./designs/actions";
 
 type Design = {
   id: string;
   name: string;
   createdAt: string | Date;
+  config: any;
 };
 
 type Props = {
@@ -46,6 +48,7 @@ export default function ProfileDesignList({ initialDesigns }: Props) {
             borderColor: "divider",
             borderRadius: 2,
             p: 2,
+            flexDirection: { xs: "column", md: "row" },
           }}
         >
           <Box>
@@ -53,6 +56,20 @@ export default function ProfileDesignList({ initialDesigns }: Props) {
             <Typography variant="caption" color="text.secondary">
               {new Date(d.createdAt).toLocaleString()}
             </Typography>
+          </Box>
+          <Box
+            sx={{
+              flexShrink: 0,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <SneakerPreview
+              config={d.config as SneakerConfig}
+              size="small"
+              activeAreaId={"base"}
+            />
           </Box>
 
           <Stack direction="row" spacing={1}>
