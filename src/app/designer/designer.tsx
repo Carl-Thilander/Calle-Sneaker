@@ -117,7 +117,11 @@ export default function Designer(props: DesignerProps) {
             }}
           />
 
-          <SneakerPreview config={config} activeAreaId={activeAreaId} />
+          <SneakerPreview
+            config={config}
+            activeAreaId={activeAreaId}
+            size="large"
+          />
         </Box>
 
         <Box>
