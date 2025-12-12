@@ -1,6 +1,17 @@
 "use client";
 
-import { Box, Button, Link, Stack, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  Link,
+  Stack,
+  Typography,
+} from "@mui/material";
 import { useState } from "react";
 import SneakerPreview from "../designer/SneakerPreview";
 import { deleteDesign, SneakerConfig } from "./designs/actions";
@@ -19,11 +30,29 @@ type Props = {
 export default function ProfileDesignList({ initialDesigns }: Props) {
   const [designs, setDesigns] = useState(initialDesigns);
 
-  async function handleDelete(id: string) {
-    const res = await deleteDesign(id);
+  const [deleteOpen, setDeleteOpen] = useState(false);
+  const [deleteTarget, setDeleteTarget] = useState<{
+    id: string;
+    name: string;
+  } | null>(null);
+
+  const openDeleteDialog = (id: string, name: string) => {
+    setDeleteTarget({ id, name });
+    setDeleteOpen(true);
+  };
+
+  const closeDeleteDialog = () => {
+    setDeleteOpen(false);
+    setDeleteTarget(null);
+  };
+
+  async function confirmDelete() {
+    if (!deleteTarget) return;
+    const res = await deleteDesign(deleteTarget.id);
     if (res.success) {
-      setDesigns((prev) => prev.filter((d) => d.id !== id));
+      setDesigns((prev) => prev.filter((d) => d.id !== deleteTarget.id));
     }
+    closeDeleteDialog();
   }
 
   if (designs.length === 0) {
@@ -36,56 +65,91 @@ export default function ProfileDesignList({ initialDesigns }: Props) {
   }
 
   return (
-    <Stack spacing={2} mt={3}>
-      {designs.map((d) => (
-        <Box
-          key={d.id}
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            border: "1px solid",
-            borderColor: "divider",
-            borderRadius: 2,
-            p: 2,
-            flexDirection: { xs: "column", md: "row" },
-          }}
-        >
-          <Box>
-            <Typography variant="subtitle1">{d.name}</Typography>
-            <Typography variant="caption" color="text.secondary">
-              {new Date(d.createdAt).toLocaleString()}
-            </Typography>
-          </Box>
+    <>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "row",
+          flexWrap: "wrap",
+          justifyContent: "center",
+          gap: 2,
+          p: 4,
+        }}
+      >
+        {designs.map((d) => (
           <Box
+            key={d.id}
             sx={{
-              flexShrink: 0,
               display: "flex",
+              flexWrap: "wrap",
+              width: "fit-content",
+              flexDirection: "column",
+              justifyContent: "space-between",
+              gap: 2,
               alignItems: "center",
-              justifyContent: "center",
+              border: "1px solid",
+              borderColor: "divider",
+              borderRadius: 2,
+              boxShadow: "2px 2px 8px rgba(0,0,0,0.1)",
+              p: 2,
             }}
           >
-            <SneakerPreview
-              config={d.config as SneakerConfig}
-              size="small"
-              activeAreaId={"base"}
-            />
-          </Box>
-
-          <Stack direction="row" spacing={1}>
-            <Button size="small" component={Link} href={`/designer/${d.id}`}>
-              Edit
-            </Button>
-            <Button
-              size="small"
-              color="error"
-              onClick={() => handleDelete(d.id)}
+            <Box>
+              <Typography variant="subtitle1">{d.name}</Typography>
+              <Typography variant="caption" color="text.secondary">
+                {new Date(d.createdAt).toLocaleString()}
+              </Typography>
+            </Box>
+            <Box
+              sx={{
+                flexShrink: 0,
+                display: "grid",
+                placeItems: "center",
+              }}
             >
-              Delete
-            </Button>
-          </Stack>
-        </Box>
-      ))}
-    </Stack>
+              <SneakerPreview
+                config={d.config as SneakerConfig}
+                size="small"
+                activeAreaId={"base"}
+              />
+            </Box>
+
+            <Stack direction="row" spacing={1}>
+              <Button
+                size="small"
+                variant="outlined"
+                component={Link}
+                href={`/designer/${d.id}`}
+              >
+                Edit
+              </Button>
+              <Button
+                size="small"
+                color="error"
+                variant="outlined"
+                onClick={() => openDeleteDialog(d.id, d.name)}
+              >
+                Delete
+              </Button>
+            </Stack>
+          </Box>
+        ))}
+      </Box>
+      <Dialog open={deleteOpen} onClose={closeDeleteDialog}>
+        <DialogTitle>Delete design</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Are you sure you want to delete "{deleteTarget?.name}"? This action
+            cannot be undone.
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={closeDeleteDialog}>Cancel</Button>
+          <Button onClick={confirmDelete} color="error" autoFocus>
+            Delete
+          </Button>
+        </DialogActions>
+      </Dialog>
+    </>
   );
 }

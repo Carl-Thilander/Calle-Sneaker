@@ -36,7 +36,7 @@ export default function SneakerPreview({
 }: Props) {
   const dimensions =
     size === "small"
-      ? { width: 120, height: 120 }
+      ? { width: 200, height: 200 }
       : { width: { xs: 260, md: 560 }, height: { xs: 260, md: 560 } };
   const [highlightedAreaId, setHighlightedAreaId] = useState(activeAreaId);
   const [glowKey, setGlowKey] = useState(0);
