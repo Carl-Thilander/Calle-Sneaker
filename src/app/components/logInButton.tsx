@@ -1,9 +1,9 @@
 "use client";
 
 import { Button } from "@mui/material";
-import { signOut } from "next-auth/react";
+import Link from "next/link";
 
-export default function LogoutButton() {
+export default function LogInButton() {
   return (
     <Button
       variant="contained"
@@ -11,9 +11,10 @@ export default function LogoutButton() {
       sx={{
         width: "8rem",
       }}
-      onClick={() => signOut({ callbackUrl: "/" })}
+      component={Link}
+      href="/auth/login"
     >
-      Log out
+      Log in
     </Button>
   );
 }

@@ -5,7 +5,6 @@ import MenuIcon from "@mui/icons-material/Menu";
 import {
   AppBar,
   Box,
-  Button,
   Container,
   IconButton,
   Toolbar,
@@ -13,9 +12,10 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
+import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { useState } from "react";
-import { useSession } from "next-auth/react";
+import LogInButton from "./logInButton";
 import LogoutButton from "./logOutButton";
 
 const menuItems = [
@@ -98,17 +98,7 @@ export default function Header() {
                   ))}
                 </Box>
 
-                {session ? (
-                  <LogoutButton />
-                ) : (
-                  <Button
-                    variant="contained"
-                    component={Link}
-                    href="/auth/login"
-                  >
-                    Log in
-                  </Button>
-                )}
+                {session ? <LogoutButton /> : <LogInButton />}
               </>
             )}
 
@@ -178,7 +168,7 @@ export default function Header() {
                 sx={{
                   textDecoration: "none",
                   color: "black",
-                  fontSize: "3.5rem",
+                  fontSize: "2.7rem",
                   fontFamily: '"Anonymous Pro", monospace',
                   fontStyle: "italic",
                   fontWeight: "bold",
@@ -187,6 +177,7 @@ export default function Header() {
                 {item.label}
               </Typography>
             ))}
+            {session ? <LogoutButton /> : <LogInButton />}
           </Box>
         </Box>
       )}
