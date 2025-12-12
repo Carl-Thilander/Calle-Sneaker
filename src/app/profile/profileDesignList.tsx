@@ -47,6 +47,7 @@ export default function ProfileDesignList({ initialDesigns }: Props) {
             border: "1px solid",
             borderColor: "divider",
             borderRadius: 2,
+            boxShadow: "2px 2px 8px rgba(0,0,0,0.1)",
             p: 2,
             flexDirection: { xs: "column", md: "row" },
           }}
