@@ -116,11 +116,12 @@ export default function DesignerClient(props: DesignerProps) {
         >
           <Box>
             <Typography variant="h3" mb={1}>
-              Design your new sneaker
+              {designId ? "Edit your old design" : "Design your new sneaker"}
             </Typography>
             <Typography variant="body1" color="text.secondary" mb={4}>
-              Choose between our base model and curated colorways to create
-              something unique.
+              {designId
+                ? ""
+                : "Choose between our base model and curated colorways to create something unique."}
             </Typography>
             <Box
               sx={{

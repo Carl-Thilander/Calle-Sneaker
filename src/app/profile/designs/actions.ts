@@ -80,13 +80,16 @@ export async function updateDesign(input: {
   const user = await getCurrentUser();
   if (!user) return { error: "Not authenticated" };
 
+  if (!input?.id) return { error: "Missing id" };
+
   const existing = await db.design.findUnique({ where: { id: input.id } });
   if (!existing || existing.userId !== user.id) {
     return { error: "Not found" };
   }
 
+  // If config is provided use it, otherwise fall back to existing.config
   const configToSave: Prisma.InputJsonValue = (input.config ??
-    existing ??
+    existing.config ??
     {}) as Prisma.InputJsonValue;
 
   const design = await db.design.update({
