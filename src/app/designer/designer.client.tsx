@@ -22,7 +22,7 @@ import {
   useTheme,
 } from "@mui/material";
 import Link from "next/link";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 import { createDesign, updateDesign } from "../profile/designs/actions";
 import SneakerPreview from "./SneakerPreview";
@@ -36,7 +36,30 @@ type DesignerProps = {
   initialName?: string;
   initialConfig?: SneakerConfig;
   isLoggedIn: boolean;
+  mode: "create" | "edit";
 };
+
+type DraftPayload = {
+  name: string;
+  config: SneakerConfig;
+  activeIndex: number;
+  updatedAt: number;
+};
+
+function getDraftKey(designId: string | undefined) {
+  return designId
+    ? `sneaker-design-draft-${designId}`
+    : `sneaker-design-draft-new`;
+}
+
+function safeParseDraft(raw: string | null): DraftPayload | null {
+  if (!raw) return null;
+  try {
+    return JSON.parse(raw) as DraftPayload;
+  } catch {
+    return null;
+  }
+}
 
 export default function DesignerClient(props: DesignerProps) {
   const [name, setName] = useState(props.initialName ?? "My new design");
@@ -58,6 +81,48 @@ export default function DesignerClient(props: DesignerProps) {
   const [designId, setDesignId] = useState<string | undefined>(
     props.initialDesignId
   );
+  const [activeIndex, setActiveIndex] = useState(0);
+  const draftKey = useMemo(() => getDraftKey(designId), [designId]);
+  const loadedDraftRef = useRef(false);
+
+  // LOAD draft vid mount / när draftKey ändras (t.ex. när designId sätts efter create)
+  useEffect(() => {
+    const raw = window.localStorage.getItem(draftKey);
+    const draft = safeParseDraft(raw);
+
+    // If there is a draft, use it
+    if (draft) {
+      setName(draft.name ?? props.initialName ?? "My new design");
+      setConfig(draft.config ?? props.initialConfig);
+      setActiveIndex(
+        typeof draft.activeIndex === "number" ? draft.activeIndex : 0
+      );
+    }
+
+    loadedDraftRef.current = true;
+  }, [draftKey]);
+
+  // SAVE draft (debounced) när name/config/activeIndex ändras
+  useEffect(() => {
+    if (!loadedDraftRef.current) return;
+
+    const payload: DraftPayload = {
+      name,
+      config,
+      activeIndex,
+      updatedAt: Date.now(),
+    };
+
+    const t = window.setTimeout(() => {
+      window.localStorage.setItem(draftKey, JSON.stringify(payload));
+    }, 400); //Wait 400ms after last change
+
+    return () => window.clearTimeout(t);
+  }, [name, config, activeIndex, draftKey]);
+
+  const clearDraft = () => {
+    window.localStorage.removeItem(draftKey);
+  };
 
   const [savedOpen, setSavedOpen] = useState(false);
 
@@ -66,20 +131,20 @@ export default function DesignerClient(props: DesignerProps) {
       const res = await updateDesign({ id: designId, name, config });
       if (res.success) {
         setDesignId(res.design.id);
+        clearDraft();
         setSavedOpen(true);
       }
     } else {
       const res = await createDesign({ name, config });
       if (res.success) {
         setDesignId(res.design.id);
+        clearDraft();
         setSavedOpen(true);
       }
     }
   }
 
   const closeSavedDialog = () => setSavedOpen(false);
-
-  const [activeIndex, setActiveIndex] = useState(0);
 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
@@ -148,9 +213,20 @@ export default function DesignerClient(props: DesignerProps) {
                     sx={{
                       padding: 2,
                       borderRadius: 2,
+                      m: 1,
                     }}
                   >
                     {designId ? "Update design" : "Save design"}
+                  </Button>
+                  <Button
+                    variant="outlined"
+                    onClick={clearDraft}
+                    sx={{
+                      padding: 2,
+                      borderRadius: 2,
+                    }}
+                  >
+                    Reset design
                   </Button>
                 </span>
               </Tooltip>
