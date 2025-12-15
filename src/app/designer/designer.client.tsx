@@ -122,6 +122,22 @@ export default function DesignerClient(props: DesignerProps) {
 
   const clearDraft = () => {
     window.localStorage.removeItem(draftKey);
+    setName("My new design");
+    setConfig(
+      props.initialConfig ?? {
+        base: "#FFFFFF",
+        sole: "#FFFFFF",
+        logo: "#38C774",
+        front: "#FFFFFF",
+        front_toe: "#FFFFFF",
+        logobg: "#FFFFFF",
+        laces: "#FFFFFF",
+        laceBase: "#FFFFFF",
+        backpart: "#FFFFFF",
+        heelPatch: "#FFFFFF",
+      }
+    );
+    setActiveIndex(0);
   };
 
   const [savedOpen, setSavedOpen] = useState(false);
@@ -231,7 +247,7 @@ export default function DesignerClient(props: DesignerProps) {
                 </span>
               </Tooltip>
               {!props.isLoggedIn && (
-                <Link href="/auth/login" legacyBehavior>
+                <Link href="/auth/login">
                   <Button component="a" variant="outlined" sx={{ ml: 1 }}>
                     Log in
                   </Button>
