@@ -125,7 +125,7 @@ export default function DesignerClient(props: DesignerProps) {
     setName("My new design");
     setConfig(
       props.initialConfig ?? {
-        base: "#FFFFFF",
+        base: "#353232ff",
         sole: "#FFFFFF",
         logo: "#38C774",
         front: "#FFFFFF",
@@ -141,26 +141,40 @@ export default function DesignerClient(props: DesignerProps) {
   };
 
   const [savedOpen, setSavedOpen] = useState(false);
+  const [createdDesignId, setCreatedDesignId] = useState<string | undefined>(
+    undefined
+  );
+  const [savedDesignName, setSavedDesignName] = useState<string | undefined>(
+    undefined
+  );
 
   async function handleSave() {
     if (designId) {
       const res = await updateDesign({ id: designId, name, config });
       if (res.success) {
         setDesignId(res.design.id);
+        setSavedDesignName(res.design.name);
         clearDraft();
         setSavedOpen(true);
       }
     } else {
       const res = await createDesign({ name, config });
       if (res.success) {
-        setDesignId(res.design.id);
+        //User can edit right away if they want to
+        // but we don't force it on them, UI is reset to create mode
+        setCreatedDesignId(res.design.id);
+        setSavedDesignName(res.design.name);
         clearDraft();
         setSavedOpen(true);
       }
     }
   }
 
-  const closeSavedDialog = () => setSavedOpen(false);
+  const handleCloseSaved = () => {
+    setSavedOpen(false);
+    setCreatedDesignId(undefined);
+    setSavedDesignName(undefined);
+  };
 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
@@ -406,7 +420,7 @@ export default function DesignerClient(props: DesignerProps) {
       </Container>
       <Dialog
         open={savedOpen}
-        onClose={closeSavedDialog}
+        onClose={handleCloseSaved}
         maxWidth="xs"
         fullWidth
         sx={{
@@ -415,16 +429,31 @@ export default function DesignerClient(props: DesignerProps) {
           alignContent: "center",
         }}
       >
-        <DialogTitle>{name} was saved to your profile</DialogTitle>
+        <DialogTitle>
+          {savedDesignName ?? name} was saved to your profile
+        </DialogTitle>
         <DialogContent>
           <Typography>
             Make sure to check your profile to see and edit your designs.
           </Typography>
         </DialogContent>
         <DialogActions>
-          <Button onClick={closeSavedDialog} variant="contained" autoFocus>
+          <Button onClick={handleCloseSaved} variant="contained" autoFocus>
             OK
           </Button>
+          {createdDesignId && (
+            <Button
+              onClick={() => {
+                // Enter edit-mode for the created design when user explicitly requests it
+                setDesignId(createdDesignId);
+                setCreatedDesignId(undefined);
+                setSavedOpen(false);
+              }}
+              variant="outlined"
+            >
+              Edit now
+            </Button>
+          )}
         </DialogActions>
       </Dialog>
     </>
