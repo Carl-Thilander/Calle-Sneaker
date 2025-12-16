@@ -9,27 +9,41 @@ import {
   DialogContentText,
   DialogTitle,
   Link,
-  Stack,
   Typography,
 } from "@mui/material";
 import { useState } from "react";
+import { SneakerConfig } from "../designer/areas";
 import SneakerPreview from "../designer/SneakerPreview";
-import { deleteDesign, SneakerConfig } from "./designs/actions";
+import { deleteDesign } from "./designs/actions";
+import { exportDesignPdf, normalizeDesignConfig } from "./exportDesignPdf";
 
 type Design = {
   id: string;
   name: string;
   createdAt: string | Date;
-  config: any;
+  config: SneakerConfig;
 };
 
 type Props = {
-  initialDesigns: Design[];
+  initialDesigns: RawDesign[];
+};
+
+type RawDesign = Omit<Design, "config"> & {
+  config: any;
 };
 
 export default function ProfileDesignList({ initialDesigns }: Props) {
-  const [designs, setDesigns] = useState(initialDesigns);
+  const [designs, setDesigns] = useState<Design[]>(() =>
+    initialDesigns.map((design) => ({
+      ...design,
+      config: normalizeDesignConfig(design.config),
+    }))
+  );
 
+  //Handle download PDF from exportDesignPdf
+  const handleDownloadPdf = async (design: Design) => {
+    await exportDesignPdf(design);
+  };
   const [deleteOpen, setDeleteOpen] = useState(false);
   const [deleteTarget, setDeleteTarget] = useState<{
     id: string;
@@ -94,7 +108,7 @@ export default function ProfileDesignList({ initialDesigns }: Props) {
               p: 2,
               ":hover": {
                 boxShadow: "4px 4px 12px rgba(0,0,0,0.2)",
-                scale: 1.05,
+                scale: 1.02,
               },
             }}
           >
@@ -112,15 +126,18 @@ export default function ProfileDesignList({ initialDesigns }: Props) {
               }}
             >
               <SneakerPreview
-                config={d.config as SneakerConfig}
+                config={d.config}
                 size="small"
                 activeAreaId={"base"}
               />
             </Box>
 
-            <Stack direction="row" spacing={1}>
+            <Box
+              width={"100%"}
+              sx={{ display: "flex", justifyContent: "space-between" }}
+            >
               <Button
-                size="small"
+                size="large"
                 variant="outlined"
                 component={Link}
                 href={`/designer/${d.id}`}
@@ -128,14 +145,22 @@ export default function ProfileDesignList({ initialDesigns }: Props) {
                 Edit
               </Button>
               <Button
-                size="small"
+                size="large"
                 color="error"
                 variant="outlined"
                 onClick={() => openDeleteDialog(d.id, d.name)}
               >
                 Delete
               </Button>
-            </Stack>
+            </Box>
+            <Button
+              fullWidth
+              size="medium"
+              variant="contained"
+              onClick={() => handleDownloadPdf(d)}
+            >
+              Download PDF
+            </Button>
           </Box>
         ))}
       </Box>

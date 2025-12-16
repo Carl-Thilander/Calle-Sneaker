@@ -10,7 +10,7 @@ import {
   useMemo,
   useState,
 } from "react";
-import theme from "./theme";
+import theme from "../assets/theme";
 
 type ColorMode = "light" | "dark";
 
