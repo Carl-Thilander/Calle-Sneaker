@@ -118,9 +118,9 @@ export default function ProfileDesignList({ initialDesigns }: Props) {
               />
             </Box>
 
-            <Stack direction="row" spacing={1}>
+            <Stack direction="row" spacing={2}>
               <Button
-                size="small"
+                size="medium"
                 variant="outlined"
                 component={Link}
                 href={`/designer/${d.id}`}
@@ -128,7 +128,7 @@ export default function ProfileDesignList({ initialDesigns }: Props) {
                 Edit
               </Button>
               <Button
-                size="small"
+                size="medium"
                 color="error"
                 variant="outlined"
                 onClick={() => openDeleteDialog(d.id, d.name)}
