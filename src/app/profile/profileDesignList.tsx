@@ -22,20 +22,32 @@ type Design = {
   name: string;
   createdAt: string | Date;
   config: SneakerConfig;
+  author: {
+    id: string;
+    username: string;
+  };
 };
 
 type Props = {
   initialDesigns: RawDesign[];
+  currentUser: {
+    id: string;
+    username: string;
+  };
 };
 
-type RawDesign = Omit<Design, "config"> & {
+type RawDesign = Omit<Design, "config" | "author"> & {
   config: any;
 };
 
-export default function ProfileDesignList({ initialDesigns }: Props) {
+export default function ProfileDesignList({
+  initialDesigns,
+  currentUser,
+}: Props) {
   const [designs, setDesigns] = useState<Design[]>(() =>
     initialDesigns.map((design) => ({
       ...design,
+      author: currentUser,
       config: normalizeDesignConfig(design.config),
     }))
   );

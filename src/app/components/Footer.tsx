@@ -6,6 +6,7 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import XIcon from "@mui/icons-material/X";
 import { Box, Toolbar } from "@mui/material";
 import Typography from "@mui/material/Typography";
+import ColorButton from "./colorButton";
 
 export default function Footer() {
   return (
@@ -34,6 +35,7 @@ export default function Footer() {
             >
               Contact us
             </Typography>
+            <ColorButton />
             <Box
               sx={{
                 display: "flex",
