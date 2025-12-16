@@ -223,10 +223,13 @@ export default function DesignerClient(props: DesignerProps) {
                 display: "flex",
                 alignItems: "center",
                 gap: 2,
+                flexWrap: "wrap",
+                maxWidth: 400,
               }}
             >
               <TextField
                 label="Name of design"
+                fullWidth
                 value={name}
                 onChange={(e) => setName(e.target.value)}
               />
@@ -243,7 +246,6 @@ export default function DesignerClient(props: DesignerProps) {
                     sx={{
                       padding: 2,
                       borderRadius: 2,
-                      m: 1,
                     }}
                   >
                     {designId ? "Update design" : "Save design"}
