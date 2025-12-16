@@ -12,24 +12,149 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
+import { jsPDF } from "jspdf";
 import { useState } from "react";
 import SneakerPreview from "../designer/SneakerPreview";
-import { deleteDesign, SneakerConfig } from "./designs/actions";
+import { DESIGN_AREAS, SneakerConfig } from "../designer/areas";
+import { deleteDesign } from "./designs/actions";
 
 type Design = {
   id: string;
   name: string;
   createdAt: string | Date;
-  config: any;
+  config: SneakerConfig;
 };
 
 type Props = {
-  initialDesigns: Design[];
+  initialDesigns: RawDesign[];
 };
 
-export default function ProfileDesignList({ initialDesigns }: Props) {
-  const [designs, setDesigns] = useState(initialDesigns);
+type RawDesign = Omit<Design, "config"> & {
+  config: any;
+};
 
+function normalizeConfig(config: any): SneakerConfig {
+  return DESIGN_AREAS.reduce((acc, area) => {
+    const value =
+      config &&
+      typeof config === "object" &&
+      typeof config[area.id] === "string"
+        ? (config[area.id] as string)
+        : "#ffffff";
+    acc[area.id] = value;
+    return acc;
+  }, {} as SneakerConfig);
+}
+
+const imageCache: Record<string, Promise<HTMLImageElement>> = {};
+
+function loadImage(src: string) {
+  if (!imageCache[src]) {
+    imageCache[src] = new Promise((resolve, reject) => {
+      const img = new Image();
+      img.crossOrigin = "anonymous";
+      img.onload = () => resolve(img);
+      img.onerror = reject;
+      img.src = src;
+    });
+  }
+  return imageCache[src];
+}
+
+const MAX_EXPORT_DIMENSION = 3000;
+
+async function renderSneakerImage(config: SneakerConfig) {
+  const masks = await Promise.all(
+    DESIGN_AREAS.map((area) => loadImage(area.mask))
+  );
+  const shadings = await Promise.all(
+    DESIGN_AREAS.map((area) => loadImage(area.shading))
+  );
+
+  const baseWidth = masks[0]?.naturalWidth || 1000;
+  const baseHeight = masks[0]?.naturalHeight || 1000;
+  const scale = Math.min(
+    1,
+    MAX_EXPORT_DIMENSION / baseWidth,
+    MAX_EXPORT_DIMENSION / baseHeight
+  );
+  const width = Math.round(baseWidth * scale);
+  const height = Math.round(baseHeight * scale);
+  const canvas = document.createElement("canvas");
+  canvas.width = width;
+  canvas.height = height;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) {
+    throw new Error("Canvas 2D context not available");
+  }
+
+  const areaCanvas = document.createElement("canvas");
+  areaCanvas.width = width;
+  areaCanvas.height = height;
+  const areaCtx = areaCanvas.getContext("2d");
+  const gradient = ctx.createRadialGradient(
+    width / 2,
+    height * 0.4,
+    width * 0.1,
+    width / 2,
+    height * 0.6,
+    Math.max(width, height) * 0.75
+  );
+  gradient.addColorStop(0, "#3b4566ff");
+  gradient.addColorStop(0.45, "#3b4566be");
+  gradient.addColorStop(1, "#2d354ebe");
+  ctx.fillStyle = gradient;
+  ctx.fillRect(0, 0, width, height);
+
+  DESIGN_AREAS.forEach((area, index) => {
+    const maskImg = masks[index];
+    if (!maskImg) return;
+    if (!areaCtx) return;
+    areaCtx.clearRect(0, 0, width, height);
+    areaCtx.globalCompositeOperation = "source-over";
+    areaCtx.fillStyle = config[area.id] ?? "#ffffff";
+    areaCtx.fillRect(0, 0, width, height);
+    areaCtx.globalCompositeOperation = "destination-in";
+    areaCtx.drawImage(maskImg, 0, 0, width, height);
+    areaCtx.globalCompositeOperation = "source-over";
+    ctx.drawImage(areaCanvas, 0, 0, width, height);
+    const shadingImg = shadings[index];
+    if (shadingImg) {
+      ctx.save();
+      ctx.globalCompositeOperation = "multiply";
+      ctx.drawImage(shadingImg, 0, 0, width, height);
+      ctx.restore();
+    }
+  });
+
+  return canvas.toDataURL("image/jpeg", 0.85);
+}
+
+export default function ProfileDesignList({ initialDesigns }: Props) {
+  const [designs, setDesigns] = useState<Design[]>(() =>
+    initialDesigns.map((design) => ({
+      ...design,
+      config: normalizeConfig(design.config),
+    }))
+  );
+
+  const handleDownloadPdf = async (design: Design) => {
+    console.log("Preparing PDF for:", design.id, design.config);
+    const data = await renderSneakerImage(design.config);
+
+    const pdf = new jsPDF({
+      orientation: "landscape",
+      unit: "px",
+      format: "a4",
+    });
+
+    const pdfWidth = pdf.internal.pageSize.getWidth();
+    const pdfHeight = pdf.internal.pageSize.getHeight();
+
+    pdf.addImage(data, "PNG", 0, 0, pdfWidth, pdfHeight);
+
+    pdf.save(`${design.id}-sneaker-design.pdf`);
+  };
   const [deleteOpen, setDeleteOpen] = useState(false);
   const [deleteTarget, setDeleteTarget] = useState<{
     id: string;
@@ -112,7 +237,7 @@ export default function ProfileDesignList({ initialDesigns }: Props) {
               }}
             >
               <SneakerPreview
-                config={d.config as SneakerConfig}
+                config={d.config}
                 size="small"
                 activeAreaId={"base"}
               />
@@ -136,6 +261,14 @@ export default function ProfileDesignList({ initialDesigns }: Props) {
                 Delete
               </Button>
             </Stack>
+            <Button
+              fullWidth
+              size="medium"
+              variant="contained"
+              onClick={() => handleDownloadPdf(d)}
+            >
+              Download PDF
+            </Button>
           </Box>
         ))}
       </Box>
