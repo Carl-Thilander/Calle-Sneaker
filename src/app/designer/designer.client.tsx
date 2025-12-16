@@ -261,11 +261,14 @@ export default function DesignerClient(props: DesignerProps) {
                 </span>
               </Tooltip>
               {!props.isLoggedIn && (
-                <Link href="/auth/login">
-                  <Button component="a" variant="outlined" sx={{ ml: 1 }}>
-                    Log in
-                  </Button>
-                </Link>
+                <Button
+                  component={Link}
+                  href="/auth/login"
+                  variant="outlined"
+                  sx={{ ml: 1 }}
+                >
+                  Log in
+                </Button>
               )}
             </Box>
 
