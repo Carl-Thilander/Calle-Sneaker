@@ -9,7 +9,6 @@ import {
   DialogContentText,
   DialogTitle,
   Link,
-  Stack,
   Typography,
 } from "@mui/material";
 import { useState } from "react";
@@ -41,6 +40,7 @@ export default function ProfileDesignList({ initialDesigns }: Props) {
     }))
   );
 
+  //Handle download PDF from exportDesignPdf
   const handleDownloadPdf = async (design: Design) => {
     await exportDesignPdf(design);
   };
@@ -108,7 +108,7 @@ export default function ProfileDesignList({ initialDesigns }: Props) {
               p: 2,
               ":hover": {
                 boxShadow: "4px 4px 12px rgba(0,0,0,0.2)",
-                scale: 1.05,
+                scale: 1.02,
               },
             }}
           >
@@ -132,9 +132,12 @@ export default function ProfileDesignList({ initialDesigns }: Props) {
               />
             </Box>
 
-            <Stack direction="row" spacing={2}>
+            <Box
+              width={"100%"}
+              sx={{ display: "flex", justifyContent: "space-between" }}
+            >
               <Button
-                size="medium"
+                size="large"
                 variant="outlined"
                 component={Link}
                 href={`/designer/${d.id}`}
@@ -142,14 +145,14 @@ export default function ProfileDesignList({ initialDesigns }: Props) {
                 Edit
               </Button>
               <Button
-                size="medium"
+                size="large"
                 color="error"
                 variant="outlined"
                 onClick={() => openDeleteDialog(d.id, d.name)}
               >
                 Delete
               </Button>
-            </Stack>
+            </Box>
             <Button
               fullWidth
               size="medium"
