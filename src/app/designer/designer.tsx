@@ -6,5 +6,5 @@ export default async function Designer() {
   const session = await getServerSession(authOptions);
   const isLoggedIn = !!session;
 
-  return <DesignerClient isLoggedIn={isLoggedIn} />;
+  return <DesignerClient isLoggedIn={isLoggedIn} mode="create" />;
 }
