@@ -248,24 +248,24 @@ export default function DesignerClient(props: DesignerProps) {
                   >
                     {designId ? "Update design" : "Save design"}
                   </Button>
-                  <Button
-                    variant="outlined"
-                    onClick={clearDraft}
-                    sx={{
-                      padding: 2,
-                      borderRadius: 2,
-                    }}
-                  >
-                    Reset design
-                  </Button>
                 </span>
               </Tooltip>
+              <Button
+                variant="outlined"
+                onClick={clearDraft}
+                sx={{
+                  padding: 2,
+                  borderRadius: 2,
+                }}
+              >
+                Reset design
+              </Button>
               {!props.isLoggedIn && (
                 <Button
                   component={Link}
                   href="/auth/login"
                   variant="outlined"
-                  sx={{ ml: 1 }}
+                  sx={{ padding: 2, borderRadius: 2 }}
                 >
                   Log in
                 </Button>
