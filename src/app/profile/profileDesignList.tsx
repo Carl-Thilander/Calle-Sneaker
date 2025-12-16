@@ -92,6 +92,10 @@ export default function ProfileDesignList({ initialDesigns }: Props) {
               borderRadius: 2,
               boxShadow: "2px 2px 8px rgba(0,0,0,0.1)",
               p: 2,
+              ":hover": {
+                boxShadow: "4px 4px 12px rgba(0,0,0,0.2)",
+                scale: 1.05,
+              },
             }}
           >
             <Box>

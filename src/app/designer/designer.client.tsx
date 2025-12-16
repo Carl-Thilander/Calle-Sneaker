@@ -22,7 +22,7 @@ import {
   useTheme,
 } from "@mui/material";
 import Link from "next/link";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 import { createDesign, updateDesign } from "../profile/designs/actions";
 import SneakerPreview from "./SneakerPreview";
@@ -36,7 +36,30 @@ type DesignerProps = {
   initialName?: string;
   initialConfig?: SneakerConfig;
   isLoggedIn: boolean;
+  mode: "create" | "edit";
 };
+
+type DraftPayload = {
+  name: string;
+  config: SneakerConfig;
+  activeIndex: number;
+  updatedAt: number;
+};
+
+function getDraftKey(designId: string | undefined) {
+  return designId
+    ? `sneaker-design-draft-${designId}`
+    : `sneaker-design-draft-new`;
+}
+
+function safeParseDraft(raw: string | null): DraftPayload | null {
+  if (!raw) return null;
+  try {
+    return JSON.parse(raw) as DraftPayload;
+  } catch {
+    return null;
+  }
+}
 
 export default function DesignerClient(props: DesignerProps) {
   const [name, setName] = useState(props.initialName ?? "My new design");
@@ -58,28 +81,100 @@ export default function DesignerClient(props: DesignerProps) {
   const [designId, setDesignId] = useState<string | undefined>(
     props.initialDesignId
   );
+  const [activeIndex, setActiveIndex] = useState(0);
+  const draftKey = useMemo(() => getDraftKey(designId), [designId]);
+  const loadedDraftRef = useRef(false);
+
+  // LOAD draft vid mount / när draftKey ändras (t.ex. när designId sätts efter create)
+  useEffect(() => {
+    const raw = window.localStorage.getItem(draftKey);
+    const draft = safeParseDraft(raw);
+
+    // If there is a draft, use it
+    if (draft) {
+      setName(draft.name ?? props.initialName ?? "My new design");
+      setConfig(draft.config ?? props.initialConfig);
+      setActiveIndex(
+        typeof draft.activeIndex === "number" ? draft.activeIndex : 0
+      );
+    }
+
+    loadedDraftRef.current = true;
+  }, [draftKey]);
+
+  // SAVE draft (debounced) när name/config/activeIndex ändras
+  useEffect(() => {
+    if (!loadedDraftRef.current) return;
+
+    const payload: DraftPayload = {
+      name,
+      config,
+      activeIndex,
+      updatedAt: Date.now(),
+    };
+
+    const t = window.setTimeout(() => {
+      window.localStorage.setItem(draftKey, JSON.stringify(payload));
+    }, 400); //Wait 400ms after last change
+
+    return () => window.clearTimeout(t);
+  }, [name, config, activeIndex, draftKey]);
+
+  const clearDraft = () => {
+    window.localStorage.removeItem(draftKey);
+    setName("My new design");
+    setConfig(
+      props.initialConfig ?? {
+        base: "#353232ff",
+        sole: "#FFFFFF",
+        logo: "#38C774",
+        front: "#FFFFFF",
+        front_toe: "#FFFFFF",
+        logobg: "#FFFFFF",
+        laces: "#FFFFFF",
+        laceBase: "#FFFFFF",
+        backpart: "#FFFFFF",
+        heelPatch: "#FFFFFF",
+      }
+    );
+    setActiveIndex(0);
+  };
 
   const [savedOpen, setSavedOpen] = useState(false);
+  const [createdDesignId, setCreatedDesignId] = useState<string | undefined>(
+    undefined
+  );
+  const [savedDesignName, setSavedDesignName] = useState<string | undefined>(
+    undefined
+  );
 
   async function handleSave() {
     if (designId) {
       const res = await updateDesign({ id: designId, name, config });
       if (res.success) {
         setDesignId(res.design.id);
+        setSavedDesignName(res.design.name);
+        clearDraft();
         setSavedOpen(true);
       }
     } else {
       const res = await createDesign({ name, config });
       if (res.success) {
-        setDesignId(res.design.id);
+        //User can edit right away if they want to
+        // but we don't force it on them, UI is reset to create mode
+        setCreatedDesignId(res.design.id);
+        setSavedDesignName(res.design.name);
+        clearDraft();
         setSavedOpen(true);
       }
     }
   }
 
-  const closeSavedDialog = () => setSavedOpen(false);
-
-  const [activeIndex, setActiveIndex] = useState(0);
+  const handleCloseSaved = () => {
+    setSavedOpen(false);
+    setCreatedDesignId(undefined);
+    setSavedDesignName(undefined);
+  };
 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
@@ -148,14 +243,25 @@ export default function DesignerClient(props: DesignerProps) {
                     sx={{
                       padding: 2,
                       borderRadius: 2,
+                      m: 1,
                     }}
                   >
                     {designId ? "Update design" : "Save design"}
                   </Button>
+                  <Button
+                    variant="outlined"
+                    onClick={clearDraft}
+                    sx={{
+                      padding: 2,
+                      borderRadius: 2,
+                    }}
+                  >
+                    Reset design
+                  </Button>
                 </span>
               </Tooltip>
               {!props.isLoggedIn && (
-                <Link href="/auth/login" legacyBehavior>
+                <Link href="/auth/login">
                   <Button component="a" variant="outlined" sx={{ ml: 1 }}>
                     Log in
                   </Button>
@@ -314,7 +420,7 @@ export default function DesignerClient(props: DesignerProps) {
       </Container>
       <Dialog
         open={savedOpen}
-        onClose={closeSavedDialog}
+        onClose={handleCloseSaved}
         maxWidth="xs"
         fullWidth
         sx={{
@@ -323,16 +429,31 @@ export default function DesignerClient(props: DesignerProps) {
           alignContent: "center",
         }}
       >
-        <DialogTitle>{name} was saved to your profile</DialogTitle>
+        <DialogTitle>
+          {savedDesignName ?? name} was saved to your profile
+        </DialogTitle>
         <DialogContent>
           <Typography>
             Make sure to check your profile to see and edit your designs.
           </Typography>
         </DialogContent>
         <DialogActions>
-          <Button onClick={closeSavedDialog} variant="contained" autoFocus>
+          <Button onClick={handleCloseSaved} variant="contained" autoFocus>
             OK
           </Button>
+          {createdDesignId && (
+            <Button
+              onClick={() => {
+                // Enter edit-mode for the created design when user explicitly requests it
+                setDesignId(createdDesignId);
+                setCreatedDesignId(undefined);
+                setSavedOpen(false);
+              }}
+              variant="outlined"
+            >
+              Edit now
+            </Button>
+          )}
         </DialogActions>
       </Dialog>
     </>

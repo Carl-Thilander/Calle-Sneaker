@@ -47,6 +47,7 @@ export default async function DesignerEditPage({ params }: Props) {
           Currently editing: {design.name}
         </Typography>
         <DesignerClient
+          mode="edit"
           isLoggedIn={true}
           initialDesignId={design.id}
           initialName={design.name}
