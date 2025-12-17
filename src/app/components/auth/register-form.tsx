@@ -35,23 +35,17 @@ export default function RegisterForm() {
       <AuthCard title="Create your account below" subtitle="">
         <Box
           component="form"
+          noValidate
           onSubmit={handleSubmit}
           sx={{ display: "flex", flexDirection: "column", gap: 2, mt: 2 }}
         >
-          <TextField label="Name" type="text" name="name" fullWidth required />
-          <TextField
-            label="Email"
-            type="email"
-            name="email"
-            fullWidth
-            required
-          />
+          <TextField label="Name" type="text" name="name" fullWidth />
+          <TextField label="Email" type="email" name="email" fullWidth />
           <TextField
             label="Password"
             type="password"
             name="password"
             fullWidth
-            required
           />
 
           <Button
@@ -64,7 +58,7 @@ export default function RegisterForm() {
             Create Acount
           </Button>
 
-          {message && <Typography color="primary">{message}</Typography>}
+          {message && <Typography color="error">{message}</Typography>}
         </Box>
       </AuthCard>
     </Container>

@@ -1,19 +1,31 @@
 "use client";
 
-import { Box, Button, Container, Link, TextField, Typography } from "@mui/material";
-import AuthCard from "./AuthCard";
-import React, { useState } from "react";
+import { loginSchema } from "@/lib/validation";
+import {
+  Box,
+  Button,
+  Container,
+  Link,
+  TextField,
+  Typography,
+} from "@mui/material";
 import { signIn } from "next-auth/react";
+import React, { useState } from "react";
+import AuthCard from "./AuthCard";
 
 export default function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
   async function handleSubmit(e: React.FormEvent<HTMLElement>) {
     e.preventDefault();
-    setError(null);
+    const parsedResult = loginSchema.safeParse({ email, password });
+    if (!parsedResult.success) {
+      setError(parsedResult.error.issues[0]?.message || "Invalid input data");
+      return;
+    }
     setLoading(true);
 
     const result = await signIn("credentials", {
@@ -28,7 +40,7 @@ export default function LoginForm() {
       return;
     }
 
-    window.location.href="/profile";
+    window.location.href = "/profile";
   }
   return (
     <Container
@@ -40,12 +52,24 @@ export default function LoginForm() {
       <AuthCard title="Welcome Back!" subtitle="Please log in to your account">
         <Box
           component="form"
+          noValidate
           onSubmit={handleSubmit}
           sx={{ display: "flex", flexDirection: "column", gap: 2, mt: 2 }}
         >
-          <TextField label="Email" type="email" fullWidth required value={email} onChange={e => setEmail(e.target.value)} />
-          <TextField label="Password" type="password" fullWidth required value={password} onChange={e => setPassword(e.target.value)} />
-
+          <TextField
+            label="Email"
+            type="email"
+            fullWidth
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <TextField
+            label="Password"
+            type="password"
+            fullWidth
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
 
           {error && (
             <Typography color="error" variant="body2">
@@ -60,7 +84,6 @@ export default function LoginForm() {
             sx={{ mt: 2, borderRadius: 5 }}
           >
             {loading ? "Logging in..." : "Log in"}
-            
           </Button>
 
           <Box textAlign="center" mt={2}>

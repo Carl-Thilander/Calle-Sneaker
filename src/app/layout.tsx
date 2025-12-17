@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { getServerSession } from "next-auth";
+import { authOptions } from "./api/auth/[...nextauth]/route";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Providers from "./providers";
@@ -8,15 +10,16 @@ export const metadata: Metadata = {
   description: "Design your shoe",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const session = await getServerSession(authOptions);
   return (
     <html lang="en">
       <body>
-        <Providers>
+        <Providers session={session}>
           <div
             style={{
               display: "flex",

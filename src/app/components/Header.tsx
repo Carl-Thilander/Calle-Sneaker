@@ -34,7 +34,7 @@ export default function Header() {
   });
   const [mobileOpen, setMobileOpen] = useState(false);
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"), { noSsr: true });
   const isDark = theme.palette.mode === "dark";
   const borderColor = isDark
     ? theme.palette.common.white
