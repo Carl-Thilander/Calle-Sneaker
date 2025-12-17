@@ -1,6 +1,7 @@
 "use server";
 
 import { db } from "@/lib/db";
+import { registerSchema } from "@/lib/validation";
 import bcrypt from "bcryptjs";
 
 export type RegisterResponse =
@@ -17,14 +18,23 @@ export async function registerUser(
     const name = formData.get("name") as string;
     const password = formData.get("password") as string;
 
+    const parseResult = registerSchema.safeParse({
+      email,
+      name,
+      password,
+    });
+
     console.log("registerUser data", { email, hasPassword: !!password });
 
-    if (!email || !password) {
-      console.log("registerUser validation failed");
-      return { error: "email & password required" };
+    if (!parseResult.success) {
+      const firstError = parseResult.error.issues[0];
+      return { error: firstError?.message || "Invalid input data" };
     }
 
-    const existing = await db.user.findUnique({ where: { email } });
+    const existing = await db.user.findUnique({
+      where: { email },
+      select: { id: true },
+    });
     console.log("registerUser existing user", !!existing);
 
     if (existing) {
@@ -33,11 +43,13 @@ export async function registerUser(
 
     const hashed = await bcrypt.hash(password, 10);
 
-    const created = await db.user.create({
-      data: { email, name, password: hashed },
+    await db.user.create({
+      data: {
+        name: parseResult.data.name,
+        email: parseResult.data.email,
+        password: hashed,
+      },
     });
-
-    console.log("registerUser created user", created.id);
 
     return { success: true, email, password };
   } catch (err) {
