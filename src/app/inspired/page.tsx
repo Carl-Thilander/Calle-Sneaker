@@ -27,7 +27,7 @@ async function fetchSneakerPhotos(): Promise<PexelsPhoto[]> {
   }
   try {
     const response = await fetch(
-      "https://api.pexels.com/v1/search?query=sneaker%20design&per_page=30&orientation=portrait%2Clandscape",
+      "https://api.pexels.com/v1/search?query=nike%20sneaker&per_page=30&orientation=portrait%2Clandscape",
       {
         headers: { Authorization: apiKey },
         next: { revalidate: 60 * 15 },

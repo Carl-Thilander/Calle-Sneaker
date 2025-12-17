@@ -5,6 +5,10 @@ export type ExportableDesign = {
   id: string;
   config: SneakerConfig | Record<string, string> | null;
   name: string;
+  author?: {
+    id: string;
+    username: string;
+  };
 };
 
 export function normalizeDesignConfig(config: any): SneakerConfig {
@@ -120,7 +124,12 @@ export async function exportDesignPdf(design: ExportableDesign) {
   pdf.addImage(data, "JPEG", 0, 0, pdfWidth, pdfHeight);
   pdf.setFontSize(12);
   pdf.setTextColor(255, 255, 255);
-  pdf.text(`Design name: ${design.name}`, 16, pdfHeight - 32);
+  pdf.text(`Sneaker name: ${design.name}`, 16, pdfHeight - 32);
+  const designerName =
+    design.author?.username && design.author.username.trim()
+      ? design.author.username
+      : "Unknown designer";
+  pdf.text(`Designer: ${designerName}`, 16, pdfHeight - 16);
 
   pdf.save(`${design.id}-sneaker-design.pdf`);
 }

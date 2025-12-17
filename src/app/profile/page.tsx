@@ -19,6 +19,8 @@ export default async function UserPage() {
     where: { userId: user.id },
     orderBy: { createdAt: "desc" },
   });
+  const username =
+    user.name ?? session.user?.name ?? session.user?.email ?? user.email;
 
   return (
     <Container maxWidth="lg" style={{ padding: "2rem" }}>
@@ -28,7 +30,10 @@ export default async function UserPage() {
       <Typography variant="h5">
         Your saved designs will be displayed here
       </Typography>
-      <ProfileDesignList initialDesigns={designs} />
+      <ProfileDesignList
+        initialDesigns={designs}
+        currentUser={{ id: user.id, username }}
+      />
     </Container>
   );
 }

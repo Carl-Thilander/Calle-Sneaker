@@ -5,6 +5,7 @@ import { SessionProvider } from "next-auth/react";
 import {
   createContext,
   ReactNode,
+  useCallback,
   useContext,
   useEffect,
   useMemo,
@@ -12,7 +13,7 @@ import {
 } from "react";
 import theme from "../assets/theme";
 
-type ColorMode = "light" | "dark";
+export type ColorMode = "light" | "dark";
 
 type ColorModeContextValue = {
   mode: ColorMode;
@@ -44,12 +45,12 @@ export default function Providers({ children }: { children: ReactNode }) {
     }
 
     const prefersDark = window.matchMedia?.(
-      "(prefers-color-scheme: dark"
+      "(prefers-color-scheme: dark)"
     ).matches;
     setMode(prefersDark ? "dark" : "light");
   }, []);
 
-  const toggleColorMode = () => {
+  const toggleColorMode = useCallback(() => {
     setMode((prev) => {
       const next: ColorMode = prev === "light" ? "dark" : "light";
       if (typeof window !== "undefined") {
@@ -57,7 +58,7 @@ export default function Providers({ children }: { children: ReactNode }) {
       }
       return next;
     });
-  };
+  }, []);
 
   const muitheme = useMemo(() => theme(mode), [mode]);
 

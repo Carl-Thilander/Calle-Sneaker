@@ -4,70 +4,72 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import XIcon from "@mui/icons-material/X";
-import { Box, Toolbar } from "@mui/material";
+import { Box, Toolbar, useTheme } from "@mui/material";
 import Typography from "@mui/material/Typography";
+import ColorButton from "./colorButton";
 
 export default function Footer() {
+  const theme = useTheme();
+  const isDark = theme.palette.mode === "dark";
+  const borderColor = isDark
+    ? theme.palette.common.white
+    : theme.palette.common.black;
   return (
     <>
-      <Box component="footer" sx={{ mt: 4 }}>
+      <Box
+        component="footer"
+        sx={{ mt: 4, borderTop: `3px solid ${borderColor}` }}
+      >
         <Toolbar
           sx={{
             gap: 2,
-            backgroundColor: "#251F1F",
-            height: "30vh",
+            backgroundColor: "background.paper",
+            height: { xs: "20vh", md: "10vh" },
+            width: "100%",
           }}
         >
           <Box
             sx={{
               display: "flex",
-              justifyContent: "center",
-              width: "100%",
-              flexDirection: "column",
+              flexDirection: { xs: "column", md: "row" },
               alignItems: "center",
+              gap: 3,
+              justifyContent: "flex-end",
+              width: "100%",
+              flexWrap: "wrap",
             }}
           >
-            <Typography
-              variant="h3"
-              color="white"
-              sx={{ mb: 4, textAlign: "center" }}
-            >
-              Contact us
+            <ColorButton />
+            <Typography variant="h5" color="text.primary">
+              Connect with us!
             </Typography>
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "row",
-                alignItems: "center",
-                gap: 4,
-              }}
-            >
+            <Box sx={{ display: "flex", gap: 2 }}>
               <GitHubIcon
                 sx={{
-                  color: "white",
+                  color: "text.primary",
                   cursor: "pointer",
-                  fontSize: { xs: 35, md: 50 },
+                  fontSize: { xs: 20, md: 30 },
                 }}
               />
               <XIcon
                 sx={{
-                  color: "white",
+                  color: "text.primary",
                   cursor: "pointer",
-                  fontSize: { xs: 35, md: 50 },
+                  fontSize: { xs: 20, md: 30 },
                 }}
               />
               <InstagramIcon
                 sx={{
-                  color: "white",
+                  color: "text.primary",
                   cursor: "pointer",
-                  fontSize: { xs: 35, md: 50 },
+                  fontSize: { xs: 20, md: 30 },
                 }}
               />
               <FacebookIcon
                 sx={{
-                  color: "white",
+                  color: "text.primary",
                   cursor: "pointer",
-                  fontSize: { xs: 35, md: 50 },
+                  fontSize: { xs: 20, md: 30 },
                 }}
               />
             </Box>

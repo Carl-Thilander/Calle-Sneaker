@@ -2,6 +2,7 @@
 
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import LaunchIcon from "@mui/icons-material/Launch";
 import {
   Box,
   Button,
@@ -154,8 +155,8 @@ export default function DesignerClient(props: DesignerProps) {
       if (res.success) {
         setDesignId(res.design.id);
         setSavedDesignName(res.design.name);
-        clearDraft();
         setSavedOpen(true);
+        clearDraft();
       }
     } else {
       const res = await createDesign({ name, config });
@@ -164,8 +165,8 @@ export default function DesignerClient(props: DesignerProps) {
         // but we don't force it on them, UI is reset to create mode
         setCreatedDesignId(res.design.id);
         setSavedDesignName(res.design.name);
-        clearDraft();
         setSavedOpen(true);
+        clearDraft();
       }
     }
   }
@@ -216,17 +217,20 @@ export default function DesignerClient(props: DesignerProps) {
             <Typography variant="body1" color="text.secondary" mb={4}>
               {designId
                 ? ""
-                : "Choose between our base model and curated colorways to create something unique."}
+                : "Start by naming your design and then pick colors for each part of the sneaker. We offer two sets of navigation so you always can work quickly."}
             </Typography>
             <Box
               sx={{
                 display: "flex",
                 alignItems: "center",
                 gap: 2,
+                flexWrap: "wrap",
+                maxWidth: 400,
               }}
             >
               <TextField
                 label="Name of design"
+                fullWidth
                 value={name}
                 onChange={(e) => setName(e.target.value)}
               />
@@ -243,23 +247,26 @@ export default function DesignerClient(props: DesignerProps) {
                     sx={{
                       padding: 2,
                       borderRadius: 2,
-                      m: 1,
                     }}
                   >
                     {designId ? "Update design" : "Save design"}
                   </Button>
                 </span>
               </Tooltip>
-              <Button
-                variant="outlined"
-                onClick={clearDraft}
-                sx={{
-                  padding: 2,
-                  borderRadius: 2,
-                }}
-              >
-                Reset design
-              </Button>
+              <Tooltip title="Clear current design and start fresh" arrow>
+                <span>
+                  <Button
+                    variant="outlined"
+                    onClick={clearDraft}
+                    sx={{
+                      padding: 2,
+                      borderRadius: 2,
+                    }}
+                  >
+                    Reset design
+                  </Button>
+                </span>
+              </Tooltip>
               {!props.isLoggedIn && (
                 <Button
                   component={Link}
@@ -446,15 +453,13 @@ export default function DesignerClient(props: DesignerProps) {
           </Button>
           {createdDesignId && (
             <Button
-              onClick={() => {
-                // Enter edit-mode for the created design when user explicitly requests it
-                setDesignId(createdDesignId);
-                setCreatedDesignId(undefined);
-                setSavedOpen(false);
-              }}
+              component={Link}
+              href={`/profile`}
+              onClick={() => {}}
               variant="outlined"
             >
-              Edit now
+              <LaunchIcon sx={{ mr: 0.5 }} />
+              Go to profile
             </Button>
           )}
         </DialogActions>
