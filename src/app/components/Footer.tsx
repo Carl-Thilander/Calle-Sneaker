@@ -24,16 +24,16 @@ export default function Footer() {
           sx={{
             gap: 2,
             backgroundColor: "background.paper",
-            height: "10vh",
+            height: { xs: "20vh", md: "10vh" },
             width: "100%",
           }}
         >
           <Box
             sx={{
               display: "flex",
-              flexDirection: "row",
+              flexDirection: { xs: "column", md: "row" },
               alignItems: "center",
-              gap: 4,
+              gap: 3,
               justifyContent: "flex-end",
               width: "100%",
               flexWrap: "wrap",
@@ -43,35 +43,36 @@ export default function Footer() {
             <Typography variant="h5" color="text.primary">
               Connect with us!
             </Typography>
-
-            <GitHubIcon
-              sx={{
-                color: "text.primary",
-                cursor: "pointer",
-                fontSize: { xs: 20, md: 30 },
-              }}
-            />
-            <XIcon
-              sx={{
-                color: "text.primary",
-                cursor: "pointer",
-                fontSize: { xs: 20, md: 30 },
-              }}
-            />
-            <InstagramIcon
-              sx={{
-                color: "text.primary",
-                cursor: "pointer",
-                fontSize: { xs: 20, md: 30 },
-              }}
-            />
-            <FacebookIcon
-              sx={{
-                color: "text.primary",
-                cursor: "pointer",
-                fontSize: { xs: 20, md: 30 },
-              }}
-            />
+            <Box sx={{ display: "flex", gap: 2 }}>
+              <GitHubIcon
+                sx={{
+                  color: "text.primary",
+                  cursor: "pointer",
+                  fontSize: { xs: 20, md: 30 },
+                }}
+              />
+              <XIcon
+                sx={{
+                  color: "text.primary",
+                  cursor: "pointer",
+                  fontSize: { xs: 20, md: 30 },
+                }}
+              />
+              <InstagramIcon
+                sx={{
+                  color: "text.primary",
+                  cursor: "pointer",
+                  fontSize: { xs: 20, md: 30 },
+                }}
+              />
+              <FacebookIcon
+                sx={{
+                  color: "text.primary",
+                  cursor: "pointer",
+                  fontSize: { xs: 20, md: 30 },
+                }}
+              />
+            </Box>
           </Box>
         </Toolbar>
       </Box>

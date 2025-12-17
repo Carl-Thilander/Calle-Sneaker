@@ -2,6 +2,7 @@
 
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import LaunchIcon from "@mui/icons-material/Launch";
 import {
   Box,
   Button,
@@ -154,8 +155,8 @@ export default function DesignerClient(props: DesignerProps) {
       if (res.success) {
         setDesignId(res.design.id);
         setSavedDesignName(res.design.name);
-        clearDraft();
         setSavedOpen(true);
+        clearDraft();
       }
     } else {
       const res = await createDesign({ name, config });
@@ -164,8 +165,8 @@ export default function DesignerClient(props: DesignerProps) {
         // but we don't force it on them, UI is reset to create mode
         setCreatedDesignId(res.design.id);
         setSavedDesignName(res.design.name);
-        clearDraft();
         setSavedOpen(true);
+        clearDraft();
       }
     }
   }
@@ -448,15 +449,13 @@ export default function DesignerClient(props: DesignerProps) {
           </Button>
           {createdDesignId && (
             <Button
-              onClick={() => {
-                // Enter edit-mode for the created design when user explicitly requests it
-                setDesignId(createdDesignId);
-                setCreatedDesignId(undefined);
-                setSavedOpen(false);
-              }}
+              component={Link}
+              href={`/profile`}
+              onClick={() => {}}
               variant="outlined"
             >
-              Edit now
+              <LaunchIcon sx={{ mr: 0.5 }} />
+              Go to profile
             </Button>
           )}
         </DialogActions>
