@@ -120,7 +120,7 @@ export default function ProfileDesignList({
               p: 2,
               ":hover": {
                 boxShadow: "4px 4px 12px rgba(0,0,0,0.2)",
-                scale: 1.02,
+                scale: 1.01,
               },
             }}
           >

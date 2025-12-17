@@ -217,7 +217,7 @@ export default function DesignerClient(props: DesignerProps) {
             <Typography variant="body1" color="text.secondary" mb={4}>
               {designId
                 ? ""
-                : "Choose between our base model and curated colorways to create something unique."}
+                : "Start by naming your design and then pick colors for each part of the sneaker. We offer two sets of navigation so you always can work quickly."}
             </Typography>
             <Box
               sx={{
@@ -253,16 +253,20 @@ export default function DesignerClient(props: DesignerProps) {
                   </Button>
                 </span>
               </Tooltip>
-              <Button
-                variant="outlined"
-                onClick={clearDraft}
-                sx={{
-                  padding: 2,
-                  borderRadius: 2,
-                }}
-              >
-                Reset design
-              </Button>
+              <Tooltip title="Clear current design and start fresh" arrow>
+                <span>
+                  <Button
+                    variant="outlined"
+                    onClick={clearDraft}
+                    sx={{
+                      padding: 2,
+                      borderRadius: 2,
+                    }}
+                  >
+                    Reset design
+                  </Button>
+                </span>
+              </Tooltip>
               {!props.isLoggedIn && (
                 <Button
                   component={Link}
