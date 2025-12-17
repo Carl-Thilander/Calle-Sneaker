@@ -40,6 +40,10 @@ Prisma models (`prisma/schema.prisma`) define `User`, `Design`, and `Sneaker`. `
 - `src/app/designer/SneakerPreview.tsx` layers each mask defined in `src/app/designer/areas.ts` using CSS mask and blend properties.
 - Each design area has both a mask and a shading image, giving the preview realistic depth and texture.
 
+## Inspired page
+
+- `src\app\inspired\page.tsx` Displays images from pexels with a handtailored search query. The user can browse the page for inspiration and has the ability to see the author of the images. The images are fetched via API.
+
 ### Profile & Saved Designs
 
 - `src/app/profile/page.tsx` fetches the logged-in user’s designs server-side and renders `ProfileDesignList`.
