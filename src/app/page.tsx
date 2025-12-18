@@ -70,7 +70,7 @@ export default function HomePage() {
           <Stack
             direction={{ xs: "column", md: "row" }}
             spacing={2}
-            alignItems={{ xs: "flex-start", md: "center" }}
+            alignItems={{ xs: "center", md: "center" }}
             justifyContent="space-between"
           >
             <Stack direction="row" spacing={1} flexWrap="wrap" useFlexGap>
@@ -130,7 +130,7 @@ export default function HomePage() {
                   letterSpacing: -1.2,
                   textTransform: "uppercase",
                   fontWeight: 900,
-                  fontSize: { xs: 44, sm: 56, md: 76 },
+                  fontSize: { xs: 34, sm: 56, md: 76 },
                 }}
               >
                 Build your
