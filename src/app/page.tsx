@@ -187,7 +187,7 @@ export default function HomePage() {
                 </Button>
                 <Button
                   href="/inspired"
-                  variant="contained"
+                  variant="text"
                   sx={{
                     borderRadius: 3,
                     px: 3,
@@ -195,7 +195,7 @@ export default function HomePage() {
                     fontWeight: 800,
                     textTransform: "uppercase",
                     letterSpacing: 0.7,
-                    backgroundColor: "secondary.light",
+                    bgcolor: "secondary.light",
                     color: "black",
                     "&:hover": { bgcolor: "secondary.main" },
                   }}
