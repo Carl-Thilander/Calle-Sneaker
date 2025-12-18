@@ -34,28 +34,15 @@ const features = [
 
 export default function HomePage() {
   return (
-    <Box sx={{ position: "relative", overflow: "hidden" }}>
-      {/* Background: gradient + grain */}
-      <Box
-        sx={{
-          position: "absolute",
-          inset: 0,
-          background:
-            "radial-gradient(1200px 700px at 15% 20%, rgba(56,199,116,0.35), transparent 60%)," +
-            "radial-gradient(900px 600px at 80% 25%, rgba(255,58,58,0.30), transparent 55%)," +
-            "radial-gradient(900px 700px at 60% 90%, rgba(82,113,255,0.28), transparent 55%)," +
-            "linear-gradient(180deg, rgba(10,10,10,0.92), rgba(10,10,10,0.98))",
-          zIndex: 0,
-        }}
-      />
+    <Box
+      sx={{ position: "relative", overflow: "hidden", py: { xs: 7, md: 10 } }}
+    >
       <Box
         sx={{
           position: "absolute",
           inset: 0,
           zIndex: 1,
           opacity: 0.22,
-          backgroundImage:
-            "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.45'/%3E%3C/svg%3E\")",
           mixBlendMode: "overlay",
           pointerEvents: "none",
         }}
@@ -64,7 +51,17 @@ export default function HomePage() {
       {/* HERO */}
       <Container
         maxWidth="lg"
-        sx={{ position: "relative", zIndex: 2, py: { xs: 7, md: 10 } }}
+        sx={{
+          position: "relative",
+          zIndex: 2,
+          p: { xs: 3, md: 4 },
+          backgroundColor: "background.paper",
+          borderRadius: 2,
+          boxShadow: 3,
+          backdropFilter: "blur(12px)",
+          border: "1px solid",
+          borderColor: "divider",
+        }}
       >
         <Stack spacing={4}>
           {/* Top row: chips + "sticker" */}
@@ -82,7 +79,7 @@ export default function HomePage() {
                   variant="outlined"
                   sx={{
                     borderColor: "rgba(255,255,255,0.22)",
-                    color: "rgba(255,255,255,0.92)",
+                    color: "text.primary",
                     backdropFilter: "blur(8px)",
                     bgcolor: "rgba(255,255,255,0.04)",
                     fontWeight: 600,
@@ -97,14 +94,14 @@ export default function HomePage() {
                 borderRadius: 3,
                 px: 2.2,
                 py: 1.1,
-                bgcolor: "rgba(255,255,255,0.08)",
+                bgcolor: "background.paper",
                 border: "1px solid rgba(255,255,255,0.16)",
                 backdropFilter: "blur(10px)",
               }}
             >
               <Typography
                 variant="caption"
-                sx={{ letterSpacing: 1.6, color: "rgba(255,255,255,0.85)" }}
+                sx={{ letterSpacing: 1.6, color: "text.primary" }}
               >
                 NEW SEASON • COLORWAY LAB
               </Typography>
@@ -125,7 +122,7 @@ export default function HomePage() {
               <Typography
                 variant="h1"
                 sx={{
-                  color: "rgba(255,255,255,0.96)",
+                  color: "text.primary",
                   lineHeight: 0.92,
                   letterSpacing: -1.2,
                   textTransform: "uppercase",
@@ -156,7 +153,7 @@ export default function HomePage() {
                 sx={{
                   mt: 2,
                   maxWidth: 720,
-                  color: "rgba(255,255,255,0.75)",
+                  color: "text.secondary",
                   fontSize: { xs: 15, md: 16 },
                 }}
               >
@@ -194,8 +191,9 @@ export default function HomePage() {
                     fontWeight: 800,
                     textTransform: "uppercase",
                     letterSpacing: 0.7,
-                    borderColor: "rgba(255,255,255,0.22)",
-                    color: "rgba(255,255,255,0.9)",
+                    borderColor: "rgba(255,255,255,0.35)",
+                    backgroundColor: "background.default",
+                    color: "text.primary",
                     "&:hover": { borderColor: "rgba(255,255,255,0.35)" },
                   }}
                 >
@@ -221,7 +219,7 @@ export default function HomePage() {
                       px: 2,
                       py: 1.2,
                       borderRadius: 3,
-                      bgcolor: "rgba(255,255,255,0.05)",
+                      bgcolor: "background.paper",
                       border: "1px solid rgba(255,255,255,0.14)",
                       backdropFilter: "blur(10px)",
                       minWidth: 120,
@@ -229,7 +227,7 @@ export default function HomePage() {
                   >
                     <Typography
                       sx={{
-                        color: "rgba(255,255,255,0.92)",
+                        color: "text.primary",
                         fontWeight: 900,
                         fontSize: 18,
                       }}
@@ -238,7 +236,7 @@ export default function HomePage() {
                     </Typography>
                     <Typography
                       variant="caption"
-                      sx={{ color: "rgba(255,255,255,0.68)" }}
+                      sx={{ color: "text.secondary" }}
                     >
                       {s.v}
                     </Typography>
@@ -254,7 +252,7 @@ export default function HomePage() {
                 borderRadius: 4,
                 height: "100%",
                 borderColor: "rgba(255,255,255,0.16)",
-                bgcolor: "rgba(255,255,255,0.06)",
+                bgcolor: "background.default",
                 backdropFilter: "blur(12px)",
                 overflow: "hidden",
                 position: "relative",
@@ -271,7 +269,7 @@ export default function HomePage() {
               <CardContent sx={{ position: "relative", p: 3 }}>
                 <Typography
                   variant="overline"
-                  sx={{ color: "rgba(255,255,255,0.75)", letterSpacing: 2 }}
+                  sx={{ color: "text.primary", letterSpacing: 2 }}
                 >
                   Featured drop
                 </Typography>
@@ -283,7 +281,7 @@ export default function HomePage() {
                     fontWeight: 900,
                     textTransform: "uppercase",
                     letterSpacing: 0.6,
-                    color: "rgba(255,255,255,0.95)",
+                    color: "text.primary",
                   }}
                 >
                   “Street Lab Pack”
@@ -291,7 +289,7 @@ export default function HomePage() {
 
                 <Typography
                   variant="body2"
-                  sx={{ mt: 1, color: "rgba(255,255,255,0.72)" }}
+                  sx={{ mt: 1, color: "text.secondary" }}
                 >
                   Tight palette. Clean contrast. Built for attention.
                 </Typography>
@@ -368,9 +366,9 @@ export default function HomePage() {
                       size="small"
                       label={t}
                       sx={{
-                        bgcolor: "rgba(0,0,0,0.18)",
+                        bgcolor: "background.default",
                         border: "1px solid rgba(255,255,255,0.14)",
-                        color: "rgba(255,255,255,0.85)",
+                        color: "text.primary",
                       }}
                     />
                   ))}
@@ -395,7 +393,7 @@ export default function HomePage() {
                 whiteSpace: "nowrap",
                 display: "inline-block",
                 animation: "marquee 18s linear infinite",
-                color: "rgba(255,255,255,0.78)",
+                color: "text.primary",
                 fontWeight: 900,
                 letterSpacing: 2,
                 textTransform: "uppercase",
@@ -446,16 +444,13 @@ export default function HomePage() {
                       fontWeight: 900,
                       textTransform: "uppercase",
                       letterSpacing: 0.6,
-                      color: "rgba(255,255,255,0.92)",
+                      color: "text.primary",
                       mb: 1,
                     }}
                   >
                     {f.title}
                   </Typography>
-                  <Typography
-                    variant="body2"
-                    sx={{ color: "rgba(255,255,255,0.72)" }}
-                  >
+                  <Typography variant="body2" sx={{ color: "text.secondary" }}>
                     {f.body}
                   </Typography>
                 </CardContent>

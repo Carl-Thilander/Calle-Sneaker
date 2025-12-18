@@ -25,7 +25,15 @@ const steps = [
 export default function AboutPage() {
   return (
     <Box sx={{ py: { xs: 6, md: 10 } }}>
-      <Container maxWidth="lg">
+      <Container
+        maxWidth="lg"
+        sx={{
+          bgcolor: "background.paper",
+          p: { xs: 3, md: 4 },
+          borderRadius: 2,
+          boxShadow: 3,
+        }}
+      >
         <Box textAlign="center" mb={4}>
           <Typography variant="h1" sx={{ lineHeight: 1.05 }}>
             About Sneakers
