@@ -433,7 +433,7 @@ export default function HomePage() {
                 sx={{
                   borderRadius: 4,
                   borderColor: "rgba(255,255,255,0.14)",
-                  bgcolor: "rgba(255,255,255,0.05)",
+                  bgcolor: "background.default",
                   backdropFilter: "blur(10px)",
                 }}
               >
