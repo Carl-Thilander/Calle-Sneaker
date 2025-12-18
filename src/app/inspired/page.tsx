@@ -1,9 +1,8 @@
-import Image from "next/image";
-
 import Box from "@mui/material/Box";
 import Chip from "@mui/material/Chip";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
+import Image from "next/image";
 
 type PexelsPhoto = {
   id: number;

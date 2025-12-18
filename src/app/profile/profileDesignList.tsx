@@ -176,17 +176,28 @@ export default function ProfileDesignList({
           </Box>
         ))}
       </Box>
-      <Dialog open={deleteOpen} onClose={closeDeleteDialog}>
+      <Dialog
+        open={deleteOpen}
+        onClose={closeDeleteDialog}
+        sx={{ borderRadius: "10" }}
+      >
         <DialogTitle>Delete design</DialogTitle>
         <DialogContent>
-          <DialogContentText>
+          <DialogContentText color="text.primary">
             Are you sure you want to delete "{deleteTarget?.name}"? This action
             cannot be undone.
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={closeDeleteDialog}>Cancel</Button>
-          <Button onClick={confirmDelete} color="error" autoFocus>
+          <Button variant="contained" onClick={closeDeleteDialog}>
+            Cancel
+          </Button>
+          <Button
+            variant="outlined"
+            onClick={confirmDelete}
+            color="error"
+            autoFocus
+          >
             Delete
           </Button>
         </DialogActions>

@@ -24,7 +24,7 @@ export default async function UserPage() {
 
   return (
     <Container maxWidth="lg" style={{ padding: "2rem" }}>
-      <Typography variant="h3">
+      <Typography variant="h1">
         Hello {session.user?.name ?? session.user?.email}
       </Typography>
       <Typography variant="h5">
