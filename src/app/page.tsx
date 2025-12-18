@@ -9,6 +9,8 @@ import {
   Typography,
 } from "@mui/material";
 import Stack from "@mui/material/Stack";
+import HeroPreview from "./landing/HeroPreview";
+import { FEATURED_CONFIG } from "./landing/featuredSneaker";
 
 const badges = [
   "Drop-ready",
@@ -55,7 +57,7 @@ export default function HomePage() {
           position: "relative",
           zIndex: 2,
           p: { xs: 3, md: 4 },
-          backgroundColor: "background.paper",
+          backgroundColor: "background.default",
           borderRadius: 2,
           boxShadow: 3,
           backdropFilter: "blur(12px)",
@@ -78,10 +80,10 @@ export default function HomePage() {
                   label={b}
                   variant="outlined"
                   sx={{
-                    borderColor: "rgba(255,255,255,0.22)",
+                    borderColor: "text.primary",
                     color: "text.primary",
                     backdropFilter: "blur(8px)",
-                    bgcolor: "rgba(255,255,255,0.04)",
+                    bgcolor: "background.paper",
                     fontWeight: 600,
                   }}
                 />
@@ -95,7 +97,8 @@ export default function HomePage() {
                 px: 2.2,
                 py: 1.1,
                 bgcolor: "background.paper",
-                border: "1px solid rgba(255,255,255,0.16)",
+                border: "2px dashed",
+                borderColor: "text.primary",
                 backdropFilter: "blur(10px)",
               }}
             >
@@ -177,6 +180,8 @@ export default function HomePage() {
                     fontWeight: 800,
                     textTransform: "uppercase",
                     letterSpacing: 0.7,
+                    color: "black",
+                    "&:hover": { scale: 1.1 },
                   }}
                 >
                   Start customizing
@@ -191,10 +196,10 @@ export default function HomePage() {
                     fontWeight: 800,
                     textTransform: "uppercase",
                     letterSpacing: 0.7,
-                    borderColor: "rgba(255,255,255,0.35)",
-                    backgroundColor: "background.default",
-                    color: "text.primary",
-                    "&:hover": { borderColor: "rgba(255,255,255,0.35)" },
+
+                    backgroundColor: "secondary.light",
+                    color: "black",
+                    "&:hover": { scale: 1.1 },
                   }}
                 >
                   Get inspired
@@ -220,7 +225,8 @@ export default function HomePage() {
                       py: 1.2,
                       borderRadius: 3,
                       bgcolor: "background.paper",
-                      border: "1px solid rgba(255,255,255,0.14)",
+                      border: "1px solid",
+                      borderColor: "text.primary",
                       backdropFilter: "blur(10px)",
                       minWidth: 120,
                     }}
@@ -252,7 +258,7 @@ export default function HomePage() {
                 borderRadius: 4,
                 height: "100%",
                 borderColor: "rgba(255,255,255,0.16)",
-                bgcolor: "background.default",
+                bgcolor: "background.paper",
                 backdropFilter: "blur(12px)",
                 overflow: "hidden",
                 position: "relative",
@@ -264,6 +270,10 @@ export default function HomePage() {
                   inset: 0,
                   background:
                     "linear-gradient(135deg, rgba(255,255,255,0.10), rgba(255,255,255,0.02))",
+                  borderRadius: 4,
+                  border: "1px solid",
+                  borderColor: "divider",
+                  pointerEvents: "none",
                 }}
               />
               <CardContent sx={{ position: "relative", p: 3 }}>
@@ -271,7 +281,7 @@ export default function HomePage() {
                   variant="overline"
                   sx={{ color: "text.primary", letterSpacing: 2 }}
                 >
-                  Featured drop
+                  Featured design by <i>Jonsson</i>
                 </Typography>
 
                 <Typography
@@ -284,7 +294,7 @@ export default function HomePage() {
                     color: "text.primary",
                   }}
                 >
-                  “Street Lab Pack”
+                  “Red lace”
                 </Typography>
 
                 <Typography
@@ -335,22 +345,8 @@ export default function HomePage() {
                       left: -70,
                     }}
                   />
-                  <Typography
-                    sx={{
-                      color: "rgba(255,255,255,0.78)",
-                      fontWeight: 800,
-                      textTransform: "uppercase",
-                      letterSpacing: 1.5,
-                    }}
-                  >
-                    Sneaker preview area
-                  </Typography>
-                  <Typography
-                    variant="caption"
-                    sx={{ color: "rgba(255,255,255,0.58)" }}
-                  >
-                    (Plug your SneakerPreview here)
-                  </Typography>
+
+                  <HeroPreview config={FEATURED_CONFIG} activeAreaId={"base"} />
                 </Box>
 
                 <Stack
@@ -366,8 +362,10 @@ export default function HomePage() {
                       size="small"
                       label={t}
                       sx={{
-                        bgcolor: "background.default",
-                        border: "1px solid rgba(255,255,255,0.14)",
+                        bgcolor: "background.paper",
+                        border: "1px solid ",
+                        borderColor: "text.primary",
+                        p: 1.2,
                         color: "text.primary",
                       }}
                     />
@@ -381,8 +379,9 @@ export default function HomePage() {
           <Box
             sx={{
               mt: { xs: 3, md: 4 },
-              borderTop: "1px solid rgba(255,255,255,0.12)",
-              borderBottom: "1px solid rgba(255,255,255,0.12)",
+              border: "1px solid",
+              borderColor: "text.primary",
+              bgcolor: "background.paper",
               py: 1.2,
               overflow: "hidden",
               position: "relative",
@@ -432,8 +431,8 @@ export default function HomePage() {
                 variant="outlined"
                 sx={{
                   borderRadius: 4,
-                  borderColor: "rgba(255,255,255,0.14)",
-                  bgcolor: "background.default",
+                  borderColor: "text.primary",
+                  bgcolor: "background.paper",
                   backdropFilter: "blur(10px)",
                 }}
               >

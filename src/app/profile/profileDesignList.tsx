@@ -113,6 +113,7 @@ export default function ProfileDesignList({
               justifyContent: "space-between",
               gap: 2,
               alignItems: "center",
+              bgcolor: "background.paper",
               border: "1px solid",
               borderColor: "divider",
               borderRadius: 2,

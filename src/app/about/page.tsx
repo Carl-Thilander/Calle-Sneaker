@@ -28,10 +28,12 @@ export default function AboutPage() {
       <Container
         maxWidth="lg"
         sx={{
-          bgcolor: "background.paper",
+          bgcolor: "background.default",
           p: { xs: 3, md: 4 },
           borderRadius: 2,
           boxShadow: 3,
+          border: "1px solid",
+          borderColor: "divider",
         }}
       >
         <Box textAlign="center" mb={4}>
@@ -77,8 +79,9 @@ export default function AboutPage() {
 
         <Box
           sx={{
-            display: "grid",
-            gridTemplateColumns: { xs: "1fr", md: "repeat(3, 1fr)" },
+            display: "flex",
+            flexDirection: { xs: "column", md: "row" },
+            justifyContent: "space-between",
             gap: 2,
           }}
         >
@@ -86,7 +89,14 @@ export default function AboutPage() {
             <Card
               key={s.title}
               variant="outlined"
-              sx={{ borderRadius: 3, height: "100%" }}
+              sx={{
+                borderRadius: 3,
+                height: "100%",
+                backgroundColor: "background.default",
+                borderColor: "divider",
+                flex: 1,
+                minHeight: { xs: 100, md: 150 },
+              }}
             >
               <CardContent sx={{ p: 3 }}>
                 <Typography variant="h5" sx={{ mb: 1 }}>
@@ -110,6 +120,7 @@ export default function AboutPage() {
         >
           <Box
             sx={{
+              bgcolor: "background.default",
               display: "flex",
               flexDirection: { xs: "column", md: "row" },
               alignItems: { xs: "stretch", md: "center" },

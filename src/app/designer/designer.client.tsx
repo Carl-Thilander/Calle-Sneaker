@@ -203,15 +203,18 @@ export default function DesignerClient(props: DesignerProps) {
     <>
       <Container
         maxWidth="lg"
-        sx={{ py: { xs: 4, md: 6 }, px: { xs: 0, md: 0 } }}
+        sx={{ py: { xs: 4, md: 10 }, px: { xs: 0, md: 0 } }}
       >
         <Box
           sx={{
             gap: { xs: 4, md: 1 },
             alignItems: "center",
-            bgcolor: "background.paper",
+            bgcolor: "background.default",
             p: { xs: 3, md: 4 },
-            borderRadius: 4,
+            borderRadius: 2,
+            boxShadow: 3,
+            border: "1px solid",
+            borderColor: "divider",
           }}
         >
           <Box
@@ -274,6 +277,7 @@ export default function DesignerClient(props: DesignerProps) {
                 <span>
                   <Button
                     variant="outlined"
+                    color="error"
                     onClick={clearDraft}
                     sx={{
                       padding: 2,

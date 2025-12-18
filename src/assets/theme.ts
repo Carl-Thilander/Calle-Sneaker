@@ -5,11 +5,11 @@ const theme = (mode: "light" | "dark" = "light") =>
     palette: {
       mode,
       primary: { main: "#38C774" },
-      secondary: { main: "#ffff" },
+      secondary: { main: "#c7388b" },
       background: {
         default: "transparent",
         paper:
-          mode === "dark" ? "rgba(12,12,12,0.72)" : "rgba(233, 222, 222, 0.88)",
+          mode === "dark" ? "rgba(12,12,12,0.72)" : "rgba(255, 255, 255, 0.88)",
       },
     },
     typography: {

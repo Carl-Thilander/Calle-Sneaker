@@ -28,16 +28,23 @@ export default async function UserPage() {
         maxWidth="lg"
         sx={{
           padding: "2rem",
-          backgroundColor: "background.paper",
+          backgroundColor: "background.default",
           borderRadius: 2,
           boxShadow: 3,
           mb: 4,
+          border: "1px solid",
+          borderColor: "divider",
         }}
       >
-        <Typography variant="h1">
+        <Typography variant="h1" textAlign={"center"}>
           Hello {session.user?.name ?? session.user?.email}
         </Typography>
-        <Typography variant="h5">
+        <Typography
+          variant="h5"
+          textAlign={"center"}
+          color="text.secondary"
+          sx={{ mt: 2 }}
+        >
           Your saved designs will be displayed here
         </Typography>
         <ProfileDesignList
