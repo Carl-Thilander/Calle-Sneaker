@@ -69,8 +69,15 @@ export default function AboutPage() {
 
             <Button
               href="/inspired"
-              variant="outlined"
-              sx={{ borderRadius: 2, px: 2.5, py: 1.25 }}
+              variant="contained"
+              sx={{
+                borderRadius: 2,
+                px: 2.5,
+                py: 1.25,
+                bgcolor: "secondary.light",
+                color: "black",
+                "&:hover": { bgcolor: "secondary.main" },
+              }}
             >
               Get inspired
             </Button>
@@ -92,7 +99,7 @@ export default function AboutPage() {
               sx={{
                 borderRadius: 3,
                 height: "100%",
-                backgroundColor: "background.default",
+                backgroundColor: "background.paper",
                 borderColor: "divider",
                 flex: 1,
                 minHeight: { xs: 100, md: 150 },

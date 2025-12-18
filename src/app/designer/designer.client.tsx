@@ -209,7 +209,7 @@ export default function DesignerClient(props: DesignerProps) {
           sx={{
             gap: { xs: 4, md: 1 },
             alignItems: "center",
-            bgcolor: "background.default",
+            bgcolor: "background.paper",
             p: { xs: 3, md: 4 },
             borderRadius: 2,
             boxShadow: 3,
@@ -222,6 +222,9 @@ export default function DesignerClient(props: DesignerProps) {
               display: "flex",
               flexDirection: { xs: "column", md: "row" },
               justifyContent: "space-between",
+
+              p: 2,
+              borderRadius: 4,
             }}
           >
             <Box>
@@ -391,6 +394,7 @@ export default function DesignerClient(props: DesignerProps) {
             {!isMobile && (
               <Stepper
                 nonLinear
+                color="secondary.light"
                 activeStep={activeIndex}
                 alternativeLabel
                 sx={{

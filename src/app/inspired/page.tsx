@@ -51,7 +51,18 @@ export default async function GetInspiredPage() {
   const photos = await fetchSneakerPhotos();
 
   return (
-    <Container maxWidth="lg" sx={{ py: { xs: 6, md: 10 } }}>
+    <Container
+      maxWidth="lg"
+      sx={{
+        mt: { xs: 6, md: 10 },
+        py: { xs: 6, md: 10 },
+        bgcolor: "background.default",
+        borderRadius: 2,
+        boxShadow: 3,
+        border: "1px solid",
+        borderColor: "divider",
+      }}
+    >
       <Box textAlign="center" mb={4}>
         <Typography variant="h3" component="h1" gutterBottom>
           Get Inspired

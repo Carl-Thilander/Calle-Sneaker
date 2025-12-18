@@ -181,14 +181,13 @@ export default function HomePage() {
                     textTransform: "uppercase",
                     letterSpacing: 0.7,
                     color: "black",
-                    "&:hover": { scale: 1.1 },
                   }}
                 >
                   Start customizing
                 </Button>
                 <Button
                   href="/inspired"
-                  variant="outlined"
+                  variant="contained"
                   sx={{
                     borderRadius: 3,
                     px: 3,
@@ -196,10 +195,9 @@ export default function HomePage() {
                     fontWeight: 800,
                     textTransform: "uppercase",
                     letterSpacing: 0.7,
-
                     backgroundColor: "secondary.light",
                     color: "black",
-                    "&:hover": { scale: 1.1 },
+                    "&:hover": { bgcolor: "secondary.main" },
                   }}
                 >
                   Get inspired
