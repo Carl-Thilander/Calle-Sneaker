@@ -51,7 +51,7 @@ export default function SneakerPreview({
       sx={{
         position: "relative",
         ...dimensions,
-        margin: size === "large" ? "0 auto" : 0,
+        margin: 0,
       }}
     >
       {DESIGN_AREAS.map((area) => (

@@ -11,8 +11,6 @@ interface Props {
 }
 
 export default async function DesignerEditPage({ params }: Props) {
-  // `params` may be a Promise in Next's streaming behavior; await it to get
-  // the actual object that contains `designId`.
   const resolvedParams = await params;
   const designId = resolvedParams?.designId;
   const session = await getServerSession(authOptions);

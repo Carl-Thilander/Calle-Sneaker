@@ -201,24 +201,47 @@ export default function DesignerClient(props: DesignerProps) {
 
   return (
     <>
-      <Container maxWidth="lg" sx={{ py: { xs: 4, md: 6 } }}>
+      <Container
+        maxWidth="lg"
+        sx={{ py: { xs: 4, md: 10 }, px: { xs: 0, md: 0 } }}
+      >
         <Box
           sx={{
-            display: "grid",
-            gridTemplateColumns: { xs: "1fr", md: "1.2fr 0.8fr" },
             gap: { xs: 4, md: 1 },
             alignItems: "center",
+            bgcolor: "background.paper",
+            p: { xs: 3, md: 4 },
+            borderRadius: 2,
+            boxShadow: 3,
+            border: "1px solid",
+            borderColor: "divider",
           }}
         >
-          <Box>
-            <Typography variant="h3" mb={1}>
-              {designId ? "Edit your old design" : "Design your new sneaker"}
-            </Typography>
-            <Typography variant="body1" color="text.secondary" mb={4}>
-              {designId
-                ? ""
-                : "Start by naming your design and then pick colors for each part of the sneaker. We offer two sets of navigation so you always can work quickly."}
-            </Typography>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: { xs: "column", md: "row" },
+              justifyContent: "space-between",
+
+              p: 2,
+              borderRadius: 4,
+            }}
+          >
+            <Box>
+              <Typography variant="h3" mb={1}>
+                {designId ? "Edit your old design" : "Design your new sneaker"}
+              </Typography>
+              <Typography
+                variant="body1"
+                color="text.secondary"
+                mb={4}
+                maxWidth={550}
+              >
+                {designId
+                  ? ""
+                  : "Start by naming your design and then pick colors for each part of the sneaker. We offer two sets of navigation so you always can work quickly."}
+              </Typography>
+            </Box>
             <Box
               sx={{
                 display: "flex",
@@ -257,6 +280,7 @@ export default function DesignerClient(props: DesignerProps) {
                 <span>
                   <Button
                     variant="outlined"
+                    color="error"
                     onClick={clearDraft}
                     sx={{
                       padding: 2,
@@ -278,15 +302,21 @@ export default function DesignerClient(props: DesignerProps) {
                 </Button>
               )}
             </Box>
-
+          </Box>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "space-evenly",
+              alignItems: "center",
+              flexDirection: { xs: "column", md: "row" },
+            }}
+          >
             <SneakerPreview
               config={config}
               activeAreaId={activeAreaId}
               size="large"
             />
-          </Box>
 
-          <Box>
             <Box>
               <Box
                 sx={{
@@ -336,8 +366,8 @@ export default function DesignerClient(props: DesignerProps) {
                       key={color.hex}
                       onClick={() => handleColorChange(activeAreaId, color.hex)}
                       sx={{
-                        width: 32,
-                        height: 32,
+                        width: { xs: 25, md: 32 },
+                        height: { xs: 25, md: 32 },
                         borderRadius: "25%",
                         backgroundColor: color.hex,
                         border: isActive
@@ -359,73 +389,75 @@ export default function DesignerClient(props: DesignerProps) {
               </Box>
             </Box>
           </Box>
-        </Box>
-        <Box sx={{ width: "100%" }}>
-          {!isMobile && (
-            <Stepper
-              nonLinear
-              activeStep={activeIndex}
-              alternativeLabel
-              sx={{
-                display: "flex",
-                flexDirection: "row",
-                alignItems: "flex-start",
-                py: 4,
-                gap: 1,
-              }}
-            >
-              {DESIGN_AREAS.map((area, index) => (
-                <Step key={area.id}>
-                  <StepButton onClick={() => setActiveIndex(index)}>
-                    {area.label}
-                  </StepButton>
-                </Step>
-              ))}
-            </Stepper>
-          )}
-          {isMobile && (
-            <Box
-              sx={{
-                display: "flex",
-                overflowX: "auto",
-                gap: 1,
-                px: 1,
-                py: 6,
-                "::-webkit-scrollbar": { display: "none" },
-              }}
-            >
-              {DESIGN_AREAS.map((area, index) => {
-                const isActive = index === activeIndex;
-                return (
-                  <Box
-                    key={area.id}
-                    onClick={() => setActiveIndex(index)}
-                    sx={{
-                      flexShrink: 0,
-                      px: 1.5,
-                      py: 0.75,
-                      borderRadius: 999,
-                      fontSize: 12,
-                      cursor: "pointer",
-                      border: "1px solid",
-                      borderColor: isActive ? "primary.main" : "divider",
-                      bgcolor: isActive ? "primary.main" : "background.paper",
-                      color: isActive
-                        ? "primary.contrastText"
-                        : "text.secondary",
-                      transition:
-                        "background-color 0.15s ease, border-color 0.15s ease, transform 0.15s ease",
-                      "&:active": {
-                        transform: "scale(0.8)",
-                      },
-                    }}
-                  >
-                    {index + 1}. {area.label}
-                  </Box>
-                );
-              })}
-            </Box>
-          )}
+
+          <Box sx={{ width: "100%" }}>
+            {!isMobile && (
+              <Stepper
+                nonLinear
+                color="secondary.light"
+                activeStep={activeIndex}
+                alternativeLabel
+                sx={{
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "flex-start",
+                  py: 4,
+                  gap: 1,
+                }}
+              >
+                {DESIGN_AREAS.map((area, index) => (
+                  <Step key={area.id}>
+                    <StepButton onClick={() => setActiveIndex(index)}>
+                      {area.label}
+                    </StepButton>
+                  </Step>
+                ))}
+              </Stepper>
+            )}
+            {isMobile && (
+              <Box
+                sx={{
+                  display: "flex",
+                  overflowX: "auto",
+                  gap: 1,
+                  px: 1,
+                  py: 6,
+                  "::-webkit-scrollbar": { display: "none" },
+                }}
+              >
+                {DESIGN_AREAS.map((area, index) => {
+                  const isActive = index === activeIndex;
+                  return (
+                    <Box
+                      key={area.id}
+                      onClick={() => setActiveIndex(index)}
+                      sx={{
+                        flexShrink: 0,
+                        px: 1.5,
+                        py: 0.75,
+                        borderRadius: 999,
+                        fontSize: 12,
+                        cursor: "pointer",
+                        border: "1px solid",
+                        borderColor: isActive ? "primary.main" : "divider",
+                        bgcolor: isActive ? "primary.main" : "background.paper",
+                        color: isActive
+                          ? "primary.contrastText"
+                          : "text.secondary",
+                        transition:
+                          "background-color 0.15s ease, border-color 0.15s ease, transform 0.15s ease",
+                        "&:active": {
+                          transform: "scale(0.8)",
+                        },
+                      }}
+                    >
+                      {index + 1}. {area.label}
+                    </Box>
+                  );
+                })}
+              </Box>
+            )}
+          </Box>
         </Box>
       </Container>
       <Dialog

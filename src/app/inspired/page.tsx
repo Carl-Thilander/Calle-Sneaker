@@ -1,9 +1,8 @@
-import Image from "next/image";
-
 import Box from "@mui/material/Box";
 import Chip from "@mui/material/Chip";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
+import Image from "next/image";
 
 type PexelsPhoto = {
   id: number;
@@ -52,7 +51,18 @@ export default async function GetInspiredPage() {
   const photos = await fetchSneakerPhotos();
 
   return (
-    <Container maxWidth="lg" sx={{ py: { xs: 6, md: 10 } }}>
+    <Container
+      maxWidth="lg"
+      sx={{
+        mt: { xs: 6, md: 10 },
+        py: { xs: 6, md: 10 },
+        bgcolor: "background.default",
+        borderRadius: 2,
+        boxShadow: 3,
+        border: "1px solid",
+        borderColor: "divider",
+      }}
+    >
       <Box textAlign="center" mb={4}>
         <Typography variant="h3" component="h1" gutterBottom>
           Get Inspired
@@ -100,7 +110,6 @@ export default async function GetInspiredPage() {
                   borderRadius: 3,
                   overflow: "hidden",
                   boxShadow: 3,
-                  bgcolor: "background.paper",
                   position: "relative",
                   "&:hover .photo-meta": {
                     opacity: 1,

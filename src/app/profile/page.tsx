@@ -1,6 +1,6 @@
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { db } from "@/lib/db";
-import { Container, Typography } from "@mui/material";
+import { Box, Container, Typography } from "@mui/material";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import ProfileDesignList from "./profileDesignList";
@@ -23,17 +23,35 @@ export default async function UserPage() {
     user.name ?? session.user?.name ?? session.user?.email ?? user.email;
 
   return (
-    <Container maxWidth="lg" style={{ padding: "2rem" }}>
-      <Typography variant="h3">
-        Hello {session.user?.name ?? session.user?.email}
-      </Typography>
-      <Typography variant="h5">
-        Your saved designs will be displayed here
-      </Typography>
-      <ProfileDesignList
-        initialDesigns={designs}
-        currentUser={{ id: user.id, username }}
-      />
-    </Container>
+    <Box sx={{ py: { xs: 6, md: 10 } }}>
+      <Container
+        maxWidth="lg"
+        sx={{
+          padding: "2rem",
+          backgroundColor: "background.default",
+          borderRadius: 2,
+          boxShadow: 3,
+          mb: 4,
+          border: "1px solid",
+          borderColor: "divider",
+        }}
+      >
+        <Typography variant="h1" textAlign={"center"}>
+          Hello {session.user?.name ?? session.user?.email}
+        </Typography>
+        <Typography
+          variant="h5"
+          textAlign={"center"}
+          color="text.secondary"
+          sx={{ mt: 2 }}
+        >
+          Your saved designs will be displayed here
+        </Typography>
+        <ProfileDesignList
+          initialDesigns={designs}
+          currentUser={{ id: user.id, username }}
+        />
+      </Container>
+    </Box>
   );
 }

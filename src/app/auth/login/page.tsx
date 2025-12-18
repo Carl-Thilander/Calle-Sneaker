@@ -1,10 +1,10 @@
 import LoginForm from "@/app/components/auth/login-form";
-import { Box } from "@mui/material";
+import { Suspense } from "react";
 
 export default function LoginInPage() {
   return (
-    <Box>
+    <Suspense fallback={<div>Loading...</div>}>
       <LoginForm />
-    </Box>
+    </Suspense>
   );
 }

@@ -5,10 +5,11 @@ const theme = (mode: "light" | "dark" = "light") =>
     palette: {
       mode,
       primary: { main: "#38C774" },
-      secondary: { main: "#ffff" },
+      secondary: { main: "#c7388b" },
       background: {
-        default: mode === "light" ? "#ffffffff" : "#221b1bff", //Ask about this change
-        paper: mode === "light" ? "#d6ceceff" : "#251F1F",
+        default: "transparent",
+        paper:
+          mode === "dark" ? "rgba(12,12,12,0.72)" : "rgba(255, 255, 255, 0.88)",
       },
     },
     typography: {
@@ -48,9 +49,6 @@ const theme = (mode: "light" | "dark" = "light") =>
       MuiCssBaseline: {
         styleOverrides: (themeParam) => ({
           body: {
-            backgroundColor: themeParam.palette.background.default,
-          },
-          main: {
             backgroundColor: themeParam.palette.background.default,
           },
         }),

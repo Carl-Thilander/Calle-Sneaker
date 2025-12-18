@@ -61,21 +61,23 @@ Prisma models (`prisma/schema.prisma`) define `User`, `Design`, and `Sneaker`. `
 
 ## Development
 
-```bash
 # Install dependencies
+
 npm install
 
 # Run locally
+
 npm run dev
 
 # Type-check and lint
+
 npm run lint
 
 # Prisma helpers
-npm run generate   # regenerate client
-npm run push       # push schema changes
-npm run seed       # seed the database via prisma/seed.ts
-```
+
+npm run generate # regenerate client
+npm run push # push schema changes
+npm run seed # seed the database via prisma/seed.ts
 
 ### Environment variables
 
