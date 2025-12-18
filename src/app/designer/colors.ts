@@ -9,18 +9,26 @@ export const COLOR_PALETTE: Record<DesignAreaId, ColorOption[]> = {
   base: [
     { name: "Black", hex: "#312f2fff" },
     { name: "Gray", hex: "#808080" },
+    { name: "White", hex: "#FFFFFF" },
+    { name: "Red", hex: "#D40000" },
+    { name: "Blue", hex: "#0057FF" },
+    { name: "Green", hex: "#195330" },
   ],
   logo: [
     { name: "Volt", hex: "#CEFF00" },
     { name: "Royal Blue", hex: "#0057FF" },
     { name: "Red", hex: "#D40000" },
     { name: "Black", hex: "#312f2fff" },
+    { name: "White", hex: "#FFFFFF" },
+    { name: "Green", hex: "#195330" },
   ],
   sole: [
     { name: "White", hex: "#FFFFFF" },
     { name: "Gum", hex: "#C88C4A" },
     { name: "Gray", hex: "#B8B8B8" },
     { name: "Black", hex: "#312f2fff" },
+    { name: "Red", hex: "#D40000" },
+    { name: "Blue", hex: "#0057FF" },
   ],
   front: [
     { name: "White", hex: "#FFFFFF" },
@@ -29,7 +37,6 @@ export const COLOR_PALETTE: Record<DesignAreaId, ColorOption[]> = {
     { name: "Navy", hex: "#1F2A44" },
     { name: "Forrest Green", hex: "#195330" },
     { name: "Bourdaux", hex: "#6e2731" },
-    { name: "yellow", hex: "#d8e619ff" },
   ],
   front_toe: [
     { name: "White", hex: "#FFFFFF" },

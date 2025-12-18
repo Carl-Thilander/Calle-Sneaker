@@ -99,7 +99,6 @@ export default async function GetInspiredPage() {
                   borderRadius: 3,
                   overflow: "hidden",
                   boxShadow: 3,
-                  bgcolor: "background.paper",
                   position: "relative",
                   "&:hover .photo-meta": {
                     opacity: 1,

@@ -23,7 +23,12 @@ export default async function UserPage() {
     user.name ?? session.user?.name ?? session.user?.email ?? user.email;
 
   return (
-    <Container maxWidth="lg" style={{ padding: "2rem" }}>
+    <Container
+      maxWidth="lg"
+      style={{
+        padding: "2rem",
+      }}
+    >
       <Typography variant="h1">
         Hello {session.user?.name ?? session.user?.email}
       </Typography>
