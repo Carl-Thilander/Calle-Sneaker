@@ -32,7 +32,7 @@ const features = [
 
 export default function HomePage() {
   return (
-    <Box sx={{ position: "relative", py: { xs: 0, md: 10 } }}>
+    <Box sx={{ position: "relative", py: { xs: 2, md: 10 } }}>
       <Box
         sx={{
           position: "absolute",
@@ -50,7 +50,7 @@ export default function HomePage() {
         sx={{
           position: "relative",
           zIndex: 2,
-          p: { xs: 3, md: 4 },
+          p: { xs: 1, md: 4 },
           backgroundColor: "background.default",
           borderRadius: 2,
           boxShadow: 3,
@@ -265,7 +265,15 @@ export default function HomePage() {
                   pointerEvents: "none",
                 }}
               />
-              <CardContent sx={{ position: "relative", p: 3 }}>
+              <CardContent
+                sx={{
+                  position: "relative",
+                  p: 3,
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                }}
+              >
                 <Typography
                   variant="overline"
                   sx={{ color: "text.primary", letterSpacing: 2 }}
@@ -302,16 +310,18 @@ export default function HomePage() {
                     border: "1px dashed rgba(255,255,255,0.22)",
                     bgcolor: "rgba(0,0,0,0.18)",
                     height: 220,
-                    display: "grid",
-                    placeItems: "center",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
                     position: "relative",
                     overflow: "hidden",
+                    width: "fit-content",
                   }}
                 >
                   <Box
                     sx={{
                       position: "absolute",
-                      width: 300,
+                      width: { xs: 240, md: 260 },
                       height: 300,
                       borderRadius: "50%",
                       bgcolor: "rgba(56,199,116,0.18)",

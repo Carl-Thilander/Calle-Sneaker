@@ -5,7 +5,6 @@ import MenuIcon from "@mui/icons-material/Menu";
 import {
   AppBar,
   Box,
-  Button,
   Container,
   IconButton,
   Toolbar,
@@ -177,9 +176,9 @@ export default function Header() {
                 {item.label}
               </Typography>
             ))}
-            <Button onClick={handleCloseMobile}>
+            <Box onClick={handleCloseMobile}>
               {session ? <LogoutButton /> : <LogInButton />}
-            </Button>
+            </Box>
           </Box>
         </Box>
       )}
