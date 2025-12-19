@@ -264,6 +264,7 @@ export default function DesignerClient(props: DesignerProps) {
               >
                 <span>
                   <Button
+                    aria-label="save/edit-button"
                     disabled={!props.isLoggedIn}
                     variant="contained"
                     onClick={handleSave}
@@ -279,6 +280,7 @@ export default function DesignerClient(props: DesignerProps) {
               <Tooltip title="Clear current design and start fresh" arrow>
                 <span>
                   <Button
+                    aria-label="reset-design-button"
                     variant="outlined"
                     color="error"
                     onClick={clearDraft}
@@ -293,6 +295,7 @@ export default function DesignerClient(props: DesignerProps) {
               </Tooltip>
               {!props.isLoggedIn && (
                 <Button
+                  aria-label="go-to-login-button"
                   component={Link}
                   href="/auth/login"
                   variant="outlined"
@@ -480,11 +483,17 @@ export default function DesignerClient(props: DesignerProps) {
           </Typography>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleCloseSaved} variant="contained" autoFocus>
+          <Button
+            onClick={handleCloseSaved}
+            variant="contained"
+            aria-label="close-modal-button"
+            autoFocus
+          >
             OK
           </Button>
           {createdDesignId && (
             <Button
+              aria-label="go-to-profile-button"
               component={Link}
               href={`/profile`}
               onClick={() => {}}

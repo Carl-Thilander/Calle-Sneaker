@@ -60,6 +60,7 @@ export default function AboutPage() {
             }}
           >
             <Button
+              aria-label="go-to-designer"
               href="/designer"
               variant="contained"
               sx={{ borderRadius: 2, px: 2.5, py: 1.25 }}
@@ -68,6 +69,7 @@ export default function AboutPage() {
             </Button>
 
             <Button
+              aria-label="go-to-inspired"
               href="/inspired"
               variant="contained"
               sx={{
@@ -145,6 +147,7 @@ export default function AboutPage() {
             </Box>
 
             <Button
+              aria-label="go-to-designer"
               href="/designer"
               variant="contained"
               sx={{

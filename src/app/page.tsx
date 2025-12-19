@@ -168,6 +168,7 @@ export default function HomePage() {
                 <Button
                   href="/designer"
                   variant="contained"
+                  aria-label="go-to-designer"
                   sx={{
                     borderRadius: 3,
                     px: 3,
@@ -180,6 +181,7 @@ export default function HomePage() {
                 <Button
                   href="/inspired"
                   variant="outlined"
+                  aria-label="go-to-inspired"
                   sx={{
                     color: "secondary.main",
                     borderColor: "secondary.main",

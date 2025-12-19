@@ -150,6 +150,7 @@ export default function ProfileDesignList({
               sx={{ display: "flex", justifyContent: "space-between" }}
             >
               <Button
+                aria-label="edit-design"
                 size="large"
                 variant="outlined"
                 component={Link}
@@ -158,6 +159,7 @@ export default function ProfileDesignList({
                 Edit
               </Button>
               <Button
+                aria-label="delete-design"
                 size="large"
                 color="error"
                 variant="outlined"
@@ -167,6 +169,7 @@ export default function ProfileDesignList({
               </Button>
             </Box>
             <Button
+              aria-label="download-design"
               fullWidth
               size="medium"
               variant="contained"
@@ -190,10 +193,15 @@ export default function ProfileDesignList({
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button variant="contained" onClick={closeDeleteDialog}>
+          <Button
+            variant="contained"
+            aria-label="cancel-action"
+            onClick={closeDeleteDialog}
+          >
             Cancel
           </Button>
           <Button
+            aria-label="confirm-delete-button"
             variant="outlined"
             onClick={confirmDelete}
             color="error"

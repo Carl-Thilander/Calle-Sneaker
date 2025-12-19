@@ -6,6 +6,7 @@ import Link from "next/link";
 export default function LogInButton() {
   return (
     <Button
+      aria-label="login-button"
       variant="contained"
       color="primary"
       sx={{

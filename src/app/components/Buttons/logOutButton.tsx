@@ -6,6 +6,7 @@ import { signOut } from "next-auth/react";
 export default function LogoutButton() {
   return (
     <Button
+      aria-label="logout-button"
       variant="contained"
       color="primary"
       sx={{

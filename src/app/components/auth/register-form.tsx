@@ -72,6 +72,7 @@ export default function RegisterForm() {
         </Tooltip>
 
         <Button
+          aria-label="create-account-button"
           type="submit"
           variant="contained"
           color="primary"
