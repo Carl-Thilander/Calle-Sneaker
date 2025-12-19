@@ -60,7 +60,7 @@ export default function HomePage() {
         }}
       >
         <Stack spacing={4}>
-          {/* Top row: chips + "sticker" */}
+          {/* Top row: chips */}
           <Stack
             direction={{ xs: "column", md: "row" }}
             spacing={2}
@@ -368,7 +368,7 @@ export default function HomePage() {
             </Card>
           </Box>
 
-          {/* Marquee */}
+          {/* Carousel */}
           <Box
             sx={{
               mt: { xs: 3, md: 4 },
