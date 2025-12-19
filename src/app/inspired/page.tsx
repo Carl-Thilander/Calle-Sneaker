@@ -56,7 +56,7 @@ export default async function GetInspiredPage() {
       sx={{
         mt: { xs: 6, md: 10 },
         py: { xs: 6, md: 10 },
-        bgcolor: "background.default",
+        bgcolor: "background.paper",
         borderRadius: 2,
         boxShadow: 3,
         border: "1px solid",
