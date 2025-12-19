@@ -3,12 +3,10 @@ import {
   Box,
   Card,
   CardContent,
-  Chip,
   Container,
   Stack,
   Typography,
 } from "@mui/material";
-import Link from "next/link";
 
 type Props = {
   title: string;
@@ -22,10 +20,12 @@ export default function AuthCard({ title, subtitle, children, footer }: Props) {
     <Container maxWidth="lg" sx={{ py: { xs: 6, md: 10 } }}>
       <Box
         sx={{
-          display: "grid",
-          gridTemplateColumns: { xs: "1fr", md: "1.05fr 0.95fr" },
+          display: "flex",
+          flexDirection: { xs: "column-reverse", md: "row" },
           gap: 3,
           alignItems: "stretch",
+          width: "100%",
+          justifyContent: "center",
         }}
       >
         {/* Left: brand panel */}
@@ -33,11 +33,12 @@ export default function AuthCard({ title, subtitle, children, footer }: Props) {
           variant="outlined"
           sx={{
             borderRadius: 4,
-            borderColor: "rgba(255,255,255,0.14)",
-            bgcolor: "rgba(255,255,255,0.06)",
+            borderColor: "divider",
+            bgcolor: "background.default",
             backdropFilter: "blur(12px)",
             overflow: "hidden",
             position: "relative",
+            width: { xs: "100%", md: "40%" },
           }}
         >
           <Box
@@ -54,7 +55,7 @@ export default function AuthCard({ title, subtitle, children, footer }: Props) {
           <CardContent sx={{ position: "relative", p: { xs: 3, md: 4 } }}>
             <Typography
               variant="overline"
-              sx={{ letterSpacing: 2, color: "rgba(255,255,255,0.72)" }}
+              sx={{ letterSpacing: 2, color: "text.primary" }}
             >
               CUSTOMKICKS • AUTH
             </Typography>
@@ -66,7 +67,7 @@ export default function AuthCard({ title, subtitle, children, footer }: Props) {
                 fontWeight: 900,
                 textTransform: "uppercase",
                 letterSpacing: 0.6,
-                color: "rgba(255,255,255,0.95)",
+                color: "text.primary",
                 lineHeight: 1,
               }}
             >
@@ -75,52 +76,9 @@ export default function AuthCard({ title, subtitle, children, footer }: Props) {
               saved.
             </Typography>
 
-            <Typography
-              sx={{ mt: 2, color: "rgba(255,255,255,0.72)", maxWidth: 520 }}
-            >
+            <Typography sx={{ mt: 2, color: "text.primary", maxWidth: 520 }}>
               Save designs, continue drafts, and refine colorways. Clean
               workflow with a culture-first look.
-            </Typography>
-
-            <Stack
-              direction="row"
-              spacing={1}
-              flexWrap="wrap"
-              useFlexGap
-              sx={{ mt: 3 }}
-            >
-              {[
-                "Curated palettes",
-                "Saved designs",
-                "Fast preview",
-                "Dark mode",
-              ].map((t) => (
-                <Chip
-                  key={t}
-                  size="small"
-                  label={t}
-                  sx={{
-                    bgcolor: "rgba(0,0,0,0.18)",
-                    border: "1px solid rgba(255,255,255,0.14)",
-                    color: "rgba(255,255,255,0.86)",
-                  }}
-                />
-              ))}
-            </Stack>
-
-            <Typography
-              variant="caption"
-              sx={{ display: "block", mt: 3, color: "rgba(255,255,255,0.55)" }}
-            >
-              By continuing you agree to our{" "}
-              <Box
-                component={Link}
-                href="/about"
-                sx={{ color: "rgba(255,255,255,0.75)" }}
-              >
-                terms
-              </Box>
-              .
             </Typography>
           </CardContent>
         </Card>
@@ -130,20 +88,21 @@ export default function AuthCard({ title, subtitle, children, footer }: Props) {
           variant="outlined"
           sx={{
             borderRadius: 4,
-            borderColor: "rgba(255,255,255,0.14)",
-            bgcolor: "rgba(10,10,10,0.55)",
+            borderColor: "divider",
+            bgcolor: "background.paper",
             backdropFilter: "blur(12px)",
+            width: { xs: "100%", md: "40%" },
           }}
         >
           <CardContent sx={{ p: { xs: 3, md: 4 } }}>
             <Stack spacing={1}>
               <Typography
                 variant="h4"
-                sx={{ fontWeight: 900, color: "rgba(255,255,255,0.95)" }}
+                sx={{ fontWeight: 900, color: "text.primary" }}
               >
                 {title}
               </Typography>
-              <Typography color="rgba(255,255,255,0.68)">{subtitle}</Typography>
+              <Typography color="text.primary">{subtitle}</Typography>
             </Stack>
 
             <Box sx={{ mt: 3 }}>{children}</Box>

@@ -1,7 +1,7 @@
 import AuthCard from "@/app/components/auth/AuthCard";
 import LoginForm from "@/app/components/auth/login-form";
-import { Typography } from "@mui/material";
-import Link from "next/link";
+import { Link, Typography } from "@mui/material";
+import { Suspense } from "react";
 
 export default function LoginPage() {
   return (
@@ -9,18 +9,17 @@ export default function LoginPage() {
       title="Log in"
       subtitle="Welcome back. Continue your drafts and saved designs."
       footer={
-        <Typography color="rgba(255,255,255,0.7)">
+        <Typography color="text.primary">
           No account?{" "}
-          <Link
-            href="/auth/register"
-            style={{ color: "rgba(255,255,255,0.9)" }}
-          >
-            Create one
+          <Link href="/auth/register" color="text.primary">
+            Create one here
           </Link>
         </Typography>
       }
     >
-      <LoginForm />
+      <Suspense fallback={<div>Loading...</div>}>
+        <LoginForm />
+      </Suspense>
     </AuthCard>
   );
 }

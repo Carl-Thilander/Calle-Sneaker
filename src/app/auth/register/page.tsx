@@ -1,5 +1,6 @@
 import AuthCard from "@/app/components/auth/AuthCard";
 import RegisterForm from "@/app/components/auth/register-form";
+import { Suspense } from "react";
 
 export default function RegisterPage() {
   return (
@@ -8,7 +9,9 @@ export default function RegisterPage() {
       subtitle="Create a new account in seconds!"
       footer={null}
     >
-      <RegisterForm />
+      <Suspense fallback={<div>Loading...</div>}>
+        <RegisterForm />
+      </Suspense>
     </AuthCard>
   );
 }

@@ -1,6 +1,13 @@
 "use client";
 import { registerUser } from "@/app/auth/register/actions";
-import { Box, Button, Container, TextField, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Container,
+  TextField,
+  Tooltip,
+  Typography,
+} from "@mui/material";
 import { signIn } from "next-auth/react";
 import React, { useState } from "react";
 
@@ -37,9 +44,32 @@ export default function RegisterForm() {
         onSubmit={handleSubmit}
         sx={{ display: "flex", flexDirection: "column", gap: 2, mt: 2 }}
       >
-        <TextField label="Name" type="text" name="name" fullWidth />
-        <TextField label="Email" type="email" name="email" fullWidth />
-        <TextField label="Password" type="password" name="password" fullWidth />
+        <Tooltip
+          title="Name must be at least 2 characters long"
+          placement="bottom"
+        >
+          <span>
+            <TextField label="Name" type="text" name="name" fullWidth />
+          </span>
+        </Tooltip>
+        <Tooltip title="Email must be a valid email address" placement="bottom">
+          <span>
+            <TextField label="Email" type="email" name="email" fullWidth />
+          </span>
+        </Tooltip>
+        <Tooltip
+          title="Password must be at least 6 characters and include a capital letter"
+          placement="bottom"
+        >
+          <span>
+            <TextField
+              label="Password"
+              type="password"
+              name="password"
+              fullWidth
+            />
+          </span>
+        </Tooltip>
 
         <Button
           type="submit"
