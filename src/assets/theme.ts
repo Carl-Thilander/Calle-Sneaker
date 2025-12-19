@@ -9,7 +9,7 @@ const theme = (mode: "light" | "dark" = "light") =>
       background: {
         default: "transparent",
         paper:
-          mode === "dark" ? "rgba(12,12,12,0.72)" : "rgba(255, 255, 255, 0.88)",
+          mode === "dark" ? "rgba(19, 18, 18, 1)" : "rgba(255, 255, 255, 0.88)",
       },
     },
     typography: {

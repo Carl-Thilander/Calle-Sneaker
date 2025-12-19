@@ -357,7 +357,9 @@ export default function HomePage() {
                 <Stack
                   direction="row"
                   spacing={1}
-                  sx={{ mt: 2 }}
+                  sx={{
+                    mt: 2,
+                  }}
                   flexWrap="wrap"
                   useFlexGap
                 >
@@ -370,7 +372,7 @@ export default function HomePage() {
                         bgcolor: "background.paper",
                         border: "2px solid ",
                         borderColor: "text.primary",
-                        p: 1.2,
+                        p: 1,
                         color: "text.primary",
                       }}
                     />

@@ -28,7 +28,7 @@ export default function AboutPage() {
       <Container
         maxWidth="lg"
         sx={{
-          bgcolor: "background.default",
+          bgcolor: "background.paper",
           p: { xs: 3, md: 4 },
           borderRadius: 2,
           boxShadow: 3,
