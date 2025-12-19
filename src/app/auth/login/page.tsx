@@ -1,7 +1,6 @@
 import AuthCard from "@/app/components/auth/AuthCard";
 import LoginForm from "@/app/components/auth/login-form";
 import { Link, Typography } from "@mui/material";
-import { Suspense } from "react";
 
 export default function LoginPage() {
   return (
@@ -17,9 +16,7 @@ export default function LoginPage() {
         </Typography>
       }
     >
-      <Suspense fallback={<div>Loading...</div>}>
-        <LoginForm />
-      </Suspense>
+      <LoginForm />
     </AuthCard>
   );
 }
