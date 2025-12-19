@@ -51,7 +51,7 @@ export default function HomePage() {
           position: "relative",
           zIndex: 2,
           p: { xs: 1, md: 4 },
-          backgroundColor: "background.default",
+          backgroundColor: "background.paper",
           borderRadius: 2,
           boxShadow: 3,
           backdropFilter: "blur(12px)",

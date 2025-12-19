@@ -397,7 +397,6 @@ export default function DesignerClient(props: DesignerProps) {
             {!isMobile && (
               <Stepper
                 nonLinear
-                color="secondary.light"
                 activeStep={activeIndex}
                 alternativeLabel
                 sx={{

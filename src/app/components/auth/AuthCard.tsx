@@ -57,7 +57,7 @@ export default function AuthCard({ title, subtitle, children, footer }: Props) {
               variant="overline"
               sx={{ letterSpacing: 2, color: "text.primary" }}
             >
-              CUSTOMKICKS • AUTH
+              Release your inner designer
             </Typography>
 
             <Typography
@@ -98,11 +98,14 @@ export default function AuthCard({ title, subtitle, children, footer }: Props) {
             <Stack spacing={1}>
               <Typography
                 variant="h4"
+                textAlign={"center"}
                 sx={{ fontWeight: 900, color: "text.primary" }}
               >
                 {title}
               </Typography>
-              <Typography color="text.primary">{subtitle}</Typography>
+              <Typography textAlign={"center"} color="text.primary">
+                {subtitle}
+              </Typography>
             </Stack>
 
             <Box sx={{ mt: 3 }}>{children}</Box>
