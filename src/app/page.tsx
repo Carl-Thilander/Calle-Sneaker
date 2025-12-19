@@ -9,15 +9,11 @@ import {
   Typography,
 } from "@mui/material";
 import Stack from "@mui/material/Stack";
+import { Suspense } from "react";
 import HeroPreview from "./landing/HeroPreview";
 import { FEATURED_CONFIG } from "./landing/featuredSneaker";
 
-const badges = [
-  "Drop-ready",
-  "Curated palettes",
-  "Save & iterate",
-  "Fast preview",
-];
+const badges = ["Browse", "Create", "Save & iterate", "Export"];
 
 const features = [
   {
@@ -36,9 +32,7 @@ const features = [
 
 export default function HomePage() {
   return (
-    <Box
-      sx={{ position: "relative", overflow: "hidden", py: { xs: 7, md: 10 } }}
-    >
+    <Box sx={{ position: "relative", py: { xs: 0, md: 10 } }}>
       <Box
         sx={{
           position: "absolute",
@@ -66,11 +60,11 @@ export default function HomePage() {
         }}
       >
         <Stack spacing={4}>
-          {/* Top row: chips + "sticker" */}
+          {/* Top row: chips */}
           <Stack
             direction={{ xs: "column", md: "row" }}
             spacing={2}
-            alignItems={{ xs: "flex-start", md: "center" }}
+            alignItems={{ xs: "center", md: "center" }}
             justifyContent="space-between"
           >
             <Stack direction="row" spacing={1} flexWrap="wrap" useFlexGap>
@@ -85,6 +79,7 @@ export default function HomePage() {
                     backdropFilter: "blur(8px)",
                     bgcolor: "background.paper",
                     fontWeight: 600,
+                    border: "2px solid",
                   }}
                 />
               ))}
@@ -106,7 +101,7 @@ export default function HomePage() {
                 variant="caption"
                 sx={{ letterSpacing: 1.6, color: "text.primary" }}
               >
-                NEW SEASON • COLORWAY LAB
+                NEW SEASON • NEW DESIGNS
               </Typography>
             </Box>
           </Stack>
@@ -130,7 +125,7 @@ export default function HomePage() {
                   letterSpacing: -1.2,
                   textTransform: "uppercase",
                   fontWeight: 900,
-                  fontSize: { xs: 44, sm: 56, md: 76 },
+                  fontSize: { xs: 34, sm: 56, md: 76 },
                 }}
               >
                 Build your
@@ -160,7 +155,7 @@ export default function HomePage() {
                   fontSize: { xs: 15, md: 16 },
                 }}
               >
-                A loud, culture-first sneaker designer. Curated palettes. Fast
+                Minimalist, culture-first sneaker designer. Tight palettes. Fast
                 iteration. Save your best ideas and refine them like a real
                 drop.
               </Typography>
@@ -177,9 +172,6 @@ export default function HomePage() {
                     borderRadius: 3,
                     px: 3,
                     py: 1.4,
-                    fontWeight: 800,
-                    textTransform: "uppercase",
-                    letterSpacing: 0.7,
                     color: "black",
                   }}
                 >
@@ -187,17 +179,17 @@ export default function HomePage() {
                 </Button>
                 <Button
                   href="/inspired"
-                  variant="text"
+                  variant="outlined"
                   sx={{
-                    borderRadius: 3,
-                    px: 3,
-                    py: 1.4,
-                    fontWeight: 800,
-                    textTransform: "uppercase",
-                    letterSpacing: 0.7,
-                    bgcolor: "secondary.light",
-                    color: "black",
-                    "&:hover": { bgcolor: "secondary.main" },
+                    color: "secondary.main",
+                    borderColor: "secondary.main",
+                    border: "2px solid",
+                    px: 2,
+                    ":hover": {
+                      background: "secondary.light",
+                      bgcolor: "secondary.main",
+                      color: "white",
+                    },
                   }}
                 >
                   Get inspired
@@ -223,7 +215,7 @@ export default function HomePage() {
                       py: 1.2,
                       borderRadius: 3,
                       bgcolor: "background.paper",
-                      border: "1px solid",
+                      border: "2px solid",
                       borderColor: "text.primary",
                       backdropFilter: "blur(10px)",
                       minWidth: 120,
@@ -258,7 +250,6 @@ export default function HomePage() {
                 borderColor: "rgba(255,255,255,0.16)",
                 bgcolor: "background.paper",
                 backdropFilter: "blur(12px)",
-                overflow: "hidden",
                 position: "relative",
               }}
             >
@@ -302,9 +293,7 @@ export default function HomePage() {
                   Tight palette. Clean contrast. Built for attention.
                 </Typography>
 
-                <Divider
-                  sx={{ my: 2, borderColor: "rgba(255,255,255,0.14)" }}
-                />
+                <Divider sx={{ my: 2, borderColor: "divider" }} />
 
                 {/* Placeholder “sneaker poster” */}
                 <Box
@@ -334,7 +323,7 @@ export default function HomePage() {
                   <Box
                     sx={{
                       position: "absolute",
-                      width: 260,
+                      width: { xs: 240, md: 260 },
                       height: 260,
                       borderRadius: "50%",
                       bgcolor: "rgba(255,58,58,0.14)",
@@ -343,8 +332,14 @@ export default function HomePage() {
                       left: -70,
                     }}
                   />
-
-                  <HeroPreview config={FEATURED_CONFIG} activeAreaId={"base"} />
+                  <Suspense fallback={<div>Loading epic sneaker</div>}>
+                    <span>
+                      <HeroPreview
+                        config={FEATURED_CONFIG}
+                        activeAreaId={"base"}
+                      />
+                    </span>
+                  </Suspense>
                 </Box>
 
                 <Stack
@@ -361,7 +356,7 @@ export default function HomePage() {
                       label={t}
                       sx={{
                         bgcolor: "background.paper",
-                        border: "1px solid ",
+                        border: "2px solid ",
                         borderColor: "text.primary",
                         p: 1.2,
                         color: "text.primary",
@@ -373,7 +368,7 @@ export default function HomePage() {
             </Card>
           </Box>
 
-          {/* Marquee */}
+          {/* Carousel */}
           <Box
             sx={{
               mt: { xs: 3, md: 4 },
@@ -417,9 +412,9 @@ export default function HomePage() {
           {/* Features row */}
           <Box
             sx={{
-              display: "grid",
-              gridTemplateColumns: { xs: "1fr", md: "repeat(3, 1fr)" },
-              gap: 2,
+              display: "flex",
+              flexDirection: { xs: "column", md: "row" },
+
               mt: { xs: 3, md: 4 },
             }}
           >
@@ -432,6 +427,8 @@ export default function HomePage() {
                   borderColor: "text.primary",
                   bgcolor: "background.paper",
                   backdropFilter: "blur(10px)",
+                  border: "2px solid",
+                  m: 2,
                 }}
               >
                 <CardContent sx={{ p: 3 }}>
