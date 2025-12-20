@@ -38,31 +38,6 @@ async function main() {
       },
     });
   }
-
-  const mockedSneakers = [
-    {
-      name: "Air Max 90",
-      config: {},
-      id: "",
-      createdAt: "",
-      updatedAt: "",
-    },
-    {
-      name: "Adidas Ultraboost",
-      config: {},
-      id: "",
-      createdAt: "",
-      updatedAt: "",
-    },
-  ];
-
-  for (const sneaker of mockedSneakers) {
-    await prisma.sneaker.upsert({
-      where: { name: sneaker.name },
-      update: {},
-      create: sneaker,
-    });
-  }
 }
 
 main()

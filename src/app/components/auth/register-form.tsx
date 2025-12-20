@@ -1,4 +1,5 @@
 "use client";
+
 import { registerUser } from "@/app/auth/register/actions";
 import {
   Box,
@@ -9,7 +10,7 @@ import {
   Typography,
 } from "@mui/material";
 import { signIn } from "next-auth/react";
-import React, { useState } from "react";
+import { useState } from "react";
 
 export default function RegisterForm() {
   const [message, setMessage] = useState<string | null>(null);

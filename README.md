@@ -2,6 +2,8 @@
 
 Sneaker project is a fully client-facing sneaker configurator built with the Next.js App Router. Authenticated designers can create, preview, and save sneaker colorways, while guests can still experiment with the tool and export high-quality PDFs of their work when authenticated.
 
+# Vercel link to application
+
 https://calle-sneaker.vercel.app/
 
 ## Tech Stack

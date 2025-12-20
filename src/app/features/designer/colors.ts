@@ -1,4 +1,4 @@
-import type { DesignAreaId } from "./areas";
+import type { DesignAreaId } from "./types";
 
 export type ColorOption = {
   name: string;

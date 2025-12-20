@@ -23,15 +23,6 @@ model User {
   designs   Design[]
 }
 
-//Model is created for seeding purposes at the moment, might be relevant later with more sneaker options
-model Sneaker {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  name      String   @unique
-  config    Json
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-
 model Design {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
   userId    String   @db.ObjectId

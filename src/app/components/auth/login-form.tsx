@@ -3,7 +3,7 @@
 import { loginSchema } from "@/lib/validation";
 import { Box, Button, Container, TextField, Typography } from "@mui/material";
 import { signIn } from "next-auth/react";
-import React, { useState } from "react";
+import { useState } from "react";
 
 export default function LoginForm() {
   const [email, setEmail] = useState("");
@@ -68,6 +68,7 @@ export default function LoginForm() {
           </Typography>
         )}
         <Button
+          aria-label="login-button"
           type="submit"
           variant="contained"
           color="primary"

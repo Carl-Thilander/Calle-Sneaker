@@ -71,14 +71,19 @@ export default function AboutPage() {
             <Button
               aria-label="go-to-inspired"
               href="/inspired"
-              variant="contained"
+              variant="outlined"
               sx={{
                 borderRadius: 2,
+                borderColor: "secondary.main",
+                border: "2px solid",
                 px: 2.5,
                 py: 1.25,
-                bgcolor: "secondary.light",
-                color: "black",
-                "&:hover": { bgcolor: "secondary.main" },
+                color: "secondary.main",
+                "&:hover": {
+                  bgcolor: "secondary.light",
+                  color: "black",
+                  borderColor: "secondary.light",
+                },
               }}
             >
               Get inspired
@@ -155,7 +160,7 @@ export default function AboutPage() {
                 px: 3,
                 py: 1.25,
                 marginTop: { xs: 2, md: 0 },
-                alignSelf: { xs: "flex-start", md: "auto" },
+                alignSelf: { xs: "center", md: "auto" },
               }}
             >
               Open Designer

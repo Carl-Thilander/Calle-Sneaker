@@ -1,22 +1,12 @@
 "use server";
 
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import type { SneakerConfig } from "@/app/features/designer/types";
 import { db } from "@/lib/db";
 import { Prisma } from "@prisma/client";
 import { getServerSession } from "next-auth";
 
-export type SneakerConfig = {
-  base: string;
-  sole: string;
-  logo: string;
-  front: string;
-  front_toe: string;
-  logobg: string;
-  laces: string;
-  laceBase: string;
-  backpart: string;
-  heelPatch: string;
-};
+// SneakerConfig moved to designer/types.ts
 
 async function getCurrentUser() {
   const session = await getServerSession(authOptions);

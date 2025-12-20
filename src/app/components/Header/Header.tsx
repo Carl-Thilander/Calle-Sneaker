@@ -15,8 +15,9 @@ import { useTheme } from "@mui/material/styles";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { useState } from "react";
-import LogInButton from "../Buttons/logInButton";
-import LogoutButton from "../Buttons/logOutButton";
+import LogInButton from "../Buttons/LogInButton";
+import LogoutButton from "../Buttons/LogOutButton";
+
 const menuItems = [
   { label: "Get inspired", href: "/inspired" },
   { label: "Customize", href: "/designer" },
