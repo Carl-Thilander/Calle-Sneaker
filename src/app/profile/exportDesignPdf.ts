@@ -1,5 +1,5 @@
 import { jsPDF } from "jspdf";
-import { DESIGN_AREAS, SneakerConfig } from "../designer/areas";
+import { DESIGN_AREAS, SneakerConfig } from "../features/designer/areas";
 
 export type ExportableDesign = {
   id: string;

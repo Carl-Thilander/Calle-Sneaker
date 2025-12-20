@@ -25,8 +25,8 @@ import {
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 
+import SneakerPreview from "../../components/Designer/SneakerPreview";
 import { createDesign, updateDesign } from "../profile/designs/actions";
-import SneakerPreview from "./SneakerPreview";
 import { DESIGN_AREAS, DesignAreaId, SneakerConfig } from "./areas";
 import { COLOR_PALETTE as COLOR_PALETTES } from "./colors";
 

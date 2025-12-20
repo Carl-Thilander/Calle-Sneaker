@@ -1,9 +1,13 @@
 "use client";
 
+import {
+  DESIGN_AREAS,
+  DesignAreaId,
+  SneakerConfig,
+} from "@/app/features/designer/areas";
 import { Box } from "@mui/material";
 import { keyframes } from "@mui/system";
 import { useEffect, useState } from "react";
-import { DESIGN_AREAS, DesignAreaId, SneakerConfig } from "./areas";
 
 const glowPulse = keyframes`
   0% {
