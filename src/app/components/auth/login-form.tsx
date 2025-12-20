@@ -68,6 +68,7 @@ export default function LoginForm() {
           </Typography>
         )}
         <Button
+          aria-label="login-button"
           type="submit"
           variant="contained"
           color="primary"
