@@ -83,7 +83,7 @@ export default function ProfileDesignList({
 
   if (designs.length === 0) {
     return (
-      <Typography color="text.secondary">
+      <Typography color="text.secondary" textAlign={"center"}>
         You have not saved a design yet. Create something epic and make sure to
         save it for a nice display here
       </Typography>
