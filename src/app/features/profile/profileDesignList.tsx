@@ -1,5 +1,6 @@
 "use client";
 
+import SneakerPreview from "@/app/components/Designer/SneakerPreview";
 import {
   Box,
   Button,
@@ -12,8 +13,7 @@ import {
   Typography,
 } from "@mui/material";
 import { useState } from "react";
-import SneakerPreview from "../../components/Designer/SneakerPreview";
-import type { SneakerConfig } from "../designer/types";
+import { SneakerConfig } from "../designer/types";
 import { deleteDesign } from "./designs/actions";
 import { exportDesignPdf, normalizeDesignConfig } from "./exportDesignPdf";
 

@@ -1,6 +1,7 @@
 import AuthCard from "@/app/components/Auth/AuthCard";
 import LoginForm from "@/app/components/Auth/login-form";
-import { Link, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
+import Link from "next/link";
 
 export default function LoginPage() {
   return (

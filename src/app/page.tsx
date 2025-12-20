@@ -10,8 +10,8 @@ import {
 } from "@mui/material";
 import Stack from "@mui/material/Stack";
 import { Suspense } from "react";
-import HeroPreview from "./landing/HeroPreview";
 import { FEATURED_CONFIG } from "./landing/featuredSneaker";
+import HeroPreview from "./landing/HeroPreview";
 
 const badges = ["Browse", "Create", "Save & iterate", "Export"];
 

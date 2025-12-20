@@ -1,6 +1,6 @@
 import { jsPDF } from "jspdf";
 import { DESIGN_AREAS } from "../designer/areas";
-import type { SneakerConfig } from "../designer/types";
+import { SneakerConfig } from "../designer/types";
 
 export type ExportableDesign = {
   id: string;

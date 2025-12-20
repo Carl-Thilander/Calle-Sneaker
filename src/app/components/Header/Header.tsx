@@ -17,6 +17,7 @@ import Link from "next/link";
 import { useState } from "react";
 import LogInButton from "../Buttons/LogInButton";
 import LogoutButton from "../Buttons/LogOutButton";
+
 const menuItems = [
   { label: "Get inspired", href: "/inspired" },
   { label: "Customize", href: "/designer" },

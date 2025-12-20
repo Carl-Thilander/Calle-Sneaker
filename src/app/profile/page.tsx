@@ -1,9 +1,9 @@
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
-import ProfileDesignList from "@/app/features/profile/profileDesignList";
 import { db } from "@/lib/db";
 import { Box, Container, Typography } from "@mui/material";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
+import ProfileDesignList from "../features/profile/profileDesignList";
 
 export default async function UserPage() {
   const session = await getServerSession(authOptions);

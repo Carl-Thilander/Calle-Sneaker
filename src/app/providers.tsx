@@ -1,5 +1,6 @@
 "use client";
-import type { ColorMode, ColorModeContextValue } from "@/types/ui";
+
+import { ColorMode, ColorModeContextValue } from "@/types/ui";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
 import { Session } from "next-auth";
