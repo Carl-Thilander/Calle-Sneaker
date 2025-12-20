@@ -55,14 +55,6 @@ async function main() {
       updatedAt: "",
     },
   ];
-
-  for (const sneaker of mockedSneakers) {
-    await prisma.sneaker.upsert({
-      where: { name: sneaker.name },
-      update: {},
-      create: sneaker,
-    });
-  }
 }
 
 main()
