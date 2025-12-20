@@ -1,5 +1,6 @@
-import AuthCard from "@/app/components/Auth/AuthCard";
-import LoginForm from "@/app/components/Auth/login-form";
+import AuthCard from "@/app/components/auth/AuthCard";
+import LoginForm from "@/app/components/auth/login-form";
+
 import { Typography } from "@mui/material";
 import Link from "next/link";
 
