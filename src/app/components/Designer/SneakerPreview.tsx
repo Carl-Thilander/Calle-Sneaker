@@ -1,10 +1,10 @@
 "use client";
 
-import {
-  DESIGN_AREAS,
+import { DESIGN_AREAS } from "@/app/features/designer/areas";
+import type {
   DesignAreaId,
   SneakerConfig,
-} from "@/app/features/designer/areas";
+} from "@/app/features/designer/types";
 import { Box } from "@mui/material";
 import { keyframes } from "@mui/system";
 import { useEffect, useState } from "react";

@@ -1,6 +1,6 @@
 import { getServerSession } from "next-auth";
-import { authOptions } from "../api/auth/[...nextauth]/route";
-import DesignerClient from "../features/designer/designer.client";
+import { authOptions } from "../../api/auth/[...nextauth]/route";
+import DesignerClient from "./designer.client";
 
 export default async function Designer() {
   const session = await getServerSession(authOptions);

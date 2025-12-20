@@ -1,4 +1,5 @@
 "use client";
+import type { ColorMode, ColorModeContextValue } from "@/types/ui";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
 import { Session } from "next-auth";
@@ -12,14 +13,7 @@ import {
   useMemo,
   useState,
 } from "react";
-import theme from "../assets/theme";
-
-export type ColorMode = "light" | "dark";
-
-type ColorModeContextValue = {
-  mode: ColorMode;
-  toggleColorMode: () => void;
-};
+import theme from "./styles/theme";
 
 type ProvidersProps = {
   children: ReactNode;

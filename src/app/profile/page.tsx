@@ -1,9 +1,9 @@
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import ProfileDesignList from "@/app/features/profile/profileDesignList";
 import { db } from "@/lib/db";
 import { Box, Container, Typography } from "@mui/material";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
-import ProfileDesignList from "./profileDesignList";
 
 export default async function UserPage() {
   const session = await getServerSession(authOptions);
@@ -28,7 +28,7 @@ export default async function UserPage() {
         maxWidth="lg"
         sx={{
           padding: "2rem",
-          backgroundColor: "background.default",
+          backgroundColor: "background.paper",
           borderRadius: 2,
           boxShadow: 3,
           mb: 4,

@@ -1,6 +1,6 @@
 "use client";
 
-import type { SneakerConfig } from "@/app/features/designer/areas";
+import type { SneakerConfig } from "@/app/features/designer/types";
 
 export const FEATURED_CONFIG: SneakerConfig = {
   base: "#000000ff",

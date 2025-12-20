@@ -61,6 +61,4 @@ export const DESIGN_AREAS = [
   },
 ] as const;
 
-export type DesignAreaId = (typeof DESIGN_AREAS)[number]["id"];
-
-export type SneakerConfig = Record<DesignAreaId, string>;
+// Types for designer are defined in `types.ts` to allow reuse across the app

@@ -405,8 +405,9 @@ export default function HomePage() {
                 textTransform: "uppercase",
               }}
             >
-              CUSTOMKICKS • COLORWAY LAB • SAVE YOUR LINEUP • CURATED PALETTES •
-              FAST ITERATION • DROP ENERGY • CUSTOMKICKS • COLORWAY LAB •
+              SNEAKERS • EXPORT • SAVE YOUR LINEUP • CURATED PALETTES • FAST
+              ITERATION • CREATE SOMETHING NEW • SNEAKERS • EXPORT • USER
+              FRIENDLY
             </Typography>
 
             <Box

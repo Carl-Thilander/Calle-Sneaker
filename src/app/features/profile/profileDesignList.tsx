@@ -12,9 +12,9 @@ import {
   Typography,
 } from "@mui/material";
 import { useState } from "react";
-import SneakerPreview from "../components/Designer/SneakerPreview";
-import { SneakerConfig } from "../features/designer/areas";
-import { deleteDesign } from "../features/profile/designs/actions";
+import SneakerPreview from "../../components/Designer/SneakerPreview";
+import type { SneakerConfig } from "../designer/types";
+import { deleteDesign } from "./designs/actions";
 import { exportDesignPdf, normalizeDesignConfig } from "./exportDesignPdf";
 
 type Design = {
