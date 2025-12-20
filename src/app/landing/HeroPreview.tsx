@@ -1,6 +1,7 @@
 "use client";
-import { DesignAreaId, SneakerConfig } from "../designer/areas";
-import SneakerPreview from "../designer/SneakerPreview";
+
+import SneakerPreview from "../components/Designer/SneakerPreview";
+import { DesignAreaId, SneakerConfig } from "../features/designer/types";
 
 type Props = {
   config: SneakerConfig;

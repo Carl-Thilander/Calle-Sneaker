@@ -4,12 +4,12 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "./api/auth/[...nextauth]/route";
 import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
-import GlobalBackground from "./globalBackground";
 import Providers from "./providers";
+import GlobalBackground from "./styles/globalBackground";
 
 export const metadata: Metadata = {
-  title: "CustomKicks",
-  description: "Design your shoe",
+  title: "Sneakers",
+  description: "Design your personal sneaker design",
 };
 
 export default async function RootLayout({

@@ -38,23 +38,6 @@ async function main() {
       },
     });
   }
-
-  const mockedSneakers = [
-    {
-      name: "Air Max 90",
-      config: {},
-      id: "",
-      createdAt: "",
-      updatedAt: "",
-    },
-    {
-      name: "Adidas Ultraboost",
-      config: {},
-      id: "",
-      createdAt: "",
-      updatedAt: "",
-    },
-  ];
 }
 
 main()

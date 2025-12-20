@@ -1,10 +1,10 @@
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
-import { SneakerConfig } from "@/app/profile/designs/actions";
+import type { SneakerConfig } from "@/app/features/designer/types";
 import { db } from "@/lib/db";
 import { Container, Typography } from "@mui/material";
 import { getServerSession } from "next-auth";
 import { notFound, redirect } from "next/navigation";
-import DesignerClient from "../designer.client";
+import DesignerClient from "../../features/designer/designer.client";
 
 interface Props {
   params: { designId: string } | Promise<{ designId: string }>;

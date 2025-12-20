@@ -6,7 +6,7 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import XIcon from "@mui/icons-material/X";
 import { Box, Toolbar, useTheme } from "@mui/material";
 import Typography from "@mui/material/Typography";
-import ColorButton from "../Buttons/colorButton";
+import ColorButton from "../Buttons/ColorButton";
 
 export default function Footer() {
   const theme = useTheme();

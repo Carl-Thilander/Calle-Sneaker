@@ -25,10 +25,11 @@ import {
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 
+import SneakerPreview from "../../components/Designer/SneakerPreview";
 import { createDesign, updateDesign } from "../profile/designs/actions";
-import SneakerPreview from "./SneakerPreview";
-import { DESIGN_AREAS, DesignAreaId, SneakerConfig } from "./areas";
+import { DESIGN_AREAS } from "./areas";
 import { COLOR_PALETTE as COLOR_PALETTES } from "./colors";
+import type { DesignAreaId, SneakerConfig } from "./types";
 
 const AREAS: DesignAreaId[] = DESIGN_AREAS.map((a) => a.id);
 
@@ -484,9 +485,19 @@ export default function DesignerClient(props: DesignerProps) {
         <DialogActions>
           <Button
             onClick={handleCloseSaved}
-            variant="contained"
+            variant="text"
             aria-label="close-modal-button"
             autoFocus
+            sx={{
+              borderColor: "secondary.main",
+              border: "2px solid",
+              color: "secondary.main",
+              "&:hover": {
+                bgcolor: "secondary.light",
+                color: "black",
+                borderColor: "secondary.light",
+              },
+            }}
           >
             OK
           </Button>
@@ -496,7 +507,7 @@ export default function DesignerClient(props: DesignerProps) {
               component={Link}
               href={`/profile`}
               onClick={() => {}}
-              variant="outlined"
+              variant="contained"
             >
               <LaunchIcon sx={{ mr: 0.5 }} />
               Go to profile

@@ -10,8 +10,8 @@ import {
 } from "@mui/material";
 import Stack from "@mui/material/Stack";
 import { Suspense } from "react";
-import HeroPreview from "./landing/HeroPreview";
 import { FEATURED_CONFIG } from "./landing/featuredSneaker";
+import HeroPreview from "./landing/HeroPreview";
 
 const badges = ["Browse", "Create", "Save & iterate", "Export"];
 
@@ -405,8 +405,9 @@ export default function HomePage() {
                 textTransform: "uppercase",
               }}
             >
-              CUSTOMKICKS • COLORWAY LAB • SAVE YOUR LINEUP • CURATED PALETTES •
-              FAST ITERATION • DROP ENERGY • CUSTOMKICKS • COLORWAY LAB •
+              SNEAKERS • EXPORT • SAVE YOUR LINEUP • CURATED PALETTES • FAST
+              ITERATION • CREATE SOMETHING NEW • SNEAKERS • EXPORT • USER
+              FRIENDLY
             </Typography>
 
             <Box
