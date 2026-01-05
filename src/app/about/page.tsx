@@ -71,14 +71,13 @@ export default function AboutPage() {
             <Button
               aria-label="go-to-inspired"
               href="/inspired"
-              variant="outlined"
+              variant="contained"
               sx={{
                 borderRadius: 2,
-                borderColor: "secondary.main",
-                border: "2px solid",
+                bgcolor: "secondary.main",
                 px: 2.5,
                 py: 1.25,
-                color: "secondary.main",
+                color: "black",
                 "&:hover": {
                   bgcolor: "secondary.light",
                   color: "black",

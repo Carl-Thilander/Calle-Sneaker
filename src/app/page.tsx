@@ -180,17 +180,16 @@ export default function HomePage() {
                 </Button>
                 <Button
                   href="/inspired"
-                  variant="outlined"
+                  variant="contained"
                   aria-label="go-to-inspired"
                   sx={{
-                    color: "secondary.main",
-                    borderColor: "secondary.main",
-                    border: "2px solid",
+                    color: "black",
+                    bgcolor: "secondary.main",
                     px: 2,
-                    ":hover": {
-                      background: "secondary.light",
-                      bgcolor: "secondary.main",
-                      color: "white",
+                    "&:hover": {
+                      bgcolor: "secondary.light",
+                      color: "black",
+                      borderColor: "secondary.light",
                     },
                   }}
                 >

@@ -155,6 +155,9 @@ export default function ProfileDesignList({
                 variant="outlined"
                 component={Link}
                 href={`/designer/${d.id}`}
+                sx={{
+                  border: "2px solid",
+                }}
               >
                 Edit
               </Button>
@@ -164,6 +167,9 @@ export default function ProfileDesignList({
                 color="error"
                 variant="outlined"
                 onClick={() => openDeleteDialog(d.id, d.name)}
+                sx={{
+                  border: "2px solid",
+                }}
               >
                 Delete
               </Button>

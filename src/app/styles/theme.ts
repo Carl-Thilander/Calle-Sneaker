@@ -5,7 +5,7 @@ const theme = (mode: "light" | "dark" = "light") =>
     palette: {
       mode,
       primary: { main: "#38C774" },
-      secondary: { main: "#c7388b" },
+      secondary: { main: "#477df1ff" },
       background: {
         default: "transparent",
         paper:
