@@ -229,7 +229,7 @@ export default function DesignerClient(props: DesignerProps) {
             }}
           >
             <Box>
-              <Typography variant="h3" mb={1}>
+              <Typography variant="h3" component={"h1"} mb={1}>
                 {designId ? "Edit your old design" : "Design your new sneaker"}
               </Typography>
               <Typography
@@ -324,7 +324,11 @@ export default function DesignerClient(props: DesignerProps) {
                   <ChevronLeftIcon aria-label="Previous-Button" />
                 </IconButton>
 
-                <Typography variant="subtitle1" fontWeight="medium">
+                <Typography
+                  variant="subtitle1"
+                  component={"h2"}
+                  fontWeight="medium"
+                >
                   {activeAreaMeta.label}
                 </Typography>
 

@@ -34,24 +34,11 @@ export default function AuthCard({ title, subtitle, children, footer }: Props) {
           sx={{
             borderRadius: 4,
             borderColor: "divider",
-            bgcolor: "background.default",
-            backdropFilter: "blur(12px)",
-            overflow: "hidden",
-            position: "relative",
+            bgcolor: "background.paper",
+
             width: { xs: "100%", md: "40%" },
           }}
         >
-          <Box
-            sx={{
-              position: "absolute",
-              inset: 0,
-              background:
-                "radial-gradient(700px 500px at 20% 30%, rgba(56,199,116,0.26), transparent 60%)," +
-                "radial-gradient(650px 500px at 80% 20%, rgba(255,58,58,0.20), transparent 60%)," +
-                "linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02))",
-              opacity: 0.9,
-            }}
-          />
           <CardContent sx={{ position: "relative", p: { xs: 3, md: 4 } }}>
             <Typography
               variant="overline"
