@@ -159,7 +159,7 @@ export default function Header() {
               gap: 4,
             }}
           >
-            {menuItems.map((item) => (
+            {visibleLinks.map((item) => (
               <Typography
                 key={item.href}
                 component={Link}
