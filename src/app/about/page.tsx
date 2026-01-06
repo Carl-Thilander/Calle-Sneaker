@@ -1,11 +1,6 @@
-import {
-  Box,
-  Button,
-  Card,
-  CardContent,
-  Container,
-  Typography,
-} from "@mui/material";
+import { Box, Card, CardContent, Container, Typography } from "@mui/material";
+import DesignerButton from "../components/Buttons/DesignerButton";
+import GetInspiredButton from "../components/Buttons/GetInspiredButton";
 
 const steps = [
   {
@@ -59,34 +54,9 @@ export default function AboutPage() {
               justifyContent: { xs: "space-between", md: "flex-start" },
             }}
           >
-            <Button
-              aria-label="go-to-designer"
-              href="/designer"
-              variant="contained"
-              sx={{ borderRadius: 2, px: 2.5, py: 1.25 }}
-            >
-              Start designing
-            </Button>
+            <DesignerButton title="Start designing" />
 
-            <Button
-              aria-label="go-to-inspired"
-              href="/inspired"
-              variant="contained"
-              sx={{
-                borderRadius: 2,
-                bgcolor: "secondary.main",
-                px: 2.5,
-                py: 1.25,
-                color: "black",
-                "&:hover": {
-                  bgcolor: "secondary.light",
-                  color: "black",
-                  borderColor: "secondary.light",
-                },
-              }}
-            >
-              Get inspired
-            </Button>
+            <GetInspiredButton />
           </Box>
         </Box>
 
@@ -138,6 +108,7 @@ export default function AboutPage() {
               flexDirection: { xs: "column", md: "row" },
               alignItems: { xs: "stretch", md: "center" },
               justifyContent: "space-between",
+              gap: { xs: 2 },
             }}
           >
             <Box>
@@ -150,20 +121,7 @@ export default function AboutPage() {
               </Typography>
             </Box>
 
-            <Button
-              aria-label="go-to-designer"
-              href="/designer"
-              variant="contained"
-              sx={{
-                borderRadius: 2,
-                px: 3,
-                py: 1.25,
-                marginTop: { xs: 2, md: 0 },
-                alignSelf: { xs: "center", md: "auto" },
-              }}
-            >
-              Open Designer
-            </Button>
+            <DesignerButton title="Open designer" />
           </Box>
         </Card>
       </Container>

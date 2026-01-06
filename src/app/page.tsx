@@ -1,6 +1,5 @@
 import {
   Box,
-  Button,
   Card,
   CardContent,
   Chip,
@@ -10,6 +9,8 @@ import {
 } from "@mui/material";
 import Stack from "@mui/material/Stack";
 import { Suspense } from "react";
+import DesignerButton from "./components/Buttons/DesignerButton";
+import GetInspiredButton from "./components/Buttons/GetInspiredButton";
 import { FEATURED_CONFIG } from "./landing/featuredSneaker";
 import HeroPreview from "./landing/HeroPreview";
 
@@ -165,36 +166,8 @@ export default function HomePage() {
                 spacing={1.5}
                 sx={{ mt: 3 }}
               >
-                <Button
-                  href="/designer"
-                  variant="contained"
-                  aria-label="go-to-designer"
-                  sx={{
-                    borderRadius: 3,
-                    px: 3,
-                    py: 1.4,
-                    color: "black",
-                  }}
-                >
-                  Start customizing
-                </Button>
-                <Button
-                  href="/inspired"
-                  variant="contained"
-                  aria-label="go-to-inspired"
-                  sx={{
-                    color: "black",
-                    bgcolor: "secondary.main",
-                    px: 2,
-                    "&:hover": {
-                      bgcolor: "secondary.light",
-                      color: "black",
-                      borderColor: "secondary.light",
-                    },
-                  }}
-                >
-                  Get inspired
-                </Button>
+                <DesignerButton title="Start Customzing" />
+                <GetInspiredButton />
               </Stack>
 
               {/* Micro stats */}
