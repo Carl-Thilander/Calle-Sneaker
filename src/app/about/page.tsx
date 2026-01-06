@@ -112,7 +112,7 @@ export default function AboutPage() {
               }}
             >
               <CardContent sx={{ p: 3 }}>
-                <Typography variant="h5" sx={{ mb: 1 }}>
+                <Typography component={"h2"} variant="h5" sx={{ mb: 1 }}>
                   {s.title}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
@@ -141,7 +141,7 @@ export default function AboutPage() {
             }}
           >
             <Box>
-              <Typography variant="h6" sx={{ mb: 0.5 }}>
+              <Typography component={"h3"} variant="h6" sx={{ mb: 0.5 }}>
                 Ready to build your next colorway?
               </Typography>
               <Typography variant="body2" color="text.secondary">

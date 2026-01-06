@@ -223,6 +223,7 @@ export default function HomePage() {
                     }}
                   >
                     <Typography
+                      component={"h2"}
                       sx={{
                         color: "text.primary",
                         fontWeight: 900,
@@ -283,6 +284,7 @@ export default function HomePage() {
                 </Typography>
 
                 <Typography
+                  component={"h3"}
                   variant="h5"
                   sx={{
                     mt: 0.5,
@@ -447,7 +449,7 @@ export default function HomePage() {
               >
                 <CardContent sx={{ p: 3 }}>
                   <Typography
-                    variant="h6"
+                    variant="h4"
                     sx={{
                       fontWeight: 900,
                       textTransform: "uppercase",

@@ -294,17 +294,6 @@ export default function DesignerClient(props: DesignerProps) {
                   </Button>
                 </span>
               </Tooltip>
-              {!props.isLoggedIn && (
-                <Button
-                  aria-label="go-to-login-button"
-                  component={Link}
-                  href="/auth/login"
-                  variant="outlined"
-                  sx={{ padding: 2, borderRadius: 2 }}
-                >
-                  Log in
-                </Button>
-              )}
             </Box>
           </Box>
           <Box
@@ -332,7 +321,7 @@ export default function DesignerClient(props: DesignerProps) {
                 }}
               >
                 <IconButton onClick={goPrev}>
-                  <ChevronLeftIcon aria-label="Previous" />
+                  <ChevronLeftIcon aria-label="Previous-Button" />
                 </IconButton>
 
                 <Typography variant="subtitle1" fontWeight="medium">
@@ -340,7 +329,7 @@ export default function DesignerClient(props: DesignerProps) {
                 </Typography>
 
                 <IconButton onClick={goNext}>
-                  <ChevronRightIcon aria-label="Next" />
+                  <ChevronRightIcon aria-label="Next-Button" />
                 </IconButton>
               </Box>
               <Typography
