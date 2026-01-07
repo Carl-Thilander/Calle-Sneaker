@@ -12,8 +12,6 @@ export async function registerUser(
   formData: FormData
 ): Promise<RegisterResponse> {
   try {
-    console.log("➡️ registerUser called");
-
     const email = formData.get("email") as string;
     const name = formData.get("name") as string;
     const password = formData.get("password") as string;
@@ -24,8 +22,6 @@ export async function registerUser(
       password,
     });
 
-    console.log("registerUser data", { email, hasPassword: !!password });
-
     if (!parseResult.success) {
       const firstError = parseResult.error.issues[0];
       return { error: firstError?.message || "Invalid input data" };
@@ -35,7 +31,6 @@ export async function registerUser(
       where: { email },
       select: { id: true },
     });
-    console.log("registerUser existing user", !!existing);
 
     if (existing) {
       return { error: "User already exists" };

@@ -1,8 +1,7 @@
 import AuthCard from "@/app/components/auth/AuthCard";
 import LoginForm from "@/app/components/auth/login-form";
 
-import { Typography } from "@mui/material";
-import Link from "next/link";
+import { Link, Typography } from "@mui/material";
 
 export default function LoginPage() {
   return (
@@ -10,11 +9,15 @@ export default function LoginPage() {
       title="Log in"
       subtitle="Welcome back. Continue your drafts and saved designs."
       footer={
-        <Typography color="text.primary">
-          No account?{" "}
-          <Link href="/auth/register" color="text.primary">
-            Create one here
-          </Link>
+        <Typography
+          component={Link}
+          color="text.primary"
+          href="/auth/register"
+          sx={{
+            textDecoration: "none",
+          }}
+        >
+          No account? Create one here!
         </Typography>
       }
     >
