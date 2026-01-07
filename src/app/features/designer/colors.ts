@@ -9,10 +9,6 @@ export const COLOR_PALETTE: Record<DesignAreaId, ColorOption[]> = {
   base: [
     { name: "Black", hex: "#312f2fff" },
     { name: "Gray", hex: "#808080" },
-    { name: "White", hex: "#FFFFFF" },
-    { name: "Red", hex: "#D40000" },
-    { name: "Blue", hex: "#0057FF" },
-    { name: "Green", hex: "#195330" },
   ],
   logo: [
     { name: "Volt", hex: "#CEFF00" },

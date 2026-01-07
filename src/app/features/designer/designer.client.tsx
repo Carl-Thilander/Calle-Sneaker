@@ -67,7 +67,7 @@ export default function DesignerClient(props: DesignerProps) {
   const [name, setName] = useState(props.initialName ?? "My new design");
   const [config, setConfig] = useState<SneakerConfig>(
     props.initialConfig ?? {
-      base: "#FFFFFF",
+      base: "#312f2fff",
       sole: "#FFFFFF",
       logo: "#38C774",
       front: "#FFFFFF",
@@ -127,7 +127,7 @@ export default function DesignerClient(props: DesignerProps) {
     setName("My new design");
     setConfig(
       props.initialConfig ?? {
-        base: "#353232ff",
+        base: "#312f2fff",
         sole: "#FFFFFF",
         logo: "#38C774",
         front: "#FFFFFF",
